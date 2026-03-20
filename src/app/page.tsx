@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import ParallaxDivider from "@/components/ParallaxDivider";
 
 export default function Home() {
@@ -27,17 +26,6 @@ export default function Home() {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
-          <div className="flex justify-center mb-10">
-            <Image
-              src="/logo.png"
-              alt="PJ Professionals"
-              width={200}
-              height={200}
-              className="h-28 w-auto brightness-0 invert drop-shadow-2xl"
-              priority
-            />
-          </div>
-
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
             Wij blijven staan waar{" "}
             <span className="bg-gradient-to-r from-accent-light to-accent bg-clip-text text-transparent">
