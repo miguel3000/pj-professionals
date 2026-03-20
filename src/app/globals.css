@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-navy: #1b1447;
+  --color-indigo: #100375;
+  --color-navy-light: #2a2066;
+  --color-indigo-light: #1e0d8a;
+  --color-accent: #4a90d9;
+  --color-accent-light: #6bb0f0;
+  --color-surface: #f8f9fc;
+  --color-surface-dark: #eef1f7;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

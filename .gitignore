@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env*
+.DS_Store
+stock images/
+Web structure/
+start-dev.sh
+.claude/
+logo pj professionals.png
