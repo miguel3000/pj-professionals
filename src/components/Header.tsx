@@ -27,7 +27,7 @@ export default function Header() {
               alt="PJ Professionals"
               width={280}
               height={84}
-              className="h-24 w-auto brightness-0 invert drop-shadow-lg"
+              className="h-24 w-auto brightness-0 invert drop-shadow-lg mt-[25px]"
               priority
             />
           </Link>
