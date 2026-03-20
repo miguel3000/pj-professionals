@@ -17,17 +17,17 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10 overflow-visible">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
+        <div className="flex items-center justify-between h-20 overflow-visible">
           {/* Logo */}
-          <Link href="/" className="flex items-center group shrink-0">
+          <Link href="/" className="flex items-center group shrink-0 relative z-10">
             <Image
               src="/logo.png"
               alt="PJ Professionals"
-              width={160}
-              height={48}
-              className="h-12 w-auto brightness-0 invert"
+              width={280}
+              height={84}
+              className="h-24 w-auto brightness-0 invert drop-shadow-lg"
               priority
             />
           </Link>
