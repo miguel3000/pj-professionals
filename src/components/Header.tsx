@@ -25,8 +25,8 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10 overflow-visible">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
         <div className="flex items-center justify-between h-20 overflow-visible">
-          {/* Logo */}
-          {!hideHeaderLogo && (
+          {/* Logo - standard position on normal pages */}
+          {!isHomepage2 && (
             <Link href="/" className="flex items-center group shrink-0 relative z-10">
               <Image
                 src="/logo.png"
@@ -37,6 +37,22 @@ export default function Header() {
                 priority
               />
             </Link>
+          )}
+
+          {/* Centered logo for homepage-2 - extends below header */}
+          {isHomepage2 && (
+            <div className="absolute left-1/2 -translate-x-1/2 top-3">
+              <div className="bg-navy rounded-2xl p-[15px]">
+                <Image
+                  src="/logo.png"
+                  alt="PJ Professionals"
+                  width={800}
+                  height={240}
+                  className="h-64 w-auto brightness-0 invert drop-shadow-2xl"
+                  priority
+                />
+              </div>
+            </div>
           )}
 
           {/* Desktop Navigation - hidden on homepage-2 (uses hamburger only) */}

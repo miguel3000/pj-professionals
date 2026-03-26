@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import ParallaxDivider from "@/components/ParallaxDivider";
 
 export default function Home2() {
@@ -26,21 +25,7 @@ export default function Home2() {
           }}
         />
 
-        <div className="relative z-[60] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
-          {/* Large centered logo with backdrop - overlaps into header */}
-          <div className="mb-10 inline-block -mt-14">
-            <div className="bg-navy rounded-2xl p-[15px]">
-              <Image
-                src="/logo.png"
-                alt="PJ Professionals"
-                width={800}
-                height={240}
-                className="h-64 w-auto brightness-0 invert drop-shadow-2xl"
-                priority
-              />
-            </div>
-          </div>
-
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-80">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
             Wij blijven staan waar{" "}
             <span className="bg-gradient-to-r from-accent-light to-accent bg-clip-text text-transparent">
