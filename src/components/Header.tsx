@@ -18,7 +18,8 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [homeOpen, setHomeOpen] = useState(false);
   const pathname = usePathname();
-  const hideHeaderLogo = pathname === "/homepage-2";
+  const isHomepage2 = pathname === "/homepage-2";
+  const hideHeaderLogo = isHomepage2;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10 overflow-visible">
@@ -38,8 +39,8 @@ export default function Header() {
             </Link>
           )}
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-0.5">
+          {/* Desktop Navigation - hidden on homepage-2 (uses hamburger only) */}
+          <nav className={`${isHomepage2 ? "hidden" : "hidden lg:flex"} items-center gap-0.5`}>
             {/* Temporary Home dropdown */}
             <div className="relative">
               <button
@@ -80,10 +81,10 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Menu Button - always visible on homepage-2, mobile-only elsewhere */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className={`${isHomepage2 ? "" : "lg:hidden"} text-white p-2 rounded-lg hover:bg-white/10 transition-colors ml-auto`}
             aria-label="Toggle menu"
           >
             <svg
@@ -111,9 +112,9 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Slide-out Menu - always available on homepage-2, mobile-only elsewhere */}
         {menuOpen && (
-          <nav className="lg:hidden pb-6 border-t border-white/10 pt-4">
+          <nav className={`${isHomepage2 ? "" : "lg:hidden"} pb-6 border-t border-white/10 pt-4`}>
             <div className="flex flex-col gap-1">
               <Link
                 href="/"
