@@ -72,6 +72,40 @@ function TextAreaField({
 
 export default function Contact() {
   const [reason, setReason] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+    setErrorMessage("");
+
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      data[key] = value.toString();
+    });
+    data.reason = reason;
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        const result = await res.json();
+        setErrorMessage(result.error || "Er is iets misgegaan.");
+        setStatus("error");
+      }
+    } catch {
+      setErrorMessage("Kan geen verbinding maken met de server. Probeer het later opnieuw.");
+      setStatus("error");
+    }
+  }
 
   return (
     <>
@@ -125,7 +159,25 @@ export default function Contact() {
               Liever telefonisch contact? Onze bureaudienst is bereikbaar tijdens kantooruren via 073-7621035.
             </p>
 
-            <form className="space-y-6">
+            {status === "success" ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-navy mb-2">Bericht verzonden!</h3>
+                <p className="text-gray-500 text-sm mb-6">Bedankt voor uw bericht. Wij nemen zo snel mogelijk contact met u op.</p>
+                <button
+                  onClick={() => { setStatus("idle"); setReason(""); }}
+                  className="px-6 py-2.5 bg-navy text-white font-semibold text-sm rounded-xl hover:bg-indigo transition-colors"
+                >
+                  Nieuw bericht versturen
+                </button>
+              </div>
+            ) : (
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Reason selector */}
               <div>
                 <label htmlFor="reason" className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -226,13 +278,21 @@ export default function Contact() {
                 </label>
               </div>
 
+              {status === "error" && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+                  {errorMessage}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full py-3.5 bg-gradient-to-r from-navy to-indigo text-white font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm"
+                disabled={status === "sending"}
+                className="w-full py-3.5 bg-gradient-to-r from-navy to-indigo text-white font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Verstuur bericht
+                {status === "sending" ? "Bezig met verzenden..." : "Verstuur bericht"}
               </button>
             </form>
+            )}
           </div>
         </div>
       </section>

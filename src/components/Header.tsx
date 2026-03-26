@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -15,25 +16,53 @@ const navLinks = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [homeOpen, setHomeOpen] = useState(false);
+  const pathname = usePathname();
+  const hideHeaderLogo = pathname === "/homepage-2";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10 overflow-visible">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
         <div className="flex items-center justify-between h-20 overflow-visible">
           {/* Logo */}
-          <Link href="/" className="flex items-center group shrink-0 relative z-10">
-            <Image
-              src="/logo.png"
-              alt="PJ Professionals"
-              width={280}
-              height={84}
-              className="h-24 w-auto brightness-0 invert drop-shadow-lg mt-[25px]"
-              priority
-            />
-          </Link>
+          {!hideHeaderLogo && (
+            <Link href="/" className="flex items-center group shrink-0 relative z-10">
+              <Image
+                src="/logo.png"
+                alt="PJ Professionals"
+                width={280}
+                height={84}
+                className="h-24 w-auto brightness-0 invert drop-shadow-lg mt-[75px]"
+                priority
+              />
+            </Link>
+          )}
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-0.5">
+            {/* Temporary Home dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setHomeOpen(!homeOpen)}
+                onBlur={() => setTimeout(() => setHomeOpen(false), 150)}
+                className="px-3 py-2 text-white/80 hover:text-white text-sm font-medium rounded-lg hover:bg-white/10 transition-all whitespace-nowrap inline-flex items-center gap-1"
+              >
+                Home
+                <svg className={`w-3 h-3 transition-transform ${homeOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {homeOpen && (
+                <div className="absolute top-full left-0 mt-1 bg-navy border border-white/10 rounded-lg shadow-xl py-1 min-w-[160px]">
+                  <Link href="/" className="block px-4 py-2 text-white/80 hover:text-white text-sm hover:bg-white/10 transition-all">
+                    Homepage 1
+                  </Link>
+                  <Link href="/homepage-2" className="block px-4 py-2 text-white/80 hover:text-white text-sm hover:bg-white/10 transition-all">
+                    Homepage 2
+                  </Link>
+                </div>
+              )}
+            </div>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -91,7 +120,14 @@ export default function Header() {
                 onClick={() => setMenuOpen(false)}
                 className="px-4 py-3 text-white/80 hover:text-white text-base font-medium rounded-lg hover:bg-white/10 transition-all"
               >
-                Home
+                Homepage 1
+              </Link>
+              <Link
+                href="/homepage-2"
+                onClick={() => setMenuOpen(false)}
+                className="px-4 py-3 text-white/80 hover:text-white text-base font-medium rounded-lg hover:bg-white/10 transition-all"
+              >
+                Homepage 2
               </Link>
               {navLinks.map((link) => (
                 <Link
