@@ -37,7 +37,7 @@ function InputField({
         name={id}
         placeholder={placeholder}
         required={required}
-        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo focus:ring-2 focus:ring-indigo/20 outline-none transition-all text-sm"
+        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20 outline-none transition-all text-sm"
       />
     </div>
   );
@@ -64,7 +64,7 @@ function TextAreaField({
         name={id}
         rows={rows}
         placeholder={placeholder}
-        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo focus:ring-2 focus:ring-indigo/20 outline-none transition-all text-sm resize-none"
+        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20 outline-none transition-all text-sm resize-none"
       />
     </div>
   );
@@ -120,41 +120,41 @@ export default function Contact() {
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            <div className="bg-surface rounded-2xl p-6 border border-gray-100 text-center">
-              <div className="w-12 h-12 rounded-xl bg-indigo/10 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-indigo" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-teal-surface rounded-2xl p-6 border border-gray-100 text-center">
+              <div className="w-12 h-12 rounded-xl bg-teal-dark/10 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-teal-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-navy mb-1">Bureaudienst</h3>
-              <a href="tel:073-7621035" className="text-accent text-sm hover:underline">073 - 762 1035</a>
+              <h3 className="font-semibold text-teal-dark mb-1">Bureaudienst</h3>
+              <a href="tel:073-7621035" className="text-teal-medium text-sm hover:underline">073 - 762 1035</a>
               <p className="text-gray-400 text-xs mt-1">Tijdens kantooruren</p>
             </div>
 
-            <div className="bg-surface rounded-2xl p-6 border border-gray-100 text-center">
-              <div className="w-12 h-12 rounded-xl bg-indigo/10 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-indigo" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-teal-surface rounded-2xl p-6 border border-gray-100 text-center">
+              <div className="w-12 h-12 rounded-xl bg-teal-dark/10 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-teal-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-navy mb-1">E-mail</h3>
-              <a href="mailto:bureaudienst@pjprofessionals.nl" className="text-accent text-sm hover:underline">bureaudienst@pjprofessionals.nl</a>
+              <h3 className="font-semibold text-teal-dark mb-1">E-mail</h3>
+              <a href="mailto:bureaudienst@pjprofessionals.nl" className="text-teal-medium text-sm hover:underline">bureaudienst@pjprofessionals.nl</a>
             </div>
 
-            <div className="bg-surface rounded-2xl p-6 border border-gray-100 text-center sm:col-span-2 lg:col-span-1">
-              <div className="w-12 h-12 rounded-xl bg-indigo/10 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-indigo" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-teal-surface rounded-2xl p-6 border border-gray-100 text-center sm:col-span-2 lg:col-span-1">
+              <div className="w-12 h-12 rounded-xl bg-teal-dark/10 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-teal-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-navy mb-1">Aanmeldingen</h3>
-              <a href="mailto:aanmeldingen@pjprofessionals.nl" className="text-accent text-sm hover:underline">aanmeldingen@pjprofessionals.nl</a>
+              <h3 className="font-semibold text-teal-dark mb-1">Aanmeldingen</h3>
+              <a href="mailto:aanmeldingen@pjprofessionals.nl" className="text-teal-medium text-sm hover:underline">aanmeldingen@pjprofessionals.nl</a>
             </div>
           </div>
 
           {/* Contact Form */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10">
-            <h2 className="text-2xl font-bold text-navy mb-2">Contactformulier</h2>
+            <h2 className="text-2xl font-bold text-teal-dark mb-2">Contactformulier</h2>
             <p className="text-gray-500 text-sm mb-8">
               Liever telefonisch contact? Onze bureaudienst is bereikbaar tijdens kantooruren via 073-7621035.
             </p>
@@ -166,11 +166,11 @@ export default function Contact() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-navy mb-2">Bericht verzonden!</h3>
+                <h3 className="text-xl font-bold text-teal-dark mb-2">Bericht verzonden!</h3>
                 <p className="text-gray-500 text-sm mb-6">Bedankt voor uw bericht. Wij nemen zo snel mogelijk contact met u op.</p>
                 <button
                   onClick={() => { setStatus("idle"); setReason(""); }}
-                  className="px-6 py-2.5 bg-navy text-white font-semibold text-sm rounded-xl hover:bg-indigo transition-colors"
+                  className="px-6 py-2.5 bg-teal-dark text-white font-semibold text-sm rounded-xl hover:bg-teal-dark transition-colors"
                 >
                   Nieuw bericht versturen
                 </button>
@@ -187,7 +187,7 @@ export default function Contact() {
                   id="reason"
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo focus:ring-2 focus:ring-indigo/20 outline-none transition-all text-sm bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20 outline-none transition-all text-sm bg-white"
                   required
                 >
                   {contactReasons.map((r) => (
@@ -210,8 +210,8 @@ export default function Contact() {
 
               {/* Conditional fields based on reason */}
               {reason === "aanmelding" && (
-                <div className="space-y-5 p-6 bg-surface rounded-xl border border-gray-100">
-                  <h3 className="font-semibold text-navy text-sm">Aanmeldgegevens</h3>
+                <div className="space-y-5 p-6 bg-teal-surface rounded-xl border border-gray-100">
+                  <h3 className="font-semibold text-teal-dark text-sm">Aanmeldgegevens</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <InputField label="Naam verwijzer / organisatie" id="verwijzer" />
                     <InputField label="Functie" id="functie" />
@@ -226,11 +226,11 @@ export default function Contact() {
               )}
 
               {reason === "sollicitatie" && (
-                <div className="space-y-5 p-6 bg-surface rounded-xl border border-gray-100">
-                  <h3 className="font-semibold text-navy text-sm">Sollicitatiegegevens</h3>
+                <div className="space-y-5 p-6 bg-teal-surface rounded-xl border border-gray-100">
+                  <h3 className="font-semibold text-teal-dark text-sm">Sollicitatiegegevens</h3>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">Soort aanvraag</label>
-                    <select className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo focus:ring-2 focus:ring-indigo/20 outline-none transition-all text-sm bg-white">
+                    <select className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20 outline-none transition-all text-sm bg-white">
                       <option value="sollicitatie">Sollicitatie</option>
                       <option value="stage">Stage</option>
                     </select>
@@ -240,15 +240,15 @@ export default function Contact() {
               )}
 
               {reason === "client" && (
-                <div className="space-y-5 p-6 bg-surface rounded-xl border border-gray-100">
-                  <h3 className="font-semibold text-navy text-sm">Cliëntgegevens</h3>
+                <div className="space-y-5 p-6 bg-teal-surface rounded-xl border border-gray-100">
+                  <h3 className="font-semibold text-teal-dark text-sm">Cliëntgegevens</h3>
                   <InputField label="Naam begeleider (indien bekend)" id="begeleider" />
                 </div>
               )}
 
               {reason === "ketenpartner" && (
-                <div className="space-y-5 p-6 bg-surface rounded-xl border border-gray-100">
-                  <h3 className="font-semibold text-navy text-sm">Gegevens ketenpartner</h3>
+                <div className="space-y-5 p-6 bg-teal-surface rounded-xl border border-gray-100">
+                  <h3 className="font-semibold text-teal-dark text-sm">Gegevens ketenpartner</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <InputField label="Naam organisatie" id="organisatie" />
                     <InputField label="Functie" id="kp-functie" />
@@ -271,7 +271,7 @@ export default function Contact() {
                   type="checkbox"
                   id="privacy"
                   required
-                  className="mt-1 h-4 w-4 rounded border-gray-300 text-indigo focus:ring-indigo"
+                  className="mt-1 h-4 w-4 rounded border-gray-300 text-teal-dark focus:ring-teal-dark"
                 />
                 <label htmlFor="privacy" className="text-sm text-gray-600">
                   Ik ga akkoord met de privacyverklaring van PJ Professionals. <span className="text-red-400">*</span>
@@ -287,7 +287,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full py-3.5 bg-gradient-to-r from-navy to-indigo text-white font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3.5 bg-gradient-to-r from-teal-dark to-teal-dark text-white font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status === "sending" ? "Bezig met verzenden..." : "Verstuur bericht"}
               </button>
@@ -301,19 +301,19 @@ export default function Contact() {
       <SectionBlock id="locaties" title="Onze locaties" gray>
         <div className="not-prose grid sm:grid-cols-2 gap-6">
           <div className="bg-white rounded-xl p-6 border border-gray-100">
-            <h3 className="font-semibold text-navy text-lg mb-3">&apos;s-Hertogenbosch</h3>
+            <h3 className="font-semibold text-teal-dark text-lg mb-3">&apos;s-Hertogenbosch</h3>
             <p className="text-gray-600 text-sm mb-4">Bruistensingel 130, 5232 AC &apos;s-Hertogenbosch</p>
             <div className="space-y-2 text-sm text-gray-500">
-              <p><strong className="text-navy">Met de auto:</strong> Goed bereikbaar vanaf de A59 en A2. Parkeren mogelijk in de directe omgeving.</p>
-              <p><strong className="text-navy">OV:</strong> Vanaf station &apos;s-Hertogenbosch met Bus 3 of Bus 6, uitstappen bij halte Maaspoort / Bruistensingel.</p>
+              <p><strong className="text-teal-dark">Met de auto:</strong> Goed bereikbaar vanaf de A59 en A2. Parkeren mogelijk in de directe omgeving.</p>
+              <p><strong className="text-teal-dark">OV:</strong> Vanaf station &apos;s-Hertogenbosch met Bus 3 of Bus 6, uitstappen bij halte Maaspoort / Bruistensingel.</p>
             </div>
           </div>
           <div className="bg-white rounded-xl p-6 border border-gray-100">
-            <h3 className="font-semibold text-navy text-lg mb-3">Oss</h3>
+            <h3 className="font-semibold text-teal-dark text-lg mb-3">Oss</h3>
             <p className="text-gray-600 text-sm mb-4">Raadhuishof 25, 5341 HR Oss</p>
             <div className="space-y-2 text-sm text-gray-500">
-              <p><strong className="text-navy">Met de auto:</strong> In het centrum van Oss. Parkeren bij Parkeergarage Bergoss of Centrum.</p>
-              <p><strong className="text-navy">OV:</strong> Vanaf station Oss is het ca. 10 minuten lopen. Buslijnen 90, 157 stoppen in het centrum.</p>
+              <p><strong className="text-teal-dark">Met de auto:</strong> In het centrum van Oss. Parkeren bij Parkeergarage Bergoss of Centrum.</p>
+              <p><strong className="text-teal-dark">OV:</strong> Vanaf station Oss is het ca. 10 minuten lopen. Buslijnen 90, 157 stoppen in het centrum.</p>
             </div>
           </div>
         </div>
@@ -324,7 +324,7 @@ export default function Contact() {
         <p>
           Wanneer iets niet naar wens verloopt, horen wij dit graag. Cliënten
           kunnen hun klacht indienen via{" "}
-          <a href="mailto:secretariaat@pjprofessionals.nl" className="text-accent hover:underline">
+          <a href="mailto:secretariaat@pjprofessionals.nl" className="text-teal-medium hover:underline">
             secretariaat@pjprofessionals.nl
           </a>
           . De klacht wordt behandeld door een interne klachtencoördinator. Wij

@@ -76,7 +76,7 @@ export default function OverOns() {
       <ParallaxDivider
         image="/images/pjprofessionals6.jpg"
         height="h-[35vh]"
-        overlay="from-navy/50 via-transparent to-navy/50"
+        overlay="from-teal-dark/50 via-transparent to-teal-dark/50"
       />
 
       <SectionBlock id="ketenpartners" title="Ketenpartners" gray>
@@ -136,7 +136,7 @@ export default function OverOns() {
       <ParallaxDivider
         image="/images/pjprofessionals8.jpg"
         height="h-[35vh]"
-        overlay="from-navy/60 via-transparent to-navy/60"
+        overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />
 
       <SectionBlock id="kwaliteit" title="Kwaliteit, audits en certificering">

@@ -22,7 +22,7 @@ export default function Header() {
   const isHomepage = pathname === "/";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10 bg-navy/95 overflow-visible">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10 bg-teal-dark/95 overflow-visible">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
         <div className="flex items-center justify-between h-20 overflow-visible">
           {/* Small logo on inner pages */}
@@ -42,7 +42,7 @@ export default function Header() {
           {/* Big centered logo on homepage only */}
           {isHomepage && (
             <div className="absolute left-1/2 -translate-x-1/2 top-3">
-              <div className="bg-navy rounded-2xl p-[15px]">
+              <div className="bg-teal-dark rounded-2xl p-[15px]">
                 <Image
                   src="/logo.png"
                   alt="PJ Professionals"
@@ -87,7 +87,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 mx-4 px-5 py-3 font-semibold text-base rounded-lg transition-colors text-center bg-white text-navy hover:bg-white/90"
+                className="mt-2 mx-4 px-5 py-3 font-semibold text-base rounded-lg transition-colors text-center bg-white text-teal-dark hover:bg-white/90"
               >
                 Contact
               </Link>

@@ -15,7 +15,7 @@ export default function Home() {
             backgroundRepeat: "no-repeat",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/60 via-navy/40 to-navy/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-teal-dark/60 via-teal-dark/40 to-teal-dark/80" />
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -28,7 +28,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-80">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
             Wij blijven staan waar{" "}
-            <span className="bg-gradient-to-r from-accent-light to-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-teal-light to-teal-medium bg-clip-text text-transparent">
               anderen afhaken.
             </span>
           </h1>
@@ -44,7 +44,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/wmo-zorg"
-              className="px-8 py-4 bg-white text-navy font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
+              className="px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
             >
               WMO-zorg
             </Link>
@@ -94,7 +94,7 @@ export default function Home() {
       </section>
 
       {/* Two main services with background images */}
-      <section className="py-20 bg-surface">
+      <section className="py-20 bg-teal-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             <Link
@@ -109,7 +109,7 @@ export default function Home() {
                   backgroundSize: "cover",
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-navy/20 group-hover:from-navy/80 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/40 to-teal-dark/20 group-hover:from-teal-dark/80 transition-colors duration-300" />
               <div className="relative h-full flex flex-col justify-end p-10 sm:p-12">
                 <h2 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">
                   WMO-zorg
@@ -151,7 +151,7 @@ export default function Home() {
                   backgroundSize: "cover",
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-navy/20 group-hover:from-navy/80 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/40 to-teal-dark/20 group-hover:from-teal-dark/80 transition-colors duration-300" />
               <div className="relative h-full flex flex-col justify-end p-10 sm:p-12">
                 <h2 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">
                   Forensische zorg
@@ -187,9 +187,9 @@ export default function Home() {
       <ParallaxDivider
         image="/images/pjprofessionals7.jpg"
         height="h-[50vh]"
-        overlay="from-navy/70 via-navy/30 to-navy/70"
+        overlay="from-teal-dark/70 via-teal-dark/30 to-teal-dark/70"
       >
-        <span className="text-accent-light font-semibold text-sm uppercase tracking-wider">
+        <span className="text-teal-light font-semibold text-sm uppercase tracking-wider">
           Onze werkwijze
         </span>
         <h2 className="text-3xl sm:text-4xl font-bold text-white mt-3 drop-shadow-lg">
@@ -221,9 +221,9 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-surface rounded-2xl p-8 border border-gray-100"
+                className="bg-teal-surface rounded-2xl p-8 border border-gray-100"
               >
-                <h3 className="text-lg font-semibold text-navy mb-3">
+                <h3 className="text-lg font-semibold text-teal-dark mb-3">
                   {item.title}
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed">
@@ -239,11 +239,11 @@ export default function Home() {
       <ParallaxDivider
         image="/images/pjprofessionals10.jpg"
         height="h-[40vh]"
-        overlay="from-navy/60 via-transparent to-navy/60"
+        overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />
 
       {/* Quick links */}
-      <section className="py-20 bg-surface">
+      <section className="py-20 bg-teal-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -279,7 +279,7 @@ export default function Home() {
                     backgroundSize: "cover",
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-navy/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/30 to-teal-dark/10" />
                 <div className="relative h-full flex flex-col justify-end p-8">
                   <h3 className="text-lg font-semibold text-white mb-1 drop-shadow-lg">
                     {item.title}
@@ -287,7 +287,7 @@ export default function Home() {
                   <p className="text-white/70 text-sm leading-relaxed mb-3">
                     {item.desc}
                   </p>
-                  <span className="text-accent-light text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <span className="text-teal-light text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                     Lees meer
                     <svg
                       className="w-4 h-4"
@@ -314,7 +314,7 @@ export default function Home() {
       <ParallaxDivider
         image="/images/pjprofessionals14.jpg"
         height="h-auto"
-        overlay="from-navy/80 via-navy/60 to-navy/80"
+        overlay="from-teal-dark/80 via-teal-dark/60 to-teal-dark/80"
       >
         <div className="py-20">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 drop-shadow-lg">
@@ -327,7 +327,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="px-8 py-4 bg-white text-navy font-semibold rounded-xl hover:bg-white/90 transition-all text-base"
+              className="px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all text-base"
             >
               Contactformulier
             </Link>

@@ -2,27 +2,12 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-navy: #1b1447;
-  --color-indigo: #100375;
-  --color-navy-light: #2a2066;
-  --color-indigo-light: #1e0d8a;
-  --color-accent: #4a90d9;
-  --color-accent-light: #6bb0f0;
-  --color-surface: #f8f9fc;
-  --color-surface-dark: #eef1f7;
-
-  /* Alternative teal palette (homepage-3) */
   --color-teal-dark: #39585d;
   --color-teal-medium: #78a8a8;
   --color-teal-light: #bdd7d8;
   --color-teal-surface: #edeef0;
 
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-}
-
-/* Logo tint: shifts blue swirl in logo-alt.jpg toward teal palette */
-.logo-tint-teal {
-  filter: hue-rotate(-30deg) saturate(0.55) brightness(0.85) contrast(1.1);
 }
 
 html {

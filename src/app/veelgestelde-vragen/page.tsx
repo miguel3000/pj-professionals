@@ -168,7 +168,7 @@ export default function VeelgesteldeVragen() {
                 className="group border border-gray-100 rounded-xl overflow-hidden"
               >
                 <summary className="flex items-center justify-between cursor-pointer p-5 bg-white hover:bg-gray-50 transition-colors">
-                  <span className="font-medium text-navy text-sm pr-4">
+                  <span className="font-medium text-teal-dark text-sm pr-4">
                     {faq.q}
                   </span>
                   <svg

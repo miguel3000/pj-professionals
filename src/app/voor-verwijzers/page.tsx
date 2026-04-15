@@ -90,7 +90,7 @@ export default function VoorVerwijzers() {
           ].map((gemeente) => (
             <div
               key={gemeente}
-              className="bg-surface rounded-lg px-4 py-3 text-sm font-medium text-navy text-center border border-gray-100"
+              className="bg-teal-surface rounded-lg px-4 py-3 text-sm font-medium text-teal-dark text-center border border-gray-100"
             >
               {gemeente}
             </div>
@@ -118,31 +118,31 @@ export default function VoorVerwijzers() {
       <SectionBlock id="contact-verwijzers" title="Contact voor verwijzers">
         <p>Verwijzers kunnen op verschillende manieren contact met ons opnemen:</p>
         <div className="not-prose grid sm:grid-cols-2 gap-4 mt-6">
-          <div className="bg-surface rounded-xl p-6 border border-gray-100">
-            <h3 className="font-semibold text-navy mb-2">Aanmeldingen</h3>
+          <div className="bg-teal-surface rounded-xl p-6 border border-gray-100">
+            <h3 className="font-semibold text-teal-dark mb-2">Aanmeldingen</h3>
             <p className="text-gray-600 text-sm mb-1">
               <a
                 href="mailto:aanmeldingen@pjprofessionals.nl"
-                className="text-accent hover:underline"
+                className="text-teal-medium hover:underline"
               >
                 aanmeldingen@pjprofessionals.nl
               </a>
             </p>
-            <Link href="/contact" className="text-accent text-sm hover:underline">
+            <Link href="/contact" className="text-teal-medium text-sm hover:underline">
               Aanmeldformulier →
             </Link>
           </div>
-          <div className="bg-surface rounded-xl p-6 border border-gray-100">
-            <h3 className="font-semibold text-navy mb-2">Bureaudienst</h3>
+          <div className="bg-teal-surface rounded-xl p-6 border border-gray-100">
+            <h3 className="font-semibold text-teal-dark mb-2">Bureaudienst</h3>
             <p className="text-gray-600 text-sm mb-1">
-              <a href="tel:073-7621035" className="text-accent hover:underline">
+              <a href="tel:073-7621035" className="text-teal-medium hover:underline">
                 073 - 762 1035
               </a>
             </p>
             <p className="text-gray-600 text-sm">
               <a
                 href="mailto:bureaudienst@pjprofessionals.nl"
-                className="text-accent hover:underline"
+                className="text-teal-medium hover:underline"
               >
                 bureaudienst@pjprofessionals.nl
               </a>

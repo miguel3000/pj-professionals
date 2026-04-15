@@ -17,7 +17,7 @@ export default function WlzZorg() {
           </p>
           <Link
             href="/contact"
-            className="inline-block px-8 py-4 bg-navy text-white font-semibold rounded-xl hover:bg-navy/90 transition-all"
+            className="inline-block px-8 py-4 bg-teal-dark text-white font-semibold rounded-xl hover:bg-teal-dark/90 transition-all"
           >
             Contact opnemen
           </Link>

@@ -1,7 +1,7 @@
 export default function ParallaxDivider({
   image,
   height = "h-[45vh]",
-  overlay = "from-navy/80 via-navy/40 to-navy/80",
+  overlay = "from-teal-dark/80 via-teal-dark/40 to-teal-dark/80",
   children,
 }: {
   image: string;

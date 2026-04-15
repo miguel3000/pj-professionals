@@ -44,10 +44,10 @@ export default function ForensischeZorg() {
       <ParallaxDivider
         image="/images/pjprofessionals3.jpg"
         height="h-[40vh]"
-        overlay="from-navy/60 via-transparent to-navy/60"
+        overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />
 
-      <section className="py-16 bg-gradient-to-r from-navy to-indigo">
+      <section className="py-16 bg-gradient-to-r from-teal-dark to-teal-dark">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-white mb-4">
             Meer weten over forensische zorg?
@@ -57,7 +57,7 @@ export default function ForensischeZorg() {
           </p>
           <Link
             href="/contact"
-            className="px-6 py-3 bg-white text-navy font-semibold rounded-xl hover:bg-white/90 transition-all text-sm inline-block"
+            className="px-6 py-3 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all text-sm inline-block"
           >
             Neem contact op
           </Link>

@@ -23,13 +23,13 @@ export default function PageHero({
               backgroundRepeat: "no-repeat",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/50 to-navy/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-teal-dark/70 via-teal-dark/50 to-teal-dark/80" />
         </>
       ) : (
         <>
-          <div className="absolute inset-0 bg-gradient-to-br from-navy via-indigo to-navy" />
-          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-indigo-light/20 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-accent/10 blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-dark via-teal-medium to-teal-dark" />
+          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-teal-medium/20 blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-teal-medium/10 blur-3xl" />
         </>
       )}
 

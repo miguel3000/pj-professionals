@@ -41,7 +41,7 @@ export default function Vacatures() {
       </SectionBlock>
 
       <SectionBlock gray>
-        <h2 className="text-2xl font-bold text-navy mb-6 not-prose">
+        <h2 className="text-2xl font-bold text-teal-dark mb-6 not-prose">
           Waarom werken bij PJ Professionals?
         </h2>
         <div className="not-prose grid sm:grid-cols-2 gap-4">
@@ -75,7 +75,7 @@ export default function Vacatures() {
               key={item.title}
               className="bg-white rounded-xl p-6 border border-gray-100"
             >
-              <h3 className="font-semibold text-navy mb-1">{item.title}</h3>
+              <h3 className="font-semibold text-teal-dark mb-1">{item.title}</h3>
               <p className="text-gray-600 text-sm">{item.desc}</p>
             </div>
           ))}
@@ -112,7 +112,7 @@ export default function Vacatures() {
           contactformulier of door een bericht te sturen naar{" "}
           <a
             href="mailto:info@pjprofessionals.nl"
-            className="text-accent hover:underline"
+            className="text-teal-medium hover:underline"
           >
             info@pjprofessionals.nl
           </a>
@@ -125,17 +125,17 @@ export default function Vacatures() {
           ].map((title) => (
             <div
               key={title}
-              className="bg-surface rounded-xl p-6 border border-gray-100 flex items-center justify-between"
+              className="bg-teal-surface rounded-xl p-6 border border-gray-100 flex items-center justify-between"
             >
               <div>
-                <h3 className="font-semibold text-navy">{title}</h3>
+                <h3 className="font-semibold text-teal-dark">{title}</h3>
                 <p className="text-gray-500 text-sm mt-1">
                   PJ Professionals — Regio Den Bosch / Oss
                 </p>
               </div>
               <Link
                 href="/contact"
-                className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-lg hover:bg-indigo transition-colors shrink-0"
+                className="px-4 py-2 bg-teal-dark text-white text-sm font-medium rounded-lg hover:bg-teal-dark transition-colors shrink-0"
               >
                 Solliciteer
               </Link>

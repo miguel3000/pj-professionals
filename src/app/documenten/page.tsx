@@ -39,11 +39,11 @@ export default function Documenten() {
                 key={doc.filename}
                 href={doc.href}
                 download={doc.filename}
-                className="block p-8 rounded-2xl border border-gray-200 bg-surface hover:border-navy/20 hover:shadow-lg transition-all group"
+                className="block p-8 rounded-2xl border border-gray-200 bg-teal-surface hover:border-teal-dark/20 hover:shadow-lg transition-all group"
               >
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <svg
-                    className="w-10 h-10 text-navy shrink-0"
+                    className="w-10 h-10 text-teal-dark shrink-0"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -59,13 +59,13 @@ export default function Documenten() {
                     {doc.size}
                   </span>
                 </div>
-                <h2 className="text-lg font-semibold text-navy mb-2 group-hover:text-accent transition-colors">
+                <h2 className="text-lg font-semibold text-teal-dark mb-2 group-hover:text-teal-medium transition-colors">
                   {doc.title}
                 </h2>
                 <p className="text-sm text-gray-500 leading-relaxed mb-4">
                   {doc.description}
                 </p>
-                <span className="inline-flex items-center gap-2 text-sm font-medium text-navy group-hover:gap-3 transition-all">
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-teal-dark group-hover:gap-3 transition-all">
                   Download
                   <svg
                     className="w-4 h-4"

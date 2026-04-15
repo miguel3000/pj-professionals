@@ -84,7 +84,7 @@ export default function WmoZorg() {
       <ParallaxDivider
         image="/images/pjprofessionals4.jpg"
         height="h-[40vh]"
-        overlay="from-navy/50 via-transparent to-navy/50"
+        overlay="from-teal-dark/50 via-transparent to-teal-dark/50"
       />
 
       <SectionBlock id="voor-wie" title="Voor wie zijn wij er?">
@@ -137,7 +137,7 @@ export default function WmoZorg() {
       <ParallaxDivider
         image="/images/pjprofessionals10.jpg"
         height="h-[35vh]"
-        overlay="from-navy/60 via-transparent to-navy/60"
+        overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />
 
       <SectionBlock id="veelgestelde-vragen" title="Veelgestelde vragen WMO">
@@ -173,7 +173,7 @@ export default function WmoZorg() {
               className="group border border-gray-100 rounded-xl overflow-hidden"
             >
               <summary className="flex items-center justify-between cursor-pointer p-5 bg-white hover:bg-gray-50 transition-colors">
-                <span className="font-medium text-navy text-sm pr-4">
+                <span className="font-medium text-teal-dark text-sm pr-4">
                   {faq.q}
                 </span>
                 <svg
@@ -202,7 +202,7 @@ export default function WmoZorg() {
       <ParallaxDivider
         image="/images/pjprofessionals8.jpg"
         height="h-auto"
-        overlay="from-navy/80 via-navy/60 to-navy/80"
+        overlay="from-teal-dark/80 via-teal-dark/60 to-teal-dark/80"
       >
         <div className="py-16">
           <h2 className="text-2xl font-bold text-white mb-4 drop-shadow-lg">
@@ -215,7 +215,7 @@ export default function WmoZorg() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="px-6 py-3 bg-white text-navy font-semibold rounded-xl hover:bg-white/90 transition-all text-sm"
+              className="px-6 py-3 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all text-sm"
             >
               Neem contact op
             </Link>
