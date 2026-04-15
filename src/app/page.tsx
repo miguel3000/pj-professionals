@@ -25,7 +25,7 @@ export default function Home() {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-80">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
             Wij blijven staan waar{" "}
             <span className="bg-gradient-to-r from-accent-light to-accent bg-clip-text text-transparent">
@@ -55,10 +55,10 @@ export default function Home() {
               Forensische zorg
             </Link>
             <Link
-              href="/contact"
+              href="/wlz-zorg"
               className="px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all text-base backdrop-blur-sm"
             >
-              Contact
+              WLZ
             </Link>
           </div>
         </div>
