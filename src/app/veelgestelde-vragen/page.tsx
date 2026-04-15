@@ -151,7 +151,7 @@ export default function VeelgesteldeVragen() {
         badge="FAQ"
         title="Veelgestelde vragen"
         subtitle="Antwoorden op veelgestelde vragen over onze organisatie, werkwijze, aanmelding en privacy."
-        image="/images/pjprofessionals13.jpg"
+        image="/images/pjprofessionals13-alt.jpg"
       />
 
       {faqSections.map((section, i) => (

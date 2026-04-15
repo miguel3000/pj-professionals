@@ -15,7 +15,7 @@ export default function Vacatures() {
         badge="Vacatures & stages"
         title="Werken bij PJ Professionals"
         subtitle="Werken in een omgeving waar menselijkheid, professionaliteit en betrokkenheid samenkomen."
-        image="/images/pjprofessionals12.jpg"
+        image="/images/pjprofessionals12-alt.jpg"
       />
 
       <SectionBlock id="werken-bij" title="Werken bij PJ Professionals">

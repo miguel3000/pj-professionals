@@ -16,7 +16,7 @@ export default function WmoZorg() {
         badge="WMO-zorg"
         title="Ondersteuning bij zelfstandig leven"
         subtitle="WMO-zorg helpt volwassenen zelfstandig te leven en deel te nemen aan de maatschappij. Wij bieden overzicht, structuur en stabiliteit."
-        image="/images/pjprofessionals9.jpg"
+        image="/images/pjprofessionals9-alt.jpg"
       />
 
       <SectionBlock id="wat-is-wmo" title="Wat is WMO-zorg?">
@@ -82,7 +82,7 @@ export default function WmoZorg() {
 
       {/* Parallax: elderly hands */}
       <ParallaxDivider
-        image="/images/pjprofessionals4.jpg"
+        image="/images/pjprofessionals4-alt.jpg"
         height="h-[40vh]"
         overlay="from-teal-dark/50 via-transparent to-teal-dark/50"
       />
@@ -135,7 +135,7 @@ export default function WmoZorg() {
 
       {/* Parallax: holding hands close-up */}
       <ParallaxDivider
-        image="/images/pjprofessionals10.jpg"
+        image="/images/pjprofessionals10-alt.jpg"
         height="h-[35vh]"
         overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />
@@ -200,7 +200,7 @@ export default function WmoZorg() {
 
       {/* CTA with parallax */}
       <ParallaxDivider
-        image="/images/pjprofessionals8.jpg"
+        image="/images/pjprofessionals8-alt.jpg"
         height="h-auto"
         overlay="from-teal-dark/80 via-teal-dark/60 to-teal-dark/80"
       >

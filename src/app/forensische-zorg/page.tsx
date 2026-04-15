@@ -16,7 +16,7 @@ export default function ForensischeZorg() {
         badge="Forensische zorg"
         title="Forensische zorg"
         subtitle="Begeleiding, diagnostiek en behandeling binnen de forensische zorg. Wij werken samen met ketenpartners aan veiligheid, herstel en duurzame terugkeer in de maatschappij."
-        image="/images/pjprofessionals15.jpg"
+        image="/images/pjprofessionals15-alt.jpg"
       />
 
       <SectionBlock title="Over forensische zorg bij PJ Professionals">
@@ -42,7 +42,7 @@ export default function ForensischeZorg() {
 
       {/* Parallax: medicine/care */}
       <ParallaxDivider
-        image="/images/pjprofessionals3.jpg"
+        image="/images/pjprofessionals3-alt.jpg"
         height="h-[40vh]"
         overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />

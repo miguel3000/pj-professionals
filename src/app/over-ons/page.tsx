@@ -15,7 +15,7 @@ export default function OverOns() {
         badge="Over ons"
         title="Over PJ Professionals"
         subtitle="Een zorgorganisatie gespecialiseerd in begeleiding en behandeling van volwassenen met uiteenlopende hulpvragen binnen de WMO en de forensische zorg."
-        image="/images/pjprofessionals11.jpg"
+        image="/images/pjprofessionals11-alt.jpg"
       />
 
       <SectionBlock>
@@ -74,7 +74,7 @@ export default function OverOns() {
 
       {/* Parallax: coffee/calm */}
       <ParallaxDivider
-        image="/images/pjprofessionals6.jpg"
+        image="/images/pjprofessionals6-alt.jpg"
         height="h-[35vh]"
         overlay="from-teal-dark/50 via-transparent to-teal-dark/50"
       />
@@ -134,7 +134,7 @@ export default function OverOns() {
 
       {/* Parallax: watering can / growth */}
       <ParallaxDivider
-        image="/images/pjprofessionals8.jpg"
+        image="/images/pjprofessionals8-alt.jpg"
         height="h-[35vh]"
         overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />

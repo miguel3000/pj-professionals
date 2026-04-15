@@ -15,7 +15,7 @@ export default function VoorVerwijzers() {
         badge="Voor verwijzers"
         title="Samenwerken aan stabiliteit en perspectief"
         subtitle="PJ Professionals is een betrouwbare samenwerkingspartner voor verwijzers. Wij zijn outreachend, actief aanwezig en blijven betrokken wanneer situaties complex worden."
-        image="/images/pjprofessionals5.jpg"
+        image="/images/pjprofessionals5-alt.jpg"
       />
 
       <SectionBlock>

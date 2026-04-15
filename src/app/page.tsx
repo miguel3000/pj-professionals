@@ -9,7 +9,7 @@ export default function Home() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url(/images/pjprofessionals1.jpg)",
+            backgroundImage: "url(/images/pjprofessionals1-alt.jpg)",
             backgroundPosition: "center top",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
@@ -104,7 +104,7 @@ export default function Home() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: "url(/images/pjprofessionals9.jpg)",
+                  backgroundImage: "url(/images/pjprofessionals9-alt.jpg)",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                 }}
@@ -146,7 +146,7 @@ export default function Home() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: "url(/images/pjprofessionals15.jpg)",
+                  backgroundImage: "url(/images/pjprofessionals15-alt.jpg)",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                 }}
@@ -185,7 +185,7 @@ export default function Home() {
 
       {/* Parallax: counseling session */}
       <ParallaxDivider
-        image="/images/pjprofessionals7.jpg"
+        image="/images/pjprofessionals7-alt.jpg"
         height="h-[50vh]"
         overlay="from-teal-dark/70 via-teal-dark/30 to-teal-dark/70"
       >
@@ -237,7 +237,7 @@ export default function Home() {
 
       {/* Parallax: holding hands */}
       <ParallaxDivider
-        image="/images/pjprofessionals10.jpg"
+        image="/images/pjprofessionals10-alt.jpg"
         height="h-[40vh]"
         overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />
@@ -251,19 +251,19 @@ export default function Home() {
                 title: "Voor verwijzers",
                 desc: "Informatie over aanmelding, werkgebied en samenwerking.",
                 href: "/voor-verwijzers",
-                img: "/images/pjprofessionals5.jpg",
+                img: "/images/pjprofessionals5-alt.jpg",
               },
               {
                 title: "Over PJ Professionals",
                 desc: "Onze missie, visie, werkwijze en organisatiestructuur.",
                 href: "/over-ons",
-                img: "/images/pjprofessionals11.jpg",
+                img: "/images/pjprofessionals11-alt.jpg",
               },
               {
                 title: "Vacatures & stages",
                 desc: "Werken bij PJ Professionals. Bekijk onze openstaande vacatures.",
                 href: "/vacatures",
-                img: "/images/pjprofessionals12.jpg",
+                img: "/images/pjprofessionals12-alt.jpg",
               },
             ].map((item) => (
               <Link
@@ -312,7 +312,7 @@ export default function Home() {
 
       {/* CTA with parallax background */}
       <ParallaxDivider
-        image="/images/pjprofessionals14.jpg"
+        image="/images/pjprofessionals14-alt.jpg"
         height="h-auto"
         overlay="from-teal-dark/80 via-teal-dark/60 to-teal-dark/80"
       >
