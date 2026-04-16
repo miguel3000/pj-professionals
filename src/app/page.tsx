@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import ParallaxDivider from "@/components/ParallaxDivider";
 
@@ -27,19 +26,14 @@ export default function Home() {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-28 sm:pt-32">
-          {/* Logo — inline so it scrolls away with the hero */}
-          <div className="mx-auto mb-10 w-44 sm:w-52 md:w-56 lg:w-60">
-            <div className="bg-teal-dark rounded-2xl p-[15px]">
-              <Image
-                src="/logo.png"
-                alt="PJ Professionals"
-                width={500}
-                height={500}
-                className="w-full h-auto brightness-0 invert drop-shadow-2xl"
-                priority
-              />
-            </div>
-          </div>
+          {/* Logo — inline so it scrolls away with the hero.
+              PNG is used as a CSS mask so only the logo shape receives
+              the tint colour; transparent negative space stays transparent. */}
+          <div
+            role="img"
+            aria-label="PJ Professionals"
+            className="mx-auto mb-10 w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 drop-shadow-2xl bg-[#88a8a8] [mask-image:url(/logo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/logo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+          />
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
             Wij blijven staan waar{" "}
