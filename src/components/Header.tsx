@@ -31,28 +31,12 @@ export default function Header() {
               <Image
                 src="/logo.png"
                 alt="PJ Professionals"
-                width={280}
-                height={84}
+                width={500}
+                height={500}
                 className="h-24 w-auto brightness-0 invert drop-shadow-lg mt-[75px]"
                 priority
               />
             </Link>
-          )}
-
-          {/* Big centered logo on homepage only */}
-          {isHomepage && (
-            <div className="absolute left-1/2 -translate-x-1/2 top-3">
-              <div className="bg-teal-dark rounded-2xl p-[15px]">
-                <Image
-                  src="/logo.png"
-                  alt="PJ Professionals"
-                  width={800}
-                  height={240}
-                  className="h-64 w-auto brightness-0 invert drop-shadow-2xl"
-                  priority
-                />
-              </div>
-            </div>
           )}
 
           {/* Hamburger — always visible at every breakpoint */}
