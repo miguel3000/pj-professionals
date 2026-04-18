@@ -2,10 +2,10 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-teal-dark: #39585d;
-  --color-teal-medium: #78a8a8;
-  --color-teal-light: #bdd7d8;
-  --color-teal-surface: #edeef0;
+  --color-teal-dark: #1D5C7A;
+  --color-teal-medium: #3FA7D6;
+  --color-teal-light: #a6cadd;
+  --color-teal-surface: #edf2f6;
 
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
