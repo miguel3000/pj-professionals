@@ -11,6 +11,7 @@ const contactReasons = [
   { value: "sollicitatie", label: "Sollicitatie of stageverzoek" },
   { value: "client", label: "Vraag van cliënt" },
   { value: "ketenpartner", label: "Overleg voor ketenpartners / verwijzers" },
+  { value: "klacht", label: "Klacht indienen" },
 ];
 
 function InputField({
@@ -254,6 +255,27 @@ export default function Contact() {
                     <InputField label="Functie" id="kp-functie" />
                   </div>
                   <InputField label="Onderwerp van overleg" id="onderwerp" />
+                </div>
+              )}
+
+              {reason === "klacht" && (
+                <div className="p-6 bg-teal-surface rounded-xl border border-teal-medium/30 space-y-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <svg className="w-5 h-5 text-teal-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 className="font-semibold text-teal-dark text-sm">Klachtenprocedure</h3>
+                  </div>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    Wanneer iets niet naar wens verloopt, horen wij dit graag. Cliënten kunnen hun klacht indienen via{" "}
+                    <a href="mailto:secretariaat@pjprofessionals.nl" className="text-teal-medium hover:underline font-medium">
+                      secretariaat@pjprofessionals.nl
+                    </a>
+                    . De klacht wordt behandeld door een interne klachtencoördinator. Wij zijn tevens aangesloten bij een extern klachtenportaal.
+                  </p>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    Voor iedereen die contact zoekt, geldt dat wij helder communiceren, snel reageren en zorgvuldig omgaan met alle vragen en signalen.
+                  </p>
                 </div>
               )}
 

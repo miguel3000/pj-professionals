@@ -8,6 +8,7 @@ const emailRouting: Record<string, string> = {
   sollicitatie: "info@pjprofessionals.nl",
   client: "bureaudienst@pjprofessionals.nl",
   ketenpartner: "bureaudienst@pjprofessionals.nl",
+  klacht: "secretariaat@pjprofessionals.nl",
 };
 
 const reasonLabels: Record<string, string> = {
@@ -16,6 +17,7 @@ const reasonLabels: Record<string, string> = {
   sollicitatie: "Sollicitatie of stageverzoek",
   client: "Vraag van cliënt",
   ketenpartner: "Overleg voor ketenpartners / verwijzers",
+  klacht: "Klacht indienen",
 };
 
 export async function POST(request: NextRequest) {
