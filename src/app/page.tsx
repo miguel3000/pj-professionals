@@ -200,34 +200,34 @@ export default function Home() {
       {/* Parallax: counseling session */}
       <ParallaxDivider
         image="/images/pjprofessionals7-alt.jpg"
-        height="h-[50vh]"
+        height="h-auto"
         overlay="from-teal-dark/70 via-teal-dark/30 to-teal-dark/70"
       >
-        <span className="text-teal-light font-semibold text-sm uppercase tracking-wider">
-          Onze werkwijze
-        </span>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mt-3 drop-shadow-lg">
-          Hoe wij werken
-        </h2>
+        <div className="py-20 max-w-2xl mx-auto px-4">
+          <span className="text-teal-light font-semibold text-sm uppercase tracking-wider">
+            Onze werkwijze
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-3 mb-6 drop-shadow-lg">
+            Hoe wij werken
+          </h2>
+          <p className="text-white/80 leading-relaxed mb-4">
+            Wij geloven dat verandering begint met vertrouwen. Daarom sluiten
+            we aan bij de situatie zoals die is en nemen we de tijd om iemand
+            echt te leren kennen.
+          </p>
+          <p className="text-white/80 leading-relaxed">
+            We werken met vaste gezichten, korte lijnen en een aanpak die
+            praktisch en haalbaar is. Waar nodig nemen we de casusregie en
+            zorgen we voor overzicht, afstemming en regie in het traject. Ook
+            wanneer het moeilijk wordt, blijven we betrokken en werken we stap
+            voor stap aan stabiliteit en herstel.
+          </p>
+        </div>
       </ParallaxDivider>
 
       {/* Kernwaarden */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-14">
-            <p className="text-gray-600 leading-relaxed mb-4">
-              Wij geloven dat verandering begint met vertrouwen. Daarom sluiten
-              we aan bij de situatie zoals die is en nemen we de tijd om iemand
-              echt te leren kennen.
-            </p>
-            <p className="text-gray-600 leading-relaxed">
-              We werken met vaste gezichten, korte lijnen en een aanpak die
-              praktisch en haalbaar is. Waar nodig nemen we de casusregie en
-              zorgen we voor overzicht, afstemming en regie in het traject. Ook
-              wanneer het moeilijk wordt, blijven we betrokken en werken we stap
-              voor stap aan stabiliteit en herstel.
-            </p>
-          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
