@@ -3,7 +3,7 @@ import PageHero from "@/components/PageHero";
 const documents = [
   {
     title: "WMO Privacyverklaring",
-    description: "Hoe wij omgaan met persoonsgegevens binnen de WMO-zorg.",
+    description: "Hoe wij omgaan met persoonsgegevens binnen de WMO.",
     href: "/documenten/WMO%20Privacyverklaring.pdf",
     filename: "WMO Privacyverklaring.pdf",
     size: "74 KB",

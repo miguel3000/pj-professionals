@@ -5,14 +5,14 @@ export default function WlzZorg() {
   return (
     <>
       <PageHero
-        badge="WLZ-zorg"
+        badge="WLZ"
         title="Wet langdurige zorg"
-        subtitle="Informatie over onze WLZ-zorg volgt binnenkort."
+        subtitle="Informatie over onze WLZ volgt binnenkort."
       />
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-lg text-gray-600 leading-relaxed mb-8">
-            Wij werken aan een uitgebreide beschrijving van onze WLZ-zorg.
+            Wij werken aan een uitgebreide beschrijving van onze WLZ.
             Heeft u nu al vragen? Neem gerust contact met ons op.
           </p>
           <Link

@@ -6,9 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 const navLinks = [
-  { label: "WMO-zorg", href: "/wmo-zorg" },
+  { label: "WMO", href: "/wmo-zorg" },
   { label: "Forensische zorg", href: "/forensische-zorg" },
-  { label: "WLZ-zorg", href: "/wlz-zorg" },
+  { label: "WLZ", href: "/wlz-zorg" },
   { label: "Voor verwijzers", href: "/voor-verwijzers" },
   { label: "Over ons", href: "/over-ons" },
   { label: "Vacatures", href: "/vacatures" },

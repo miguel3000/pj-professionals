@@ -126,10 +126,10 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/40 to-teal-dark/20 group-hover:from-teal-dark/80 transition-colors duration-300" />
               <div className="relative h-full flex flex-col justify-end p-10 sm:p-12">
                 <h2 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">
-                  WMO-zorg
+                  WMO
                 </h2>
                 <p className="text-white/80 leading-relaxed mb-4 drop-shadow-md">
-                  WMO-zorg helpt volwassenen zelfstandig te leven en deel te
+                  WMO helpt volwassenen zelfstandig te leven en deel te
                   nemen aan de maatschappij. Wij bieden ondersteuning bij wonen,
                   financien, gezondheid, sociale relaties, daginvulling en
                   veiligheid.

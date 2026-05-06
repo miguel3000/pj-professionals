@@ -4,7 +4,7 @@ import SectionBlock from "@/components/SectionBlock";
 export const metadata = {
   title: "Veelgestelde vragen - PJ Professionals",
   description:
-    "Antwoorden op veelgestelde vragen over PJ Professionals, WMO-zorg, verwijzingen en privacy.",
+    "Antwoorden op veelgestelde vragen over PJ Professionals, WMO, verwijzingen en privacy.",
 };
 
 const faqSections = [
@@ -59,7 +59,7 @@ const faqSections = [
         a: "Dit verloopt via de gemeente. Na een melding of gesprek bij het wijkteam kan een indicatie worden afgegeven.",
       },
       {
-        q: "Wat kost WMO-zorg voor mij?",
+        q: "Wat kost WMO voor mij?",
         a: "De eigen bijdrage wordt bepaald door het CAK en is afhankelijk van uw persoonlijke situatie.",
       },
       {

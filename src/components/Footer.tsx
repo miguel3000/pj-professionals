@@ -31,7 +31,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { label: "Home", href: "/" },
-                { label: "WMO-zorg", href: "/wmo-zorg" },
+                { label: "WMO", href: "/wmo-zorg" },
                 { label: "Forensische zorg", href: "/forensische-zorg" },
                 { label: "Voor verwijzers", href: "/voor-verwijzers" },
                 { label: "Over ons", href: "/over-ons" },

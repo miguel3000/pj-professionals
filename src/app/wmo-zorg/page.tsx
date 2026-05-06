@@ -4,26 +4,26 @@ import ParallaxDivider from "@/components/ParallaxDivider";
 import Link from "next/link";
 
 export const metadata = {
-  title: "WMO-zorg - PJ Professionals",
+  title: "WMO - PJ Professionals",
   description:
-    "WMO-zorg helpt volwassenen zelfstandig te leven en deel te nemen aan de maatschappij.",
+    "WMO helpt volwassenen zelfstandig te leven en deel te nemen aan de maatschappij.",
 };
 
 export default function WmoZorg() {
   return (
     <>
       <PageHero
-        badge="WMO-zorg"
+        badge="WMO"
         title="Ondersteuning bij zelfstandig leven"
-        subtitle="WMO-zorg helpt volwassenen zelfstandig te leven en deel te nemen aan de maatschappij. Wij bieden overzicht, structuur en stabiliteit."
+        subtitle="WMO helpt volwassenen zelfstandig te leven en deel te nemen aan de maatschappij. Wij bieden overzicht, structuur en stabiliteit."
         image="/images/pjprofessionals9-alt.jpg"
       />
 
-      <SectionBlock id="wat-is-wmo" title="Wat is WMO-zorg?">
+      <SectionBlock id="wat-is-wmo" title="Wat is WMO?">
         <p>
-          WMO-zorg helpt volwassenen zelfstandig te leven en deel te nemen aan de
+          WMO helpt volwassenen zelfstandig te leven en deel te nemen aan de
           maatschappij. Veel clienten lopen vast door problemen op meerdere
-          leefgebieden. WMO-zorg is er om overzicht, structuur en stabiliteit te
+          leefgebieden. WMO is er om overzicht, structuur en stabiliteit te
           herstellen.
         </p>
         <p>
@@ -34,7 +34,7 @@ export default function WmoZorg() {
           een combinatie hiervan.
         </p>
         <p>
-          Onze WMO-zorg is bestemd voor volwassenen vanaf 18 jaar die
+          Onze WMO is bestemd voor volwassenen vanaf 18 jaar die
           ondersteuning nodig hebben bij zelfstandig functioneren. Dit kan gaan
           om clienten die kortdurend ondersteuning nodig hebben of langdurige
           hulpvragen, crisissituaties, zorgmijding of wantrouwen richting
@@ -144,8 +144,8 @@ export default function WmoZorg() {
         <div className="space-y-4 not-prose">
           {[
             {
-              q: "Wat houdt WMO-zorg in?",
-              a: "WMO-zorg ondersteunt volwassenen die moeite hebben om zelfstandig te functioneren. Het doel is stabiliteit, structuur en deelname aan de maatschappij.",
+              q: "Wat houdt WMO in?",
+              a: "WMO ondersteunt volwassenen die moeite hebben om zelfstandig te functioneren. Het doel is stabiliteit, structuur en deelname aan de maatschappij.",
             },
             {
               q: "Hoe meld ik mij aan?",
@@ -206,7 +206,7 @@ export default function WmoZorg() {
       >
         <div className="py-16">
           <h2 className="text-2xl font-bold text-white mb-4 drop-shadow-lg">
-            Meer weten over WMO-zorg?
+            Meer weten over WMO?
           </h2>
           <p className="text-white/70 mb-6">
             Neem contact op met onze bureaudienst of bekijk het aanmeldproces
