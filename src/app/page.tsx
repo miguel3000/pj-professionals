@@ -48,10 +48,11 @@ export default function Home() {
 
           <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-md">
             PJ Professionals ondersteunt volwassenen met uiteenlopende
-            hulpvragen, van reguliere begeleiding tot complexe casuistiek. Wij
-            werken in de regio Den Bosch en Oss en combineren expertise in
-            WMO-zorg en forensische zorg met een duurzame aanpak waarin
-            veiligheid en herstel samenkomen.
+            hulpvragen, van dagelijkse praktische ondersteuning tot begeleiding
+            en behandeling bij complexe situaties. Wij werken in de regio
+            Noordoost-Brabant en zijn gespecialiseerd in complexe en meervoudige
+            problematiek. Wij bouwen aan veiligheid, vertrouwen en duurzaam
+            herstel — juist waar het vaak vastloopt.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -59,7 +60,7 @@ export default function Home() {
               href="/wmo-zorg"
               className="px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
             >
-              WMO-zorg
+              WMO
             </Link>
             <Link
               href="/forensische-zorg"
@@ -213,6 +214,20 @@ export default function Home() {
       {/* Kernwaarden */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-14">
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Wij geloven dat verandering begint met vertrouwen. Daarom sluiten
+              we aan bij de situatie zoals die is en nemen we de tijd om iemand
+              echt te leren kennen.
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              We werken met vaste gezichten, korte lijnen en een aanpak die
+              praktisch en haalbaar is. Waar nodig nemen we de casusregie en
+              zorgen we voor overzicht, afstemming en regie in het traject. Ook
+              wanneer het moeilijk wordt, blijven we betrokken en werken we stap
+              voor stap aan stabiliteit en herstel.
+            </p>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
