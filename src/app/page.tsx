@@ -36,9 +36,9 @@ export default function Home() {
           />
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
-            Wij blijven staan waar{" "}
+            Aandacht voor de mens{" "}
             <span className="bg-gradient-to-r from-teal-light to-teal-medium bg-clip-text text-transparent">
-              anderen afhaken.
+              achter het verhaal
             </span>
           </h1>
 
