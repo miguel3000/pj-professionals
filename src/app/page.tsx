@@ -35,12 +35,16 @@ export default function Home() {
             className="mx-auto mb-10 w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 drop-shadow-2xl bg-white [mask-image:url(/logo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/logo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
           />
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
             Aandacht voor de mens{" "}
             <span className="bg-gradient-to-r from-teal-light to-teal-medium bg-clip-text text-transparent">
               achter het verhaal
             </span>
           </h1>
+
+          <p className="text-xl sm:text-2xl text-white/80 font-light mb-8 drop-shadow-md">
+            Een veilige basis om verder te komen
+          </p>
 
           <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-md">
             PJ Professionals ondersteunt volwassenen met uiteenlopende
