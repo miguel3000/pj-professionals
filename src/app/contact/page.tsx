@@ -114,7 +114,7 @@ export default function Contact() {
         badge="Contact"
         title="Neem contact met ons op"
         subtitle="PJ Professionals is bereikbaar voor cliënten, verwijzers en ketenpartners via telefoon, e-mail en ons contactformulier."
-        image="/images/pjprofessionals2-alt.jpg"
+        image="/images/Contact.jpg"
       />
 
       {/* Contact info cards */}
