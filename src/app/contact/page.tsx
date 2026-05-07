@@ -270,7 +270,7 @@ export default function Contact() {
                     Wanneer iets niet naar wens verloopt, horen wij dit graag. De klacht wordt behandeld door een interne klachtencoördinator. Wij zijn tevens aangesloten bij een extern klachtenportaal.
                   </p>
                   <p className="text-sm text-gray-700 leading-relaxed">
-                    Voor iedereen die contact zoekt, geldt dat wij helder communiceren, snel reageren en zorgvuldig omgaan met alle vragen en signalen.
+                    Voor iedereen die contact zoekt geldt, dat wij helder communiceren, snel reageren en zorgvuldig omgaan met alle vragen en signalen.
                   </p>
                 </div>
               )}
