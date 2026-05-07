@@ -267,11 +267,7 @@ export default function Contact() {
                     <h3 className="font-semibold text-teal-dark text-sm">Klachtenprocedure</h3>
                   </div>
                   <p className="text-sm text-gray-700 leading-relaxed">
-                    Wanneer iets niet naar wens verloopt, horen wij dit graag. Cliënten kunnen hun klacht indienen via{" "}
-                    <a href="mailto:secretariaat@pjprofessionals.nl" className="text-teal-medium hover:underline font-medium">
-                      secretariaat@pjprofessionals.nl
-                    </a>
-                    . De klacht wordt behandeld door een interne klachtencoördinator. Wij zijn tevens aangesloten bij een extern klachtenportaal.
+                    Wanneer iets niet naar wens verloopt, horen wij dit graag. De klacht wordt behandeld door een interne klachtencoördinator. Wij zijn tevens aangesloten bij een extern klachtenportaal.
                   </p>
                   <p className="text-sm text-gray-700 leading-relaxed">
                     Voor iedereen die contact zoekt, geldt dat wij helder communiceren, snel reageren en zorgvuldig omgaan met alle vragen en signalen.
@@ -345,11 +341,7 @@ export default function Contact() {
       <SectionBlock id="klachten" title="Klachtenprocedure">
         <p>
           Wanneer iets niet naar wens verloopt, horen wij dit graag. Cliënten
-          kunnen hun klacht indienen via{" "}
-          <a href="mailto:secretariaat@pjprofessionals.nl" className="text-teal-medium hover:underline">
-            secretariaat@pjprofessionals.nl
-          </a>
-          . De klacht wordt behandeld door een interne klachtencoördinator. Wij
+          kunnen hun klacht indienen via ons contactformulier (kies voor klacht indienen). De klacht wordt behandeld door een interne klachtencoördinator. Wij
           zijn tevens aangesloten bij een extern klachtenportaal.
         </p>
       </SectionBlock>
