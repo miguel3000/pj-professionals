@@ -2,10 +2,11 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-teal-dark: #1D5C7A;
-  --color-teal-medium: #3FA7D6;
-  --color-teal-light: #a6cadd;
-  --color-teal-surface: #edf2f6;
+  --color-teal-dark: #0B3C5D;
+  --color-teal-medium: #2E86AB;
+  --color-teal-light: #3FA7D6;
+  --color-teal-surface: #e6f2f8;
+  --color-teal-deepest: #0A2540;
 
   --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
   --font-serif: "Playfair Display", Georgia, serif;
