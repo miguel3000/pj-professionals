@@ -36,7 +36,27 @@ export default function Home() {
               className="mx-auto lg:mx-0 mb-10 w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 drop-shadow-2xl bg-white [mask-image:url(/logo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/logo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
             />
 
-            <div className="flex items-start justify-center lg:justify-start gap-6 sm:gap-10 mb-10">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
+              Aandacht voor de mens{" "}
+              <span className="bg-gradient-to-r from-teal-light to-teal-medium bg-clip-text text-transparent">
+                achter het verhaal
+              </span>
+            </h1>
+
+            <p className="text-xl sm:text-2xl text-white/80 font-light mb-8 drop-shadow-md">
+              Een veilige basis om verder te komen
+            </p>
+
+            <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto lg:max-w-none lg:mx-0 mb-10 leading-relaxed drop-shadow-md">
+              PJ Professionals ondersteunt volwassenen met uiteenlopende
+              hulpvragen, van dagelijkse praktische ondersteuning tot begeleiding
+              en behandeling bij complexe situaties. Wij werken in de regio
+              Noordoost-Brabant en zijn gespecialiseerd in complexe en meervoudige
+              problematiek. Wij bouwen aan veiligheid, vertrouwen en duurzaam
+              herstel — juist waar het vaak vastloopt.
+            </p>
+
+            <div className="flex items-start justify-center lg:justify-start gap-6 sm:gap-10">
               <Link href="/wmo-zorg" className="group flex flex-col items-center gap-3">
                 <span className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-white/30 bg-white/5 backdrop-blur-sm shadow-lg transition-all group-hover:scale-105 group-hover:border-white/70 group-hover:bg-white/15">
                   <span
@@ -69,59 +89,6 @@ export default function Home() {
                 <span className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-white/90">
                   WLZ
                 </span>
-              </Link>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
-              Aandacht voor de mens{" "}
-              <span className="bg-gradient-to-r from-teal-light to-teal-medium bg-clip-text text-transparent">
-                achter het verhaal
-              </span>
-            </h1>
-
-            <p className="text-xl sm:text-2xl text-white/80 font-light mb-8 drop-shadow-md">
-              Een veilige basis om verder te komen
-            </p>
-
-            <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto lg:max-w-none lg:mx-0 mb-10 leading-relaxed drop-shadow-md">
-              PJ Professionals ondersteunt volwassenen met uiteenlopende
-              hulpvragen, van dagelijkse praktische ondersteuning tot begeleiding
-              en behandeling bij complexe situaties. Wij werken in de regio
-              Noordoost-Brabant en zijn gespecialiseerd in complexe en meervoudige
-              problematiek. Wij bouwen aan veiligheid, vertrouwen en duurzaam
-              herstel — juist waar het vaak vastloopt.
-            </p>
-
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4">
-              <Link
-                href="/wmo-zorg"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
-              >
-                <span
-                  aria-hidden="true"
-                  className="w-7 h-7 shrink-0 bg-teal-dark [mask-image:url(/icons/wmo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wmo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
-                />
-                WMO
-              </Link>
-              <Link
-                href="/forensische-zorg"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
-              >
-                <span
-                  aria-hidden="true"
-                  className="w-7 h-7 shrink-0 bg-teal-dark [mask-image:url(/icons/forensische-zorg.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/forensische-zorg.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
-                />
-                Forensische zorg
-              </Link>
-              <Link
-                href="/wlz-zorg"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
-              >
-                <span
-                  aria-hidden="true"
-                  className="w-7 h-7 shrink-0 bg-teal-dark [mask-image:url(/icons/wlz.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wlz.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
-                />
-                WLZ
               </Link>
             </div>
           </div>
