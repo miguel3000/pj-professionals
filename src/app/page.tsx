@@ -9,8 +9,8 @@ export default function Home() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url(/images/pjprofessionals1-alt.jpg)",
-            backgroundPosition: "center top",
+            backgroundImage: "url(/images/homepage-hero.jpg)",
+            backgroundPosition: "50% top",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
           }}
@@ -25,55 +25,69 @@ export default function Home() {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-28 sm:pt-32">
-          {/* Logo — inline so it scrolls away with the hero.
-              PNG is used as a CSS mask so only the logo shape receives
-              the tint colour; transparent negative space stays transparent. */}
-          <div
-            role="img"
-            aria-label="PJ Professionals"
-            className="mx-auto mb-10 w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 drop-shadow-2xl bg-white [mask-image:url(/logo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/logo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
-          />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32">
+          <div className="text-center min-[1000px]:text-left min-[1000px]:max-w-sm min-[1024px]:max-w-md min-[1280px]:max-w-lg">
+            {/* Logo — inline so it scrolls away with the hero.
+                PNG is used as a CSS mask so only the logo shape receives
+                the tint colour; transparent negative space stays transparent. */}
+            <div
+              role="img"
+              aria-label="PJ Professionals"
+              className="mx-auto min-[1000px]:mx-0 mb-10 w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 drop-shadow-2xl bg-white [mask-image:url(/logo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/logo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+            />
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
-            Aandacht voor de mens{" "}
-            <span className="bg-gradient-to-r from-teal-light to-teal-medium bg-clip-text text-transparent">
-              achter het verhaal
-            </span>
-          </h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
+              Aandacht voor de mens{" "}
+              <span className="bg-gradient-to-r from-teal-light to-teal-medium bg-clip-text text-transparent">
+                achter het verhaal
+              </span>
+            </h1>
 
-          <p className="text-xl sm:text-2xl text-white/80 font-light mb-8 drop-shadow-md">
-            Een veilige basis om verder te komen
-          </p>
+            <p className="text-xl sm:text-2xl text-white/80 font-light mb-8 drop-shadow-md">
+              Een veilige basis om verder te komen
+            </p>
 
-          <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-md">
-            PJ Professionals ondersteunt volwassenen met uiteenlopende
-            hulpvragen, van dagelijkse praktische ondersteuning tot begeleiding
-            en behandeling bij complexe situaties. Wij werken in de regio
-            Noordoost-Brabant en zijn gespecialiseerd in complexe en meervoudige
-            problematiek. Wij bouwen aan veiligheid, vertrouwen en duurzaam
-            herstel — juist waar het vaak vastloopt.
-          </p>
+            <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto min-[1000px]:max-w-none min-[1000px]:mx-0 mb-10 leading-relaxed drop-shadow-md">
+              PJ Professionals ondersteunt volwassenen met uiteenlopende
+              hulpvragen, van dagelijkse praktische ondersteuning tot begeleiding
+              en behandeling bij complexe situaties. Wij werken in de regio
+              Noordoost-Brabant en zijn gespecialiseerd in complexe en meervoudige
+              problematiek. Wij bouwen aan veiligheid, vertrouwen en duurzaam
+              herstel — juist waar het vaak vastloopt.
+            </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/wmo-zorg"
-              className="px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
-            >
-              WMO
-            </Link>
-            <Link
-              href="/forensische-zorg"
-              className="px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all text-base backdrop-blur-sm"
-            >
-              Forensische zorg
-            </Link>
-            <Link
-              href="/wlz-zorg"
-              className="px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all text-base backdrop-blur-sm"
-            >
-              WLZ
-            </Link>
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center min-[1000px]:justify-start gap-4">
+              <Link
+                href="/wmo-zorg"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
+              >
+                <span
+                  aria-hidden="true"
+                  className="w-5 h-5 shrink-0 bg-teal-dark [mask-image:url(/icons/wmo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wmo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                />
+                WMO
+              </Link>
+              <Link
+                href="/forensische-zorg"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all text-base backdrop-blur-sm"
+              >
+                <span
+                  aria-hidden="true"
+                  className="w-5 h-5 shrink-0 bg-white [mask-image:url(/icons/forensische-zorg.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/forensische-zorg.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                />
+                Forensische zorg
+              </Link>
+              <Link
+                href="/wlz-zorg"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all text-base backdrop-blur-sm"
+              >
+                <span
+                  aria-hidden="true"
+                  className="w-5 h-5 shrink-0 bg-white [mask-image:url(/icons/wlz.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wlz.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                />
+                WLZ
+              </Link>
+            </div>
           </div>
         </div>
 
