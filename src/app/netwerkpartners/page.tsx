@@ -15,7 +15,7 @@ const partners = [
   {
     name: "Reclassering Nederland",
     href: "https://www.reclassering.nl",
-    logo: null,
+    logo: "/logos/partners/reclassering-nl.png",
   },
   {
     name: "Leger des Heils",
@@ -25,7 +25,7 @@ const partners = [
   {
     name: "SVG Verslavingsreclassering",
     href: "https://www.svg.nl",
-    logo: null,
+    logo: "/logos/partners/svg-verslavingsreclassering.png",
   },
   {
     name: "EFP",
@@ -35,12 +35,12 @@ const partners = [
   {
     name: "KFZ",
     href: "https://www.kfz.nl",
-    logo: null,
+    logo: "/logos/partners/kfz.svg",
   },
   {
     name: "Vecozo",
     href: "https://www.vecozo.nl",
-    logo: null,
+    logo: "/logos/partners/vecozo.png",
   },
   {
     name: "Nedap Ons",
