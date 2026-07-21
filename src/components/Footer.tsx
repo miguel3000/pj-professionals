@@ -97,6 +97,70 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Keurmerken */}
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <div className="flex flex-wrap items-center gap-x-10 gap-y-6">
+            {[
+              {
+                label: "Erkend leerbedrijf (SBB)",
+                href: "https://www.s-bb.nl",
+                src: "/logos/erkend-leerbedrijf.png",
+                width: 995,
+                height: 914,
+                className: "h-12 w-auto",
+              },
+              {
+                label: "KFZ Ambassadeur",
+                href: "https://www.kfz.nl",
+                src: "/logos/kfz.png",
+                width: 987,
+                height: 966,
+                className: "h-12 w-auto",
+              },
+              {
+                label: "ArboNext",
+                href: "https://www.arbonext.nl",
+                src: "/logos/arbonext.png",
+                width: 258,
+                height: 64,
+                className: "h-8 w-auto",
+              },
+              {
+                label: "Klachtenportaal Zorg",
+                href: "https://www.klachtenportaalzorg.nl",
+                src: "/logos/klachtenportaal-zorg.png",
+                width: 1231,
+                height: 192,
+                className: "h-6 w-auto",
+              },
+              {
+                label: "Kiwa keurmerk",
+                href: "https://portal.mijnkeurmerk.nl/Login.aspx",
+                src: "/logos/kiwa.png",
+                width: 198,
+                height: 70,
+                className: "h-8 w-auto",
+              },
+            ].map((logo) => (
+              <a
+                key={logo.href}
+                href={logo.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.label}
+                  width={logo.width}
+                  height={logo.height}
+                  className={logo.className}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
