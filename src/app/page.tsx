@@ -69,21 +69,21 @@ export default function Home() {
               </Link>
               <Link
                 href="/forensische-zorg"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all text-base backdrop-blur-sm"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
               >
                 <span
                   aria-hidden="true"
-                  className="w-7 h-7 shrink-0 bg-white [mask-image:url(/icons/forensische-zorg.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/forensische-zorg.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                  className="w-7 h-7 shrink-0 bg-teal-dark [mask-image:url(/icons/forensische-zorg.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/forensische-zorg.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
                 />
                 Forensische zorg
               </Link>
               <Link
                 href="/wlz-zorg"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all text-base backdrop-blur-sm"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
               >
                 <span
                   aria-hidden="true"
-                  className="w-7 h-7 shrink-0 bg-white [mask-image:url(/icons/wlz.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wlz.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                  className="w-7 h-7 shrink-0 bg-teal-dark [mask-image:url(/icons/wlz.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wlz.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
                 />
                 WLZ
               </Link>
