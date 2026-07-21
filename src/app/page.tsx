@@ -25,16 +25,52 @@ export default function Home() {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20 sm:pb-24">
-          <div className="text-center min-[1000px]:text-left min-[1000px]:max-w-sm min-[1024px]:max-w-md min-[1280px]:max-w-lg">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20 sm:pb-24">
+          <div className="text-center lg:text-left lg:max-w-md xl:max-w-lg">
             {/* Logo — inline so it scrolls away with the hero.
                 PNG is used as a CSS mask so only the logo shape receives
                 the tint colour; transparent negative space stays transparent. */}
             <div
               role="img"
               aria-label="PJ Professionals"
-              className="mx-auto min-[1000px]:mx-0 mb-10 w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 drop-shadow-2xl bg-white [mask-image:url(/logo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/logo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+              className="mx-auto lg:mx-0 mb-10 w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 drop-shadow-2xl bg-white [mask-image:url(/logo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/logo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
             />
+
+            <div className="flex items-start justify-center lg:justify-start gap-6 sm:gap-10 mb-10">
+              <Link href="/wmo-zorg" className="group flex flex-col items-center gap-3">
+                <span className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-white/30 bg-white/5 backdrop-blur-sm shadow-lg transition-all group-hover:scale-105 group-hover:border-white/70 group-hover:bg-white/15">
+                  <span
+                    aria-hidden="true"
+                    className="w-11 h-11 sm:w-14 sm:h-14 shrink-0 bg-white [mask-image:url(/icons/wmo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wmo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                  />
+                </span>
+                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-white/90">
+                  WMO
+                </span>
+              </Link>
+              <Link href="/forensische-zorg" className="group flex flex-col items-center gap-3">
+                <span className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-white/30 bg-white/5 backdrop-blur-sm shadow-lg transition-all group-hover:scale-105 group-hover:border-white/70 group-hover:bg-white/15">
+                  <span
+                    aria-hidden="true"
+                    className="w-11 h-11 sm:w-14 sm:h-14 shrink-0 bg-white [mask-image:url(/icons/forensische-zorg.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/forensische-zorg.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                  />
+                </span>
+                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-white/90 text-center">
+                  Forensische zorg
+                </span>
+              </Link>
+              <Link href="/wlz-zorg" className="group flex flex-col items-center gap-3">
+                <span className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-white/30 bg-white/5 backdrop-blur-sm shadow-lg transition-all group-hover:scale-105 group-hover:border-white/70 group-hover:bg-white/15">
+                  <span
+                    aria-hidden="true"
+                    className="w-11 h-11 sm:w-14 sm:h-14 shrink-0 bg-white [mask-image:url(/icons/wlz.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wlz.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                  />
+                </span>
+                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-white/90">
+                  WLZ
+                </span>
+              </Link>
+            </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
               Aandacht voor de mens{" "}
@@ -47,7 +83,7 @@ export default function Home() {
               Een veilige basis om verder te komen
             </p>
 
-            <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto min-[1000px]:max-w-none min-[1000px]:mx-0 mb-10 leading-relaxed drop-shadow-md">
+            <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto lg:max-w-none lg:mx-0 mb-10 leading-relaxed drop-shadow-md">
               PJ Professionals ondersteunt volwassenen met uiteenlopende
               hulpvragen, van dagelijkse praktische ondersteuning tot begeleiding
               en behandeling bij complexe situaties. Wij werken in de regio
@@ -56,7 +92,7 @@ export default function Home() {
               herstel — juist waar het vaak vastloopt.
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center min-[1000px]:justify-start gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4">
               <Link
                 href="/wmo-zorg"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-dark font-semibold rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10 text-base backdrop-blur-sm"
