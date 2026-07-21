@@ -216,7 +216,7 @@ export default function Home() {
 
       {/* Parallax: counseling session */}
       <ParallaxDivider
-        image="/images/pjprofessionals7-alt.jpg"
+        image="/images/hoe-wij-werken.jpg"
         height="h-auto"
         overlay="from-teal-dark/70 via-teal-dark/30 to-teal-dark/70"
       >

@@ -16,7 +16,7 @@ export default function WmoZorg() {
         badge="WMO"
         title="Ondersteuning bij zelfstandig leven"
         subtitle="WMO helpt volwassenen zelfstandig te leven en deel te nemen aan de maatschappij. Wij bieden overzicht, structuur en stabiliteit."
-        image="/images/pjprofessionals9-alt.jpg"
+        image="/images/wmo.jpg"
       />
 
       <SectionBlock id="wat-is-wmo" title="Wat is WMO?">

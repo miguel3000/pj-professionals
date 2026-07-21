@@ -15,7 +15,7 @@ export default function OverOns() {
         badge="Over ons"
         title="Over PJ Professionals"
         subtitle="Een zorgorganisatie gespecialiseerd in begeleiding en behandeling van volwassenen met uiteenlopende hulpvragen binnen de WMO en de forensische zorg."
-        image="/images/pjprofessionals11-alt.jpg"
+        image="/images/over-ons.jpg"
       />
 
       <SectionBlock>

@@ -8,6 +8,7 @@ export default function WlzZorg() {
         badge="WLZ"
         title="Wet langdurige zorg"
         subtitle="Informatie over onze WLZ volgt binnenkort."
+        image="/images/wlz.jpg"
       />
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
