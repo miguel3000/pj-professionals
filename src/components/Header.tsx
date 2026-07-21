@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Over ons", href: "/over-ons" },
   { label: "Vacatures", href: "/vacatures" },
   { label: "FAQ", href: "/veelgestelde-vragen" },
+  { label: "Netwerkpartners", href: "/netwerkpartners" },
   { label: "Documenten", href: "/documenten" },
 ];
 
