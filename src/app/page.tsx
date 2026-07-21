@@ -10,7 +10,7 @@ export default function Home() {
           className="absolute inset-0"
           style={{
             backgroundImage: "url(/images/homepage-hero.jpg)",
-            backgroundPosition: "50% top",
+            backgroundPosition: "right top",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
           }}
