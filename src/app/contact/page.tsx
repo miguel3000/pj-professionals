@@ -323,15 +323,15 @@ export default function Contact() {
             <p className="text-gray-600 text-sm mb-4">Bruistensingel 130, 5232 AC &apos;s-Hertogenbosch</p>
             <div className="space-y-2 text-sm text-gray-500">
               <p><strong className="text-teal-dark">Met de auto:</strong> Goed bereikbaar vanaf de A59 en A2. Parkeren mogelijk in de directe omgeving.</p>
-              <p><strong className="text-teal-dark">OV:</strong> Vanaf station &apos;s-Hertogenbosch met Bus 3 of Bus 6, uitstappen bij halte Maaspoort / Bruistensingel.</p>
+              <p><strong className="text-teal-dark">OV:</strong> Neem vanaf station &apos;s-Hertogenbosch bus 4 (Groote Wielen), uitstappen bij halte Bruistensingel. Vanaf hier is het ca. 5 minuten lopen.</p>
             </div>
           </div>
           <div className="bg-white rounded-xl p-6 border border-gray-100">
             <h3 className="font-semibold text-teal-dark text-lg mb-3">Oss</h3>
             <p className="text-gray-600 text-sm mb-4">Raadhuishof 25, 5341 HR Oss</p>
             <div className="space-y-2 text-sm text-gray-500">
-              <p><strong className="text-teal-dark">Met de auto:</strong> In het centrum van Oss. Parkeren bij Parkeergarage Bergoss of Centrum.</p>
-              <p><strong className="text-teal-dark">OV:</strong> Vanaf station Oss is het ca. 10 minuten lopen. Buslijnen 90, 157 stoppen in het centrum.</p>
+              <p><strong className="text-teal-dark">Met de auto:</strong> Betaald parkeren mogelijk in de directe omgeving. Gratis parkeren bij het Golfbad, Euterpelaan 1, Oss. Vanuit hier is het ca. 5 minuten lopen naar het kantoor.</p>
+              <p><strong className="text-teal-dark">OV:</strong> Vanaf station Oss is het ca. 5 minuten lopen.</p>
             </div>
           </div>
         </div>
