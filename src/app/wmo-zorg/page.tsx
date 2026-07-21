@@ -22,13 +22,13 @@ export default function WmoZorg() {
       <SectionBlock id="wat-is-wmo" title="Wat is WMO?">
         <p>
           WMO helpt volwassenen zelfstandig te leven en deel te nemen aan de
-          maatschappij. Veel clienten lopen vast door problemen op meerdere
+          maatschappij. Veel cliënten lopen vast door problemen op meerdere
           leefgebieden. WMO is er om overzicht, structuur en stabiliteit te
           herstellen.
         </p>
         <p>
           De WMO richt zich op ondersteuning bij wonen, financien, gezondheid,
-          sociale relaties, daginvulling en veiligheid. Voor veel clienten die
+          sociale relaties, daginvulling en veiligheid. Voor veel cliënten die
           bij ons komen, is er sprake van psychiatrische problemen,
           verstandelijke beperkingen, verslaving, langdurige instabiliteit, of
           een combinatie hiervan.
@@ -36,7 +36,7 @@ export default function WmoZorg() {
         <p>
           Onze WMO is bestemd voor volwassenen vanaf 18 jaar die
           ondersteuning nodig hebben bij zelfstandig functioneren. Dit kan gaan
-          om clienten die kortdurend ondersteuning nodig hebben of langdurige
+          om cliënten die kortdurend ondersteuning nodig hebben of langdurige
           hulpvragen, crisissituaties, zorgmijding of wantrouwen richting
           hulpverlening.
         </p>
@@ -90,7 +90,7 @@ export default function WmoZorg() {
       <SectionBlock id="voor-wie" title="Voor wie zijn wij er?">
         <p>
           Wij zijn er voor volwassenen vanaf 18 jaar die ondersteuning nodig
-          hebben bij zelfstandig functioneren. Dit kunnen clienten zijn met
+          hebben bij zelfstandig functioneren. Dit kunnen cliënten zijn met
           psychiatrische problemen, verstandelijke beperkingen, verslaving of
           instabiliteit.
         </p>
@@ -103,7 +103,7 @@ export default function WmoZorg() {
           </li>
         </ul>
         <p>
-          Wij bieden ook ondersteuning aan clienten met een forensische
+          Wij bieden ook ondersteuning aan cliënten met een forensische
           achtergrond waarvan de justitiele maatregel eindigt. Door onze brede
           expertise kunnen wij begeleiding bieden die aansluit op risico&apos;s,
           dagelijkse realiteit en toekomstperspectief.
@@ -128,8 +128,11 @@ export default function WmoZorg() {
         </p>
         <p>
           De eigen bijdrage aan het Centraal Administratie Kantoor is
-          afhankelijk van het inkomen. Wij verwijzen clienten naar de landelijke
-          informatiepagina voor uitleg over deze bijdrage.
+          afhankelijk van het inkomen. Wij verwijzen cliënten naar{" "}
+          <a href="http://www.hetcak.nl/" target="_blank" rel="noopener noreferrer" className="text-teal-medium hover:underline">
+            de landelijke informatiepagina
+          </a>{" "}
+          voor uitleg over deze bijdrage.
         </p>
       </SectionBlock>
 
