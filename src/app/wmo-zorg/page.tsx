@@ -80,12 +80,6 @@ export default function WmoZorg() {
         </p>
       </SectionBlock>
 
-      {/* Parallax: elderly hands */}
-      <ParallaxDivider
-        image="/images/pjprofessionals4-alt.jpg"
-        height="h-[40vh]"
-        overlay="from-teal-dark/50 via-transparent to-teal-dark/50"
-      />
 
       <SectionBlock id="voor-wie" title="Voor wie zijn wij er?">
         <p>

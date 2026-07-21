@@ -1,6 +1,5 @@
 import PageHero from "@/components/PageHero";
 import SectionBlock from "@/components/SectionBlock";
-import ParallaxDivider from "@/components/ParallaxDivider";
 import Link from "next/link";
 
 export const metadata = {
@@ -40,12 +39,6 @@ export default function ForensischeZorg() {
         </p>
       </SectionBlock>
 
-      {/* Parallax: medicine/care */}
-      <ParallaxDivider
-        image="/images/pjprofessionals3-alt.jpg"
-        height="h-[40vh]"
-        overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
-      />
 
       <section className="py-16 bg-gradient-to-r from-teal-dark to-teal-dark">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
