@@ -25,7 +25,7 @@ export default function Home() {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20 sm:pb-24">
           <div className="text-center min-[1000px]:text-left min-[1000px]:max-w-sm min-[1024px]:max-w-md min-[1280px]:max-w-lg">
             {/* Logo — inline so it scrolls away with the hero.
                 PNG is used as a CSS mask so only the logo shape receives
@@ -63,7 +63,7 @@ export default function Home() {
               >
                 <span
                   aria-hidden="true"
-                  className="w-5 h-5 shrink-0 bg-teal-dark [mask-image:url(/icons/wmo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wmo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                  className="w-7 h-7 shrink-0 bg-teal-dark [mask-image:url(/icons/wmo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wmo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
                 />
                 WMO
               </Link>
@@ -73,7 +73,7 @@ export default function Home() {
               >
                 <span
                   aria-hidden="true"
-                  className="w-5 h-5 shrink-0 bg-white [mask-image:url(/icons/forensische-zorg.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/forensische-zorg.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                  className="w-7 h-7 shrink-0 bg-white [mask-image:url(/icons/forensische-zorg.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/forensische-zorg.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
                 />
                 Forensische zorg
               </Link>
@@ -83,7 +83,7 @@ export default function Home() {
               >
                 <span
                   aria-hidden="true"
-                  className="w-5 h-5 shrink-0 bg-white [mask-image:url(/icons/wlz.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wlz.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+                  className="w-7 h-7 shrink-0 bg-white [mask-image:url(/icons/wlz.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/icons/wlz.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
                 />
                 WLZ
               </Link>
