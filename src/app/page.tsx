@@ -135,7 +135,7 @@ export default function Home() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: "url(/images/pjprofessionals9-alt.jpg)",
+                  backgroundImage: "url(/images/wmo.jpg)",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                 }}
@@ -296,19 +296,19 @@ export default function Home() {
                 title: "Voor verwijzers",
                 desc: "Informatie over aanmelding, werkgebied en samenwerking.",
                 href: "/voor-verwijzers",
-                img: "/images/pjprofessionals5-alt.jpg",
+                img: "/images/voorverwijzers.jpg",
               },
               {
                 title: "Over PJ Professionals",
                 desc: "Onze missie, visie, werkwijze en organisatiestructuur.",
                 href: "/over-ons",
-                img: "/images/pjprofessionals11-alt.jpg",
+                img: "/images/over-ons.jpg",
               },
               {
                 title: "Vacatures & stages",
                 desc: "Werken bij PJ Professionals. Bekijk onze openstaande vacatures.",
                 href: "/vacatures",
-                img: "/images/pjprofessionals12-alt.jpg",
+                img: "/images/vacatures.jpg",
               },
             ].map((item) => (
               <Link
