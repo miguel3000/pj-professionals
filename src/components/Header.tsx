@@ -25,16 +25,16 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10 bg-teal-dark/95 overflow-visible">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
-        <div className="flex items-center justify-between h-20 overflow-visible">
+        <div className="flex items-center justify-between h-24 overflow-visible">
           {/* Small logo on inner pages */}
           {!isHomepage && (
             <Link href="/" className="flex items-center group shrink-0 relative z-10">
               <Image
-                src="/logo.png"
+                src="/logo-v24-solo.png"
                 alt="PJ Professionals"
                 width={500}
                 height={500}
-                className="h-24 w-auto brightness-0 invert drop-shadow-lg mt-[75px]"
+                className="h-14 w-auto drop-shadow-lg"
                 priority
               />
             </Link>

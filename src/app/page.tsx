@@ -33,7 +33,7 @@ export default function Home() {
             <div
               role="img"
               aria-label="PJ Professionals"
-              className="mx-auto lg:mx-0 mb-10 w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-60 lg:h-60 drop-shadow-2xl bg-white [mask-image:url(/logo.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/logo.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
+              className="mx-auto lg:mx-0 mb-10 w-44 h-56 sm:w-52 sm:h-64 md:w-56 md:h-72 lg:w-60 lg:h-72 drop-shadow-2xl bg-white [mask-image:url(/logo-v24.png)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-image:url(/logo-v24.png)] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
             />
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
