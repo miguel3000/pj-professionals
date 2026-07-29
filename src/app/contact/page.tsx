@@ -20,12 +20,14 @@ function InputField({
   type = "text",
   placeholder,
   required,
+  error,
 }: {
   label: string;
   id: string;
   type?: string;
   placeholder?: string;
   required?: boolean;
+  error?: string;
 }) {
   return (
     <div>
@@ -37,9 +39,9 @@ function InputField({
         id={id}
         name={id}
         placeholder={placeholder}
-        required={required}
-        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20 outline-none transition-all text-sm"
+        className={`w-full px-4 py-3 rounded-xl border outline-none transition-all text-sm ${error ? "border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-400/20" : "border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20"}`}
       />
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );
 }
@@ -75,22 +77,39 @@ export default function Contact() {
   const [reason, setReason] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  function validate(data: Record<string, string>) {
+    const errors: Record<string, string> = {};
+    if (!data.reason) errors.reason = "Selecteer een reden van contact.";
+    if (!data.voornaam?.trim()) errors.voornaam = "Voornaam is verplicht.";
+    if (!data.achternaam?.trim()) errors.achternaam = "Achternaam is verplicht.";
+    if (!data.email?.trim()) {
+      errors.email = "E-mailadres is verplicht.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      errors.email = "Voer een geldig e-mailadres in.";
+    }
+    if (!data.privacy) errors.privacy = "U moet akkoord gaan met de privacyverklaring.";
+    return errors;
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!e.currentTarget.checkValidity()) {
-      e.currentTarget.reportValidity();
-      return;
-    }
-    setStatus("sending");
-    setErrorMessage("");
-
     const formData = new FormData(e.currentTarget);
     const data: Record<string, string> = {};
     formData.forEach((value, key) => {
       data[key] = value.toString();
     });
     data.reason = reason;
+
+    const errors = validate(data);
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+    setFieldErrors({});
+    setStatus("sending");
+    setErrorMessage("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -191,9 +210,8 @@ export default function Contact() {
                 <select
                   id="reason"
                   value={reason}
-                  onChange={(e) => setReason(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20 outline-none transition-all text-sm bg-white"
-                  required
+                  onChange={(e) => { setReason(e.target.value); setFieldErrors(prev => ({ ...prev, reason: "" })); }}
+                  className={`w-full px-4 py-3 rounded-xl border outline-none transition-all text-sm bg-white ${fieldErrors.reason ? "border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-400/20" : "border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20"}`}
                 >
                   {contactReasons.map((r) => (
                     <option key={r.value} value={r.value}>
@@ -201,15 +219,16 @@ export default function Contact() {
                     </option>
                   ))}
                 </select>
+                {fieldErrors.reason && <p className="text-red-500 text-xs mt-1">{fieldErrors.reason}</p>}
               </div>
 
               {/* Standard fields */}
               <div className="grid sm:grid-cols-2 gap-5">
-                <InputField label="Voornaam" id="voornaam" required placeholder="Uw voornaam" />
-                <InputField label="Achternaam" id="achternaam" required placeholder="Uw achternaam" />
+                <InputField label="Voornaam" id="voornaam" required placeholder="Uw voornaam" error={fieldErrors.voornaam} />
+                <InputField label="Achternaam" id="achternaam" required placeholder="Uw achternaam" error={fieldErrors.achternaam} />
               </div>
               <div className="grid sm:grid-cols-2 gap-5">
-                <InputField label="E-mailadres" id="email" type="email" required placeholder="uw@email.nl" />
+                <InputField label="E-mailadres" id="email" type="email" required placeholder="uw@email.nl" error={fieldErrors.email} />
                 <InputField label="Telefoonnummer" id="telefoon" type="tel" placeholder="06-12345678" />
               </div>
 
@@ -288,16 +307,20 @@ export default function Contact() {
               />
 
               {/* Privacy checkbox */}
-              <div className="flex items-start gap-3">
-                <input
-                  type="checkbox"
-                  id="privacy"
-                  required
-                  className="mt-1 h-4 w-4 rounded border-gray-300 text-teal-dark focus:ring-teal-dark"
-                />
-                <label htmlFor="privacy" className="text-sm text-gray-600">
-                  Ik ga akkoord met de privacyverklaring van PJ Professionals. <span className="text-red-400">*</span>
-                </label>
+              <div>
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="privacy"
+                    name="privacy"
+                    value="yes"
+                    className="mt-1 h-4 w-4 rounded border-gray-300 text-teal-dark focus:ring-teal-dark"
+                  />
+                  <label htmlFor="privacy" className="text-sm text-gray-600">
+                    Ik ga akkoord met de privacyverklaring van PJ Professionals. <span className="text-red-400">*</span>
+                  </label>
+                </div>
+                {fieldErrors.privacy && <p className="text-red-500 text-xs mt-1">{fieldErrors.privacy}</p>}
               </div>
 
               {status === "error" && (
