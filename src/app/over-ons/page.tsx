@@ -24,7 +24,7 @@ export default function OverOns() {
           en behandeling van volwassenen met uiteenlopende hulpvragen binnen de
           WMO en de forensische zorg. Wij werken outreachend, persoonlijk en
           duurzaam. Onze organisatie staat voor stabiliteit, betrokkenheid en
-          kwaliteit. Wij blijven staan waar anderen afhaken en bieden cliënten,
+          kwaliteit. Wij hebben aandacht voor de mens achter het verhaal en bieden cliënten,
           verwijzers en gemeenten een betrouwbare samenwerkingspartner.
         </p>
       </SectionBlock>
