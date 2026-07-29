@@ -41,7 +41,7 @@ function InputField({
         placeholder={placeholder}
         className={`w-full px-4 py-3 rounded-xl border outline-none transition-all text-sm ${error ? "border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-400/20" : "border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20"}`}
       />
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {error && <p data-field-error className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );
 }
@@ -105,6 +105,10 @@ export default function Contact() {
     const errors = validate(data);
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
+      setTimeout(() => {
+        const first = document.querySelector("[data-field-error]");
+        first?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 50);
       return;
     }
     setFieldErrors({});
@@ -219,7 +223,7 @@ export default function Contact() {
                     </option>
                   ))}
                 </select>
-                {fieldErrors.reason && <p className="text-red-500 text-xs mt-1">{fieldErrors.reason}</p>}
+                {fieldErrors.reason && <p data-field-error className="text-red-500 text-xs mt-1">{fieldErrors.reason}</p>}
               </div>
 
               {/* Standard fields */}
@@ -320,7 +324,7 @@ export default function Contact() {
                     Ik ga akkoord met de privacyverklaring van PJ Professionals. <span className="text-red-400">*</span>
                   </label>
                 </div>
-                {fieldErrors.privacy && <p className="text-red-500 text-xs mt-1">{fieldErrors.privacy}</p>}
+                {fieldErrors.privacy && <p data-field-error className="text-red-500 text-xs mt-1">{fieldErrors.privacy}</p>}
               </div>
 
               {status === "error" && (
