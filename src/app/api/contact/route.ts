@@ -97,11 +97,10 @@ export async function POST(request: NextRequest) {
 
     htmlBody += "</table>";
 
-    // Create SMTP transport for Microsoft 365
     const transporter = nodemailer.createTransport({
-      host: "smtp.office365.com",
+      host: "mail-eu.smtp2go.com",
       port: 587,
-      secure: false, // STARTTLS
+      secure: false,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
