@@ -52,7 +52,7 @@ export default function Footer() {
           {/* Locations */}
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider text-white/40 mb-4">
-              Locaties
+              <a href="/locaties" className="hover:text-white/70 transition-colors">Locaties</a>
             </h3>
             <div className="space-y-4 text-sm text-white/60">
               <div>
