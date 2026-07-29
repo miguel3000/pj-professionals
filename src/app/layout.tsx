@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PJ Professionals - Wij blijven staan waar anderen afhaken",
+  title: "PJ Professionals - Aandacht voor de mens achter het verhaal",
   description:
     "PJ Professionals biedt begeleiding en behandeling van volwassenen binnen de WMO en forensische zorg in de regio Den Bosch en Oss.",
 };
