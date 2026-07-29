@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
 
     // Send email
     await transporter.sendMail({
-      from: process.env.SMTP_USER,
+      from: "website@pjprofessionals.nl",
       to: toEmail,
       replyTo: email,
       subject: `Contactformulier: ${reasonLabel} - ${voornaam} ${achternaam}`,
