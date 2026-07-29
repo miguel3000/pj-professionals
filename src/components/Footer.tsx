@@ -10,11 +10,11 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <Image
-                src="/logo.png"
+                src="/logo-v24-solo.png"
                 alt="PJ Professionals"
                 width={140}
-                height={42}
-                className="h-10 w-auto brightness-0 invert"
+                height={140}
+                className="h-10 w-auto"
               />
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
