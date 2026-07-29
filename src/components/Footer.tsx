@@ -55,16 +55,16 @@ export default function Footer() {
               <a href="/locaties" className="hover:text-white/70 transition-colors">Locaties</a>
             </h3>
             <div className="space-y-4 text-sm text-white/60">
-              <div>
+              <a href="https://maps.google.com/?q=Bruistensingel+130,+5232+AC+s-Hertogenbosch" target="_blank" rel="noopener noreferrer" className="block hover:text-white/90 transition-colors">
                 <p className="text-white/80 font-medium">&apos;s-Hertogenbosch</p>
                 <p>Bruistensingel 130</p>
                 <p>5232 AC &apos;s-Hertogenbosch</p>
-              </div>
-              <div>
+              </a>
+              <a href="https://maps.google.com/?q=Raadhuishof+25,+5341+HR+Oss" target="_blank" rel="noopener noreferrer" className="block hover:text-white/90 transition-colors">
                 <p className="text-white/80 font-medium">Oss</p>
                 <p>Raadhuishof 25</p>
                 <p>5341 HR Oss</p>
-              </div>
+              </a>
             </div>
           </div>
 
