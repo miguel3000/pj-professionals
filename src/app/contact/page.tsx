@@ -78,6 +78,10 @@ export default function Contact() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!e.currentTarget.checkValidity()) {
+      e.currentTarget.reportValidity();
+      return;
+    }
     setStatus("sending");
     setErrorMessage("");
 
