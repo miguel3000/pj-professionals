@@ -13,6 +13,7 @@ export default function Locaties() {
         badge="Locaties"
         title="Onze locaties"
         subtitle="PJ Professionals is actief in regio Den Bosch en Oss."
+        image="/images/locaties.jpg"
       />
 
       <SectionBlock title="Onze locaties" gray>
