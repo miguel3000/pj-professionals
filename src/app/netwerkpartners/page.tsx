@@ -91,6 +91,7 @@ export default function Netwerkpartners() {
         badge="Samenwerking"
         title="Netwerkpartners"
         subtitle="PJ Professionals werkt nauw samen met organisaties in de zorg, rechtspraak, gemeenten en het onderwijs om cliënten de beste ondersteuning te bieden."
+        image="/images/netwerkpartners.jpg"
       />
 
       <section className="py-20 bg-gray-50">

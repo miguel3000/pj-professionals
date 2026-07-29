@@ -14,6 +14,7 @@ const navLinks = [
   { label: "Vacatures", href: "/vacatures" },
   { label: "FAQ", href: "/veelgestelde-vragen" },
   { label: "Netwerkpartners", href: "/netwerkpartners" },
+  { label: "Locaties", href: "/locaties" },
   { label: "Documenten", href: "/documenten" },
 ];
 
