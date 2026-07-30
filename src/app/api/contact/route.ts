@@ -20,16 +20,47 @@ const reasonLabels: Record<string, string> = {
   klacht: "Klacht indienen",
 };
 
+async function verifyTurnstileToken(token: string, remoteIp: string | null) {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) {
+    console.warn("TURNSTILE_SECRET_KEY is not set; skipping captcha verification.");
+    return true;
+  }
+  if (!token) return false;
+
+  const params = new URLSearchParams();
+  params.append("secret", secret);
+  params.append("response", token);
+  if (remoteIp) params.append("remoteip", remoteIp);
+
+  const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    body: params,
+  });
+  const outcome = await verifyRes.json();
+  return outcome.success === true;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
 
-    const { reason, voornaam, achternaam, email, telefoon, bericht, ...extraFields } = data;
+    const { reason, voornaam, achternaam, email, telefoon, bericht, turnstileToken, ...extraFields } = data;
 
     // Validate required fields
     if (!reason || !voornaam || !achternaam || !email) {
       return NextResponse.json(
         { error: "Vul alle verplichte velden in." },
+        { status: 400 }
+      );
+    }
+
+    // Verify captcha to block bots
+    const remoteIp = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+    const captchaValid = await verifyTurnstileToken(turnstileToken, remoteIp);
+    if (!captchaValid) {
+      return NextResponse.json(
+        { error: "Verificatie is mislukt. Vernieuw de pagina en probeer het opnieuw." },
         { status: 400 }
       );
     }

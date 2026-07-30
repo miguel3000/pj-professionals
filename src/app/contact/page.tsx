@@ -1,8 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Script from "next/script";
 import PageHero from "@/components/PageHero";
 import SectionBlock from "@/components/SectionBlock";
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        container: HTMLElement,
+        options: {
+          sitekey: string;
+          callback: (token: string) => void;
+          "expired-callback"?: () => void;
+          "error-callback"?: () => void;
+        }
+      ) => string;
+      reset: (widgetId?: string) => void;
+    };
+  }
+}
 
 const contactReasons = [
   { value: "", label: "Selecteer een reden..." },
@@ -78,6 +98,27 @@ export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | undefined>(undefined);
+
+  function renderTurnstile() {
+    if (!TURNSTILE_SITE_KEY || !window.turnstile || !turnstileContainerRef.current) return;
+    if (turnstileContainerRef.current.childElementCount > 0) return;
+    turnstileWidgetId.current = window.turnstile.render(turnstileContainerRef.current, {
+      sitekey: TURNSTILE_SITE_KEY,
+      callback: (token) => {
+        setTurnstileToken(token);
+        setFieldErrors((prev) => ({ ...prev, turnstile: "" }));
+      },
+      "expired-callback": () => setTurnstileToken(""),
+      "error-callback": () => setTurnstileToken(""),
+    });
+  }
+
+  useEffect(() => {
+    if (status !== "success") renderTurnstile();
+  }, [status]);
 
   function validate(data: Record<string, string>) {
     const errors: Record<string, string> = {};
@@ -90,6 +131,9 @@ export default function Contact() {
       errors.email = "Voer een geldig e-mailadres in.";
     }
     if (!data.privacy) errors.privacy = "U moet akkoord gaan met de privacyverklaring.";
+    if (TURNSTILE_SITE_KEY && !data.turnstileToken) {
+      errors.turnstile = "Voltooi de verificatie hieronder.";
+    }
     return errors;
   }
 
@@ -101,6 +145,7 @@ export default function Contact() {
       data[key] = value.toString();
     });
     data.reason = reason;
+    data.turnstileToken = turnstileToken;
 
     const errors = validate(data);
     if (Object.keys(errors).length > 0) {
@@ -132,11 +177,21 @@ export default function Contact() {
     } catch {
       setErrorMessage("Kan geen verbinding maken met de server. Probeer het later opnieuw.");
       setStatus("error");
+    } finally {
+      setTurnstileToken("");
+      if (window.turnstile) window.turnstile.reset(turnstileWidgetId.current);
     }
   }
 
   return (
     <>
+      {TURNSTILE_SITE_KEY && (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+          onLoad={renderTurnstile}
+        />
+      )}
       <PageHero
         badge="Contact"
         title="Neem contact met ons op"
@@ -326,6 +381,14 @@ export default function Contact() {
                 </div>
                 {fieldErrors.privacy && <p data-field-error className="text-red-500 text-xs mt-1">{fieldErrors.privacy}</p>}
               </div>
+
+              {/* Turnstile captcha */}
+              {TURNSTILE_SITE_KEY && (
+                <div>
+                  <div ref={turnstileContainerRef} />
+                  {fieldErrors.turnstile && <p data-field-error className="text-red-500 text-xs mt-1">{fieldErrors.turnstile}</p>}
+                </div>
+              )}
 
               {status === "error" && (
                 <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
