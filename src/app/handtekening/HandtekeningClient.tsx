@@ -395,22 +395,12 @@ function Generator({ email: userEmail, logoB64 }: { email: string; logoB64: stri
             <p className="text-xs font-semibold text-teal-dark uppercase tracking-widest mb-3">
               Handtekening instellen
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              <Instruction title="Gmail / Google Workspace">
-                Instellingen → Alle instellingen → Algemeen → Handtekening → plak HTML via{" "}
-                <code className="bg-gray-100 px-1 rounded">&lt;&gt;</code>-knop of direct in het veld.
-                Sla op onderaan de pagina.
-              </Instruction>
+            <div className="text-xs">
               <Instruction title="Outlook (Windows)">
-                Bestand → Opties → E-mail → Handtekeningen → Nieuw → plak HTML via de{" "}
-                <code className="bg-gray-100 px-1 rounded">HTML</code>-knop in de werkbalk. Werkt niet? Gebruik de PNG.
-              </Instruction>
-              <Instruction title="Apple Mail (Mac)">
-                Gebruik de <strong>PNG</strong>: Mail → Voorkeuren → Handtekeningen → sleep de PNG naar het handtekeningveld.
-              </Instruction>
-              <Instruction title="Outlook (Mac / Microsoft 365)">
-                Voorkeuren → Handtekeningen → Nieuw →{" "}
-                <code className="bg-gray-100 px-1 rounded">⌘ Shift H</code> voor HTML-modus → plak de HTML.
+                Bestand → Opties → E-mail → Handtekeningen → Nieuw → plak de HTML via de{" "}
+                <code className="bg-gray-100 px-1 rounded">HTML</code>-knop in de werkbalk.
+                Selecteer daarna de handtekening bij <em>Nieuwe berichten</em> en <em>Antwoorden/Doorsturen</em> → OK.
+                Werkt plakken niet? Download de PNG en voeg die als afbeelding in.
               </Instruction>
             </div>
           </div>
