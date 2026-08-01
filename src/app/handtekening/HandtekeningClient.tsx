@@ -18,7 +18,8 @@ function buildSignatureHTML(
   email: string,
   werkdagen: string[],
   vestiging: string,
-  logoB64: string
+  logoB64: string,
+  groet: string
 ): string {
   const logoSrc = `data:image/png;base64,${logoB64}`;
   const vestigingLabel: Record<string, string> = {
@@ -39,7 +40,11 @@ function buildSignatureHTML(
   if (vestiging && vestigingLabel[vestiging])
     contactRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;font-family:Arial,Helvetica,sans-serif;">Vestiging:&nbsp;${vestigingLabel[vestiging]}</td></tr>`;
 
-  return `<table cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border-collapse:collapse;">
+  const groetHtml = groet
+    ? `<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#333333;line-height:1.5;">${groet.replace(/\n/g, "<br>")}</p>`
+    : "";
+
+  return `${groetHtml}<table cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border-collapse:collapse;">
   <tr>
     <td style="padding:12px 0 12px 14px;vertical-align:middle;">
       <img src="${logoSrc}" width="80" height="80" alt="PJ Professionals" style="display:block;border:0;outline:none;width:80px;height:80px;">
@@ -206,9 +211,10 @@ function Generator({ email: userEmail, logoB64 }: { email: string; logoB64: stri
   const [emailField, setEmailField] = useState(userEmail);
   const [werkdagen, setWerkdagen] = useState<string[]>([]);
   const [vestiging, setVestiging] = useState("");
+  const [groet, setGroet] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const signature = buildSignatureHTML(naam, functie, mobiel, telefoon, emailField, werkdagen, vestiging, logoB64);
+  const signature = buildSignatureHTML(naam, functie, mobiel, telefoon, emailField, werkdagen, vestiging, logoB64, groet);
 
   const toggleDag = useCallback((dag: string) => {
     setWerkdagen((prev) => prev.includes(dag) ? prev.filter((d) => d !== dag) : [...prev, dag]);
@@ -273,7 +279,7 @@ function Generator({ email: userEmail, logoB64 }: { email: string; logoB64: stri
                 placeholder="Bijv. Evelien de Vries" className={inputCls} />
             </Field>
 
-            <Field label="Functie" required>
+            <Field label="Functie">
               <input type="text" value={functie} onChange={(e) => setFunctie(e.target.value)}
                 placeholder="Bijv. Trajectbegeleider" className={inputCls} />
             </Field>
@@ -333,6 +339,19 @@ function Generator({ email: userEmail, logoB64 }: { email: string; logoB64: stri
                   </button>
                 ))}
               </div>
+            </Field>
+
+            <hr className="border-gray-100" />
+
+            <Field label="Standaard afsluitende groet">
+              <textarea
+                value={groet}
+                onChange={(e) => setGroet(e.target.value)}
+                placeholder={"Bijv. Met vriendelijke groet,\nEvelien"}
+                rows={3}
+                className={`${inputCls} resize-none`}
+              />
+              <p className="text-[0.7rem] text-gray-400 mt-1">Verschijnt boven de handtekening in je e-mail.</p>
             </Field>
 
           </div>
