@@ -25,7 +25,7 @@ export default function Home() {
           }}
         />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20 sm:pb-24">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-28 lg:pt-32 pb-20 sm:pb-24">
           <div className="text-center lg:text-left lg:max-w-md xl:max-w-lg">
             {/* Logo — inline so it scrolls away with the hero.
                 PNG is used as a CSS mask so only the logo shape receives

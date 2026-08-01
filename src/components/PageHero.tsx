@@ -10,7 +10,7 @@ export default function PageHero({
   image?: string;
 }) {
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden min-h-[50vh] flex items-center">
+    <section className="relative pt-8 lg:pt-32 pb-24 overflow-hidden min-h-[50vh] flex items-center">
       {/* Background: gradient or image */}
       {image ? (
         <>

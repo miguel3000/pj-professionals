@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -20,11 +20,19 @@ const navLinks = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === "/";
 
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10 bg-teal-dark/95 overflow-visible">
+    <>
+    <header className="relative lg:fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10 bg-teal-dark/95 overflow-visible">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
         <div className="flex items-center justify-between h-24 overflow-visible">
           {/* Small logo on inner pages */}
@@ -82,5 +90,57 @@ export default function Header() {
         )}
       </div>
     </header>
+
+    {/* Compact mobile overlay — appears after scrolling 80px, hidden on desktop */}
+    {isScrolled && (
+      <div className="fixed top-0 left-0 right-0 z-50 lg:hidden">
+        <div className="bg-teal-dark/90 backdrop-blur-sm border-b border-white/10">
+          <div className="flex items-center justify-between h-14 px-4">
+            {!isHomepage && (
+              <Link href="/" className="shrink-0">
+                <Image src="/logo-v24-solo.png" alt="PJ Professionals" width={500} height={500} className="h-8 w-auto" />
+              </Link>
+            )}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="p-2 rounded-lg transition-colors ml-auto text-white hover:bg-white/10"
+              aria-label="Toggle menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {menuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+          {menuOpen && (
+            <nav className="pb-6 border-t border-white/10 pt-4">
+              <div className="flex flex-col gap-1 px-4">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="px-4 py-3 text-base font-medium rounded-lg transition-all text-white/80 hover:text-white hover:bg-white/10"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <Link
+                  href="/contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="mt-2 px-5 py-3 font-semibold text-base rounded-lg transition-colors text-center bg-white text-teal-dark hover:bg-white/90"
+                >
+                  Contact
+                </Link>
+              </div>
+            </nav>
+          )}
+        </div>
+      </div>
+    )}
+    </>
   );
 }

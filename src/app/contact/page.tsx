@@ -252,7 +252,7 @@ export default function Contact() {
                 <h3 className="text-xl font-bold text-teal-dark mb-2">Bericht verzonden!</h3>
                 <p className="text-gray-500 text-sm mb-6">Bedankt voor uw bericht. Wij nemen zo snel mogelijk contact met u op.</p>
                 <button
-                  onClick={() => { setStatus("idle"); setReason(""); }}
+                  onClick={() => { setStatus("idle"); setReason(""); setTurnstileToken(""); }}
                   className="px-6 py-2.5 bg-teal-dark text-white font-semibold text-sm rounded-xl hover:bg-teal-dark transition-colors"
                 >
                   Nieuw bericht versturen
