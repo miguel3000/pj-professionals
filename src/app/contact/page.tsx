@@ -14,6 +14,7 @@ declare global {
         container: HTMLElement,
         options: {
           sitekey: string;
+          theme?: "light" | "dark" | "auto";
           callback: (token: string) => void;
           "expired-callback"?: () => void;
           "error-callback"?: () => void;
@@ -107,6 +108,7 @@ export default function Contact() {
     if (turnstileContainerRef.current.childElementCount > 0) return;
     turnstileWidgetId.current = window.turnstile.render(turnstileContainerRef.current, {
       sitekey: TURNSTILE_SITE_KEY,
+      theme: "light",
       callback: (token) => {
         setTurnstileToken(token);
         setFieldErrors((prev) => ({ ...prev, turnstile: "" }));
@@ -385,7 +387,7 @@ export default function Contact() {
               {/* Turnstile captcha */}
               {TURNSTILE_SITE_KEY && (
                 <div>
-                  <div ref={turnstileContainerRef} />
+                  <div ref={turnstileContainerRef} className="flex justify-center" />
                   {fieldErrors.turnstile && <p data-field-error className="text-red-500 text-xs mt-1">{fieldErrors.turnstile}</p>}
                 </div>
               )}
