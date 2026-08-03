@@ -27,7 +27,7 @@ export default function WmoZorg() {
           herstellen.
         </p>
         <p>
-          De WMO richt zich op ondersteuning bij wonen, financien, gezondheid,
+          De WMO richt zich op ondersteuning bij wonen, financiën, gezondheid,
           sociale relaties, daginvulling en veiligheid. Voor veel cliënten die
           bij ons komen, is er sprake van psychiatrische problemen,
           verstandelijke beperkingen, verslaving, langdurige instabiliteit, of
@@ -41,10 +41,10 @@ export default function WmoZorg() {
           hulpverlening.
         </p>
         <p>
-          De rol van de begeleider is overzicht bieden, rust creeren,
+          De rol van de begeleider is overzicht bieden, rust creëren,
           ondersteunen bij praktische taken, motiveren en vroegtijdig signaleren
           van risico&apos;s. Onze begeleiding sluit aan op de leefwereld van de
-          client en richt zich op duurzame vooruitgang.
+          cliënt en richt zich op duurzame vooruitgang.
         </p>
       </SectionBlock>
 
@@ -55,7 +55,7 @@ export default function WmoZorg() {
           doelgericht handelen.
         </p>
         <p>
-          Wij sluiten aan bij de situatie van de client door bij de client thuis
+          Wij sluiten aan bij de situatie van de cliënt door bij de cliënt thuis
           of elders af te spreken, aanwezig te zijn waar het nodig is en
           ondersteuning te bieden bij dagelijkse uitdagingen. Vertrouwen is de
           basis: wij luisteren zonder oordeel, zijn betrouwbaar en communiceren
@@ -63,20 +63,20 @@ export default function WmoZorg() {
         </p>
         <p>
           Onze begeleiding is outreachend. Wij zijn actief in de leefomgeving
-          van de client, bieden stabiliteit in crisissituaties en blijven
+          van de cliënt, bieden stabiliteit in crisissituaties en blijven
           betrokken bij terugval. Hierdoor ontstaat ruimte voor herstel.
         </p>
         <p>
           Wij werken doelgericht en methodisch met een ondersteuningsplan dat
-          samen met de client wordt opgesteld. We ondersteunen op meerdere
-          leefgebieden zoals: wonen, financien, gezondheid, relaties,
+          samen met de cliënt wordt opgesteld. We ondersteunen op meerdere
+          leefgebieden zoals: wonen, financiën, gezondheid, relaties,
           daginvulling, veiligheid en toekomstperspectief. Door samenwerking met
           gemeenten en netwerkpartners bieden wij samenhangende zorg.
         </p>
         <p>
           Onze begeleiding wordt opgeschaald wanneer risico&apos;s toenemen en
           af wanneer zelfstandigheid toeneemt. Deze flexibiliteit maakt onze
-          aanpak effectief, duurzaam en passend bij de behoeften van de client.
+          aanpak effectief, duurzaam en passend bij de behoeften van de cliënt.
         </p>
       </SectionBlock>
 
@@ -90,15 +90,15 @@ export default function WmoZorg() {
         </p>
         <p>Onze doelgroep bestaat uit:</p>
         <ul>
-          <li>Clienten met problemen op een of meerdere leefgebieden</li>
-          <li>Clienten die een veilige en stabiele basis nodig hebben</li>
+          <li>Cliënten met problemen op een of meerdere leefgebieden</li>
+          <li>Cliënten die een veilige en stabiele basis nodig hebben</li>
           <li>
-            Clienten die eerder niet goed zijn aangesloten in reguliere zorg
+            Cliënten die eerder niet goed zijn aangesloten in reguliere zorg
           </li>
         </ul>
         <p>
           Wij bieden ook ondersteuning aan cliënten met een forensische
-          achtergrond waarvan de justitiele maatregel eindigt. Door onze brede
+          achtergrond waarvan de justitiële maatregel eindigt. Door onze brede
           expertise kunnen wij begeleiding bieden die aansluit op risico&apos;s,
           dagelijkse realiteit en toekomstperspectief.
         </p>
@@ -107,7 +107,7 @@ export default function WmoZorg() {
       <SectionBlock id="aanmelding" title="Aanmelding en werkwijze" gray>
         <p>
           Een WMO-aanmelding start meestal bij de gemeente. Na verwijzing nemen
-          wij contact op met de client om een intake te plannen. Tijdens de
+          wij contact op met de cliënt om een intake te plannen. Tijdens de
           intake bespreken wij problemen, doelen, verwachtingen en veiligheid.
           Wij vullen samen documenten in, zoals de zorgovereenkomst en
           toestemmingsverklaringen.
@@ -115,7 +115,7 @@ export default function WmoZorg() {
         <p>
           Op basis hiervan stellen wij een ondersteuningsplan op met concrete
           doelen. De begeleiding start met het stabiliseren van de basis: wonen,
-          financien, dagstructuur en veiligheid. Wij werken regelmatig samen met
+          financiën, dagstructuur en veiligheid. Wij werken regelmatig samen met
           wijkteams, schuldhulpverlening, geestelijke gezondheidszorg en
           maatschappelijke organisaties. Wij schalen zorg op wanneer
           risico&apos;s toenemen en af wanneer zelfstandigheid toeneemt.

@@ -148,7 +148,7 @@ export default function Home() {
                 <p className="text-white/80 leading-relaxed mb-4 drop-shadow-md">
                   WMO helpt volwassenen zelfstandig te leven en deel te
                   nemen aan de maatschappij. Wij bieden ondersteuning bij wonen,
-                  financien, gezondheid, sociale relaties, daginvulling en
+                  financiën, gezondheid, sociale relaties, daginvulling en
                   veiligheid.
                 </p>
                 <span className="inline-flex items-center gap-2 text-white/90 font-medium text-sm group-hover:text-white transition-colors">
@@ -249,7 +249,7 @@ export default function Home() {
             {[
               {
                 title: "Outreachend",
-                desc: "Wij zijn actief in de leefomgeving van de client en bieden stabiliteit waar het nodig is.",
+                desc: "Wij zijn actief in de leefomgeving van de cliënt en bieden stabiliteit waar het nodig is.",
               },
               {
                 title: "Persoonlijk",
@@ -366,7 +366,7 @@ export default function Home() {
             Neem contact met ons op
           </h2>
           <p className="text-white/70 mb-8 text-lg">
-            Heeft u vragen of wilt u een client aanmelden? Onze bureaudienst is
+            Heeft u vragen of wilt u een cliënt aanmelden? Onze bureaudienst is
             bereikbaar tijdens kantooruren.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
