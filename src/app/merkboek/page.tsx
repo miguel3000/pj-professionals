@@ -257,9 +257,11 @@ export default function Merkboek() {
           </div>
 
           <div style={{ marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+            <a href={`${BASE}/merkboek/PJ-Professionals-Merkboek.pdf`} download="PJ-Professionals-Merkboek.pdf" style={{ display: "inline-block", padding: "0.7rem 1.5rem", background: "#fff", color: "#0B3C5D", fontFamily: "inherit", fontSize: "0.82rem", fontWeight: 600, textDecoration: "none", borderRadius: 2, marginBottom: "2rem" }}>
+              ↓ Download deze gids als PDF
+            </a>
             <p className="mb-sans" style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.25)", lineHeight: 1.8 }}>
-              Lettertypen: <strong style={{ color: "rgba(255,255,255,0.45)" }}>Playfair Display</strong> · <strong style={{ color: "rgba(255,255,255,0.45)" }}>DM Sans</strong><br />
-              Beschikbaar via <a href={`${BASE}/fonts/playfair-display-400.woff2`} style={{ color: "#3FA7D6", textDecoration: "none" }}>pjprofessionals.nl/fonts/</a><br />
+              Lettertypen: <strong style={{ color: "rgba(255,255,255,0.45)" }}>Playfair Display</strong> (<a href={`${BASE}/fonts/playfair-display-400.woff2`} download style={{ color: "#3FA7D6", textDecoration: "none" }}>.woff2</a>) · <strong style={{ color: "rgba(255,255,255,0.45)" }}>DM Sans</strong> (<a href={`${BASE}/fonts/dmsans-300-500.woff2`} download style={{ color: "#3FA7D6", textDecoration: "none" }}>.woff2</a>)<br />
               Vragen over de huisstijl: <strong style={{ color: "rgba(255,255,255,0.45)" }}>info@pjprofessionals.nl</strong>
             </p>
           </div>
