@@ -261,7 +261,7 @@ export default function Merkboek() {
               ↓ Download deze gids als PDF
             </a>
             <p className="mb-sans" style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.25)", lineHeight: 1.8 }}>
-              Lettertypen: <strong style={{ color: "rgba(255,255,255,0.45)" }}>Playfair Display</strong> (<a href={`${BASE}/fonts/playfair-display-400.woff2`} download style={{ color: "#3FA7D6", textDecoration: "none" }}>.woff2</a>) · <strong style={{ color: "rgba(255,255,255,0.45)" }}>DM Sans</strong> (<a href={`${BASE}/fonts/dmsans-300-500.woff2`} download style={{ color: "#3FA7D6", textDecoration: "none" }}>.woff2</a>)<br />
+              Lettertypen: <strong style={{ color: "rgba(255,255,255,0.45)" }}>Playfair Display</strong> (<a href={`${BASE}/fonts/playfair-display.ttf`} download style={{ color: "#3FA7D6", textDecoration: "none" }}>.ttf</a>) · <strong style={{ color: "rgba(255,255,255,0.45)" }}>DM Sans</strong> (<a href={`${BASE}/fonts/dmsans.ttf`} download style={{ color: "#3FA7D6", textDecoration: "none" }}>.ttf</a>)<br />
               Vragen over de huisstijl: <strong style={{ color: "rgba(255,255,255,0.45)" }}>info@pjprofessionals.nl</strong>
             </p>
           </div>
