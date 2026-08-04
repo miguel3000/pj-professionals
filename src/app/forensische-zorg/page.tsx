@@ -6,7 +6,7 @@ import Link from "next/link";
 export const metadata = {
   title: "Forensische zorg - PJ Professionals",
   description:
-    "Gespecialiseerde begeleiding, behandeling en diagnostiek voor cliënten binnen een justitieel kader. PJ Professionals werkt aan risicoreductie, herstel en duurzame terugkeer.",
+    "PJ Professionals biedt forensische zorg in Den Bosch en Oss: ambulante begeleiding, behandeling en diagnostiek voor cliënten binnen een justitieel kader. Samenwerking met reclassering en ketenpartners.",
 };
 
 export default function ForensischeZorg() {
