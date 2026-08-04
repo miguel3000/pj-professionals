@@ -236,7 +236,7 @@ export default function Merkboek() {
           <p className="mb-sans" style={{ fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#3FA7D6", marginBottom: "0.75rem" }}>05 · Downloads</p>
           <h2 className="mb-display" style={{ fontSize: "clamp(1.6rem,4vw,2.4rem)", fontWeight: 700, color: "#fff", marginBottom: "1rem" }}>Logo bestanden</h2>
           <p className="mb-sans" style={{ fontSize: "1rem", fontWeight: 300, color: "rgba(255,255,255,0.45)", lineHeight: 1.75, maxWidth: 560, marginBottom: "2.5rem" }}>
-            Download de logo&apos;s als PNG met transparante achtergrond. Voor vectorbestanden (.ai) neem contact op met de directie.
+            Download de logo&apos;s als PNG met transparante achtergrond. Voor vectorbestanden neem contact op met de directie.
           </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: "1px", background: "rgba(255,255,255,0.06)" }}>
