@@ -54,10 +54,10 @@ const COLORS = [
 ];
 
 const DOWNLOADS = [
-  { name: "Volledig logo — wit",       file: "PJ-Professionals-logo-wit.png",          size: "679×746 px", bg: "#0B3C5D",  light: true  },
-  { name: "Volledig logo — donker",    file: "PJ-Professionals-logo-donker.png",       size: "679×746 px", bg: "#E6F2F8", light: false },
-  { name: "Beeldmerk — wit",          file: "PJ-Professionals-beeldmerk-wit.png",     size: "643×643 px", bg: "#0A2540",  light: true  },
-  { name: "Beeldmerk — donker",       file: "PJ-Professionals-beeldmerk-donker.png",  size: "643×643 px", bg: "#FFFFFF", light: false },
+  { name: "Volledig logo — wit",       file: "PJ-Professionals-logo-wit.png",          size: "789×749 px", bg: "#0B3C5D",  light: true  },
+  { name: "Volledig logo — donker",    file: "PJ-Professionals-logo-donker.png",       size: "789×749 px", bg: "#E6F2F8", light: false },
+  { name: "Beeldmerk — wit",          file: "PJ-Professionals-beeldmerk-wit.png",     size: "643×719 px", bg: "#0A2540",  light: true  },
+  { name: "Beeldmerk — donker",       file: "PJ-Professionals-beeldmerk-donker.png",  size: "643×719 px", bg: "#FFFFFF", light: false },
 ];
 
 export default function Merkboek() {
