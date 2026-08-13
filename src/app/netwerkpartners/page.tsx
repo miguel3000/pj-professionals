@@ -103,13 +103,13 @@ export default function Netwerkpartners() {
                 href={partner.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center justify-center bg-white rounded-2xl border border-gray-100 p-6 min-h-[120px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+                className="group flex flex-col items-center justify-center bg-white rounded-2xl border border-gray-100 p-4 min-h-[140px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
               >
                 {partner.logo ? (
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-h-16 w-full object-contain grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    className="max-h-24 w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 ) : (
                   <span className="text-sm font-semibold text-center text-teal-dark/60 group-hover:text-teal-dark leading-snug transition-colors duration-300">
