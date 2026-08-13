@@ -7,6 +7,32 @@ import SectionBlock from "@/components/SectionBlock";
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
+const MAX_CV_SIZE = 1.5 * 1024 * 1024; // 1.5MB
+const ALLOWED_CV_EXTENSIONS = [".pdf", ".docx"];
+
+function validateCvFile(file: File): string | undefined {
+  const name = file.name.toLowerCase();
+  if (!ALLOWED_CV_EXTENSIONS.some((ext) => name.endsWith(ext))) {
+    return "Alleen .pdf en .docx bestanden zijn toegestaan.";
+  }
+  if (file.size > MAX_CV_SIZE) {
+    return "Bestand mag maximaal 1,5 MB zijn.";
+  }
+  return undefined;
+}
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      resolve(result.split(",")[1] ?? "");
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 declare global {
   interface Window {
     turnstile?: {
@@ -102,6 +128,33 @@ export default function Contact() {
   const [turnstileToken, setTurnstileToken] = useState("");
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const turnstileWidgetId = useRef<string | undefined>(undefined);
+  const [cvFile, setCvFile] = useState<File | null>(null);
+  const [cvError, setCvError] = useState("");
+  const cvInputRef = useRef<HTMLInputElement>(null);
+
+  function handleCvChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null;
+    if (!file) {
+      setCvFile(null);
+      setCvError("");
+      return;
+    }
+    const error = validateCvFile(file);
+    if (error) {
+      setCvError(error);
+      setCvFile(null);
+      if (cvInputRef.current) cvInputRef.current.value = "";
+      return;
+    }
+    setCvError("");
+    setCvFile(file);
+  }
+
+  function clearCvFile() {
+    setCvFile(null);
+    setCvError("");
+    if (cvInputRef.current) cvInputRef.current.value = "";
+  }
 
   function renderTurnstile() {
     if (!TURNSTILE_SITE_KEY || !window.turnstile || !turnstileContainerRef.current) return;
@@ -148,8 +201,13 @@ export default function Contact() {
     });
     data.reason = reason;
     data.turnstileToken = turnstileToken;
+    delete data.cv;
 
     const errors = validate(data);
+    if (reason === "sollicitatie" && cvFile) {
+      const cvFileError = validateCvFile(cvFile);
+      if (cvFileError) errors.cv = cvFileError;
+    }
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       setTimeout(() => {
@@ -163,6 +221,12 @@ export default function Contact() {
     setErrorMessage("");
 
     try {
+      if (reason === "sollicitatie" && cvFile) {
+        data.cv = await fileToBase64(cvFile);
+        data.cvFilename = cvFile.name;
+        data.cvMimeType = cvFile.type;
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -254,7 +318,7 @@ export default function Contact() {
                 <h3 className="text-xl font-bold text-teal-dark mb-2">Bericht verzonden!</h3>
                 <p className="text-gray-500 text-sm mb-6">Bedankt voor uw bericht. Wij nemen zo snel mogelijk contact met u op.</p>
                 <button
-                  onClick={() => { setStatus("idle"); setReason(""); setTurnstileToken(""); }}
+                  onClick={() => { setStatus("idle"); setReason(""); setTurnstileToken(""); clearCvFile(); }}
                   className="px-6 py-2.5 bg-teal-dark text-white font-semibold text-sm rounded-xl hover:bg-teal-dark transition-colors"
                 >
                   Nieuw bericht versturen
@@ -321,6 +385,40 @@ export default function Contact() {
                     </select>
                   </div>
                   <TextAreaField label="Motivatie / toelichting" id="motivatie" placeholder="Vertel ons waarom u wilt werken bij PJ Professionals..." />
+
+                  <div>
+                    <label htmlFor="cv" className="block text-sm font-medium text-gray-700 mb-1.5">
+                      Upload hier uw CV
+                    </label>
+                    {cvFile ? (
+                      <div className={`flex items-center justify-between gap-3 px-4 py-3 rounded-xl border bg-white text-sm ${cvError ? "border-red-400" : "border-gray-200"}`}>
+                        <span className="text-gray-700 truncate">
+                          {cvFile.name} <span className="text-gray-400">({(cvFile.size / 1024 / 1024).toFixed(2)} MB)</span>
+                        </span>
+                        <button
+                          type="button"
+                          onClick={clearCvFile}
+                          className="text-gray-400 hover:text-red-500 shrink-0 text-xs font-medium"
+                        >
+                          Verwijderen
+                        </button>
+                      </div>
+                    ) : (
+                      <input
+                        type="file"
+                        id="cv"
+                        name="cv"
+                        ref={cvInputRef}
+                        onChange={handleCvChange}
+                        accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        className={`w-full px-4 py-2.5 rounded-xl border outline-none transition-all text-sm bg-white file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-teal-dark/10 file:text-teal-dark file:text-xs file:font-semibold hover:file:bg-teal-dark/20 ${(fieldErrors.cv || cvError) ? "border-red-400" : "border-gray-200"}`}
+                      />
+                    )}
+                    <p className="text-gray-400 text-xs mt-1.5">PDF of Word-document, maximaal 1,5 MB.</p>
+                    {(fieldErrors.cv || cvError) && (
+                      <p data-field-error className="text-red-500 text-xs mt-1">{fieldErrors.cv || cvError}</p>
+                    )}
+                  </div>
                 </div>
               )}
 

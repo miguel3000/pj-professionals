@@ -1,6 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+const MAX_CV_SIZE = 1.5 * 1024 * 1024; // 1.5MB
+const ALLOWED_CV_EXTENSIONS = [".pdf", ".docx"];
+
+function validateCvAttachment(filename: string, buffer: Buffer): string | null {
+  const name = filename.toLowerCase();
+  const ext = ALLOWED_CV_EXTENSIONS.find((e) => name.endsWith(e));
+  if (!ext) return "Alleen .pdf en .docx bestanden zijn toegestaan.";
+  if (buffer.length > MAX_CV_SIZE) return "Bestand mag maximaal 1,5 MB zijn.";
+
+  // Magic-byte check: don't trust the client-supplied extension alone.
+  const isPdf = buffer.subarray(0, 4).toString("ascii") === "%PDF";
+  const isZip = buffer.subarray(0, 4).equals(Buffer.from([0x50, 0x4b, 0x03, 0x04])); // docx is a zip
+  if (ext === ".pdf" && !isPdf) return "Bestand is geen geldig PDF-document.";
+  if (ext === ".docx" && !isZip) return "Bestand is geen geldig Word-document.";
+
+  return null;
+}
+
 // Email routing based on contact reason (from documentation)
 const emailRouting: Record<string, string> = {
   aanmelding: "aanmeldingen@pjprofessionals.nl",
@@ -45,7 +63,8 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
 
-    const { reason, voornaam, achternaam, email, telefoon, bericht, turnstileToken, ...extraFields } = data;
+    const { reason, voornaam, achternaam, email, telefoon, bericht, turnstileToken, cv, cvFilename, ...extraFields } = data;
+    delete extraFields.cvMimeType;
 
     // Validate required fields
     if (!reason || !voornaam || !achternaam || !email) {
@@ -53,6 +72,16 @@ export async function POST(request: NextRequest) {
         { error: "Vul alle verplichte velden in." },
         { status: 400 }
       );
+    }
+
+    // Validate CV attachment, if present
+    let cvBuffer: Buffer | null = null;
+    if (cv && cvFilename) {
+      cvBuffer = Buffer.from(cv, "base64");
+      const cvError = validateCvAttachment(cvFilename, cvBuffer);
+      if (cvError) {
+        return NextResponse.json({ error: cvError }, { status: 400 });
+      }
     }
 
     // Verify captcha to block bots
@@ -126,6 +155,14 @@ export async function POST(request: NextRequest) {
         </tr>`;
     }
 
+    if (cvBuffer && cvFilename) {
+      htmlBody += `
+        <tr>
+          <td style="padding: 8px 12px; border: 1px solid #ddd; font-weight: bold;">CV</td>
+          <td style="padding: 8px 12px; border: 1px solid #ddd;">${cvFilename} (bijgevoegd)</td>
+        </tr>`;
+    }
+
     htmlBody += "</table>";
 
     const transporter = nodemailer.createTransport({
@@ -145,6 +182,7 @@ export async function POST(request: NextRequest) {
       replyTo: email,
       subject: `Contactformulier: ${reasonLabel} - ${voornaam} ${achternaam}`,
       html: htmlBody,
+      attachments: cvBuffer && cvFilename ? [{ filename: cvFilename, content: cvBuffer }] : undefined,
     });
 
     return NextResponse.json({ success: true });
