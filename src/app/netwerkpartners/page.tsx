@@ -41,6 +41,7 @@ const partners = [
     name: "Vecozo",
     href: "https://www.vecozo.nl",
     logo: "/logos/partners/vecozo.png",
+    logoClassName: "max-h-36",
   },
   {
     name: "Nedap Ons",
@@ -77,11 +78,6 @@ const partners = [
     href: "https://www.tvnzorgt.nl",
     logo: "/logos/partners/tvn-zorgt.png",
   },
-  {
-    name: "SWZ",
-    href: "https://www.swzzorg.nl",
-    logo: "/logos/partners/swz.png",
-  },
 ];
 
 export default function Netwerkpartners() {
@@ -109,7 +105,7 @@ export default function Netwerkpartners() {
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-h-24 w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    className={`w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 ${partner.logoClassName ?? "max-h-24"}`}
                   />
                 ) : (
                   <span className="text-sm font-semibold text-center text-teal-dark/60 group-hover:text-teal-dark leading-snug transition-colors duration-300">
