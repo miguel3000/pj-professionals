@@ -1,21 +1,12 @@
 import PageHero from "@/components/PageHero";
 
-const documents = [
-  {
-    title: "WMO Privacyverklaring",
-    description: "Hoe wij omgaan met persoonsgegevens binnen de WMO.",
-    href: "/documenten/WMO%20Privacyverklaring.pdf",
-    filename: "WMO Privacyverklaring.pdf",
-    size: "74 KB",
-  },
-  {
-    title: "WMO Zorgovereenkomst",
-    description: "Standaard zorgovereenkomst voor WMO-clienten.",
-    href: "/documenten/WMO%20Zorgovereenkomst.pdf",
-    filename: "WMO Zorgovereenkomst.pdf",
-    size: "108 KB",
-  },
-];
+const documents: {
+  title: string;
+  description: string;
+  href: string;
+  filename: string;
+  size: string;
+}[] = [];
 
 export const metadata = {
   title: "Documenten - PJ Professionals",
@@ -33,6 +24,11 @@ export default function Documenten() {
       />
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {documents.length === 0 ? (
+            <p className="text-center text-gray-400 text-sm py-12">
+              Er zijn op dit moment geen documenten beschikbaar.
+            </p>
+          ) : (
           <div className="grid sm:grid-cols-2 gap-6">
             {documents.map((doc) => (
               <a
@@ -84,6 +80,7 @@ export default function Documenten() {
               </a>
             ))}
           </div>
+          )}
         </div>
       </section>
     </>
