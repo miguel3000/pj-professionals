@@ -41,7 +41,6 @@ const partners = [
     name: "Vecozo",
     href: "https://www.vecozo.nl",
     logo: "/logos/partners/vecozo.png",
-    logoClassName: "max-h-36",
   },
   {
     name: "Nedap Ons",
@@ -99,13 +98,13 @@ export default function Netwerkpartners() {
                 href={partner.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center justify-center bg-white rounded-2xl border border-gray-100 p-4 min-h-[140px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+                className="group flex flex-col items-center justify-center bg-white rounded-2xl border border-gray-100 p-4 h-[140px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
               >
                 {partner.logo ? (
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className={`w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 ${partner.logoClassName ?? "max-h-24"}`}
+                    className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
                   />
                 ) : (
                   <span className="text-sm font-semibold text-center text-teal-dark/60 group-hover:text-teal-dark leading-snug transition-colors duration-300">
