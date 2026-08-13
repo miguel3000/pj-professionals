@@ -458,12 +458,12 @@ export default function Contact() {
               )}
 
               {/* Message */}
-              <TextAreaField
+              {reason !== "sollicitatie" && <TextAreaField
                 label="Bericht / toelichting"
                 id="bericht"
                 placeholder="Uw vraag of bericht..."
                 rows={5}
-              />
+              />}
 
               {/* Privacy checkbox */}
               <div>
