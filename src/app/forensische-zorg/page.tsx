@@ -15,7 +15,7 @@ export default function ForensischeZorg() {
       <PageHero
         badge="Forensische zorg"
         title="Forensische zorg"
-        subtitle="Begeleiding, diagnostiek en behandeling binnen de forensische zorg. Wij werken samen met ketenpartners aan veiligheid, herstel en duurzame terugkeer in de maatschappij."
+        subtitle="Binnen de forensische zorg bieden wij begeleiding, diagnostiek en behandeling. Samen met onze ketenpartners werken wij aan veiligheid, herstel en een duurzame terugkeer in de samenleving."
         image="/images/pjprofessionals15-alt.jpg"
       />
 
