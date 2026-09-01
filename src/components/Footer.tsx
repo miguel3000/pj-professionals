@@ -101,7 +101,7 @@ export default function Footer() {
             {[
               {
                 label: "Kiwa keurmerk",
-                href: "https://portal.mijnkeurmerk.nl/Login.aspx",
+                href: "https://www.mijnkeurmerk.nl/",
                 src: "/logos/kiwa.jpg",
                 width: 500,
                 height: 500,
