@@ -58,6 +58,36 @@ const partners = [
     logo: "/logos/partners/s-hertogenbosch.png",
   },
   {
+    name: "Gemeente Meierijstad",
+    href: "https://www.meierijstad.nl",
+    logo: "/logos/partners/meierijstad.png",
+  },
+  {
+    name: "Gemeente Sint-Michielsgestel",
+    href: "https://www.sint-michielsgestel.nl",
+    logo: "/logos/partners/sint-michielsgestel.png",
+  },
+  {
+    name: "Gemeente Boxtel",
+    href: "https://www.boxtel.nl",
+    logo: "/logos/partners/boxtel.png",
+  },
+  {
+    name: "Gemeente Vught",
+    href: "https://www.vught.nl",
+    logo: "/logos/partners/vught.png",
+  },
+  {
+    name: "Gemeente Maashorst",
+    href: "https://www.gemeentemaashorst.nl",
+    logo: "/logos/partners/maashorst.png",
+  },
+  {
+    name: "Gemeente Bernheze",
+    href: "https://www.bernheze.org",
+    logo: "/logos/partners/bernheze.png",
+  },
+  {
     name: "WMO coöperatie",
     href: "https://www.wmodemeierij.nl",
     logo: "/logos/partners/wmo-cooperatie.png",
