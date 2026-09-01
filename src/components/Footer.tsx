@@ -124,7 +124,6 @@ export default function Footer() {
                 width: 1173,
                 height: 392,
                 className: "h-8 w-auto",
-                plate: true,
               },
               {
                 label: "Klachtenportaal Zorg",
@@ -140,7 +139,7 @@ export default function Footer() {
                 href={logo.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`opacity-70 hover:opacity-100 transition-opacity ${logo.plate ? "bg-white rounded-md px-3 py-2" : ""}`}
+                className="opacity-70 hover:opacity-100 transition-opacity"
               >
                 <Image
                   src={logo.src}
