@@ -113,17 +113,18 @@ export default function Footer() {
                 label: "Erkend leerbedrijf (SBB)",
                 href: "https://www.s-bb.nl",
                 src: "/logos/erkend-leerbedrijf.png",
-                width: 995,
-                height: 914,
-                className: "h-12 w-auto",
+                width: 2248,
+                height: 785,
+                className: "h-9 w-auto",
               },
               {
                 label: "KFZ Ambassadeur",
                 href: "https://www.kfz.nl",
                 src: "/logos/kfz.png",
-                width: 987,
-                height: 966,
-                className: "h-12 w-auto",
+                width: 1173,
+                height: 392,
+                className: "h-8 w-auto",
+                plate: true,
               },
               {
                 label: "Klachtenportaal Zorg",
@@ -139,7 +140,7 @@ export default function Footer() {
                 href={logo.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="opacity-70 hover:opacity-100 transition-opacity"
+                className={`opacity-70 hover:opacity-100 transition-opacity ${logo.plate ? "bg-white rounded-md px-3 py-2" : ""}`}
               >
                 <Image
                   src={logo.src}
