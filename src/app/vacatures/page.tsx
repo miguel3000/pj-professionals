@@ -20,23 +20,27 @@ export default function Vacatures() {
 
       <SectionBlock id="werken-bij" title="Werken bij PJ Professionals">
         <p>
-          Werken bij PJ Professionals betekent werken in een omgeving waar
-          menselijkheid, professionaliteit en betrokkenheid samenkomen. Wij
-          bieden zorg aan cliënten met uiteenlopende hulpvragen, zowel
-          eenvoudige als complexe problematiek. Medewerkers krijgen ruimte om
-          echt verschil te maken in het leven van cliënten en tegelijkertijd te
-          groeien in hun vak.
+          Werken bij PJ Professionals betekent werken binnen een organisatie
+          waarin professionaliteit, betrokkenheid en samenwerking centraal
+          staan. We ondersteunen volwassenen met uiteenlopende hulpvragen,
+          variërend van reguliere ondersteuningsvragen tot complexe
+          casuïstiek. Medewerkers krijgen de ruimte om vanuit hun
+          deskundigheid bij te dragen aan stabiliteit, herstel en
+          ontwikkeling van cliënten.
         </p>
         <p>
-          Onze organisatie investeert in ontwikkeling, scholing en werkplezier.
-          Wij bieden een veilige en open werkomgeving waarin collega&apos;s
-          samenwerken, van elkaar leren en elkaar ondersteunen.
+          We investeren in vakinhoudelijke ontwikkeling, interne en externe
+          scholing en duurzame inzetbaarheid. Daarbij streven we naar een
+          open en veilige werkomgeving waarin collega&apos;s samenwerken,
+          kennis delen, reflecteren op hun handelen en elkaar ondersteunen.
         </p>
         <p>
-          Onze begeleiders en behandelaren werken outreachend en zijn actief
-          aanwezig in de leefomgeving van cliënten. Dit vraagt om
-          zelfstandigheid, reflectie, goede communicatieve vaardigheden en het
-          vermogen om te schakelen wanneer situaties veranderen.
+          Onze medewerkers werken veelal outreachend en zijn actief in de
+          leefomgeving van cliënten. Behandeling en diagnostiek vinden
+          voornamelijk plaats op onze kantoorlocaties. Het werk vraagt om
+          zelfstandigheid, reflectief vermogen, goede communicatieve
+          vaardigheden en het vermogen om zorgvuldig te handelen wanneer
+          omstandigheden veranderen.
         </p>
       </SectionBlock>
 
@@ -84,24 +88,32 @@ export default function Vacatures() {
 
       <SectionBlock id="ontwikkeling" title="Professionele ontwikkeling">
         <p>
-          Wij investeren doorlopend in kennis en vaardigheden van medewerkers.
-          Dit doen wij door:
+          We investeren doorlopend in de kennis, vaardigheden en
+          vakinhoudelijke ontwikkeling van onze medewerkers. De scholing
+          wordt waar mogelijk afgestemd op de functie, ervaring en
+          ontwikkelbehoeften van de medewerker.
         </p>
+        <p>Dit doen we door middel van:</p>
         <ul>
-          <li>Interne trainingen</li>
-          <li>Intervisie en casusbesprekingen</li>
-          <li>Externe scholing</li>
-          <li>Beroepsgerichte cursussen</li>
+          <li>interne trainingen;</li>
+          <li>intervisie en casusbesprekingen;</li>
+          <li>externe scholing;</li>
+          <li>beroepsgerichte cursussen;</li>
         </ul>
       </SectionBlock>
 
       <SectionBlock id="stages" title="Stageplaatsen" gray>
         <p>
-          PJ Professionals is een erkend leerbedrijf. Wij werken samen met
-          hogescholen en bieden stageplaatsen voor zowel MBO als HBO binnen de
-          WMO en de forensische zorg. Stagiairs worden begeleid door ervaren
-          medewerkers en krijgen de kans om praktijkervaring op te doen in een
-          organisatie waar nabijheid en kwaliteit centraal staan.
+          PJ Professionals is een erkend leerbedrijf en werkt samen met
+          mbo- en hbo-onderwijsinstellingen. We bieden stageplaatsen binnen
+          de Wmo en de forensische zorg.
+        </p>
+        <p>
+          Stagiairs worden begeleid door ervaren professionals en krijgen,
+          passend bij hun opleidingsniveau en leerdoelen, de ruimte om
+          praktijkervaring op te doen. Daarbij besteden we aandacht aan
+          professionele ontwikkeling, reflectie, samenwerking en zorgvuldig
+          handelen binnen de zorg.
         </p>
       </SectionBlock>
 
@@ -130,7 +142,7 @@ export default function Vacatures() {
               <div>
                 <h3 className="font-semibold text-teal-dark">{title}</h3>
                 <p className="text-gray-500 text-sm mt-1">
-                  PJ Professionals — Regio Den Bosch / Oss
+                  PJ Professionals — Regio &apos;s-Hertogenbosch / Oss
                 </p>
               </div>
               <Link

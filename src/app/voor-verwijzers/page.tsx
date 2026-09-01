@@ -21,53 +21,69 @@ export default function VoorVerwijzers() {
       <SectionBlock>
         <p>
           PJ Professionals is een betrouwbare samenwerkingspartner voor
-          verwijzers doordat wij outreachend werken en actief aanwezig zijn in de
-          leefwereld van cliënten. Wij blijven betrokken, juist wanneer situaties
-          complex worden of dreigen vast te lopen. Onze organisatie combineert
-          reguliere en complexe casuïstiek, waardoor wij duurzaam kunnen werken
-          en flexibel kunnen inspelen op uiteenlopende hulpvragen.
+          verwijzers. We werken outreachend en zijn actief aanwezig in de
+          leefomgeving van cliënten. Ook wanneer een situatie complex wordt
+          of dreigt vast te lopen, bieden we continuïteit en blijven we
+          gericht op haalbare vervolgstappen.
         </p>
         <p>
-          Daarnaast beschikken wij over ruime ervaring binnen zowel
-          WMO-begeleiding, WLZ-begeleiding als forensische trajecten. Wij
-          communiceren helder, tijdig en voorspelbaar, en werken volgens
-          kwaliteitsnormen en erkende systemen.
+          We hebben ruime ervaring met zowel reguliere als complexe
+          casuïstiek. Hierdoor kunnen we flexibel inspelen op uiteenlopende
+          ondersteuningsbehoeften en trajecten zorgvuldig afstemmen op de
+          cliënt en de betrokken ketenpartners.
         </p>
         <p>
-          Onze organisatie is actief binnen de regio Brabant Noordoost. Wij
-          bieden begeleiding binnen de Wet Maatschappelijke Ondersteuning en
+          Onze expertise omvat begeleiding vanuit de Wet maatschappelijke
+          ondersteuning (Wmo), individuele ambulante begeleiding vanuit de
+          Wet langdurige zorg (Wlz) via een persoonsgebonden budget en
           begeleiding, behandeling en diagnostiek binnen de forensische zorg.
+          We communiceren helder en tijdig en werken volgens de geldende
+          professionele richtlijnen en kwaliteitsnormen.
         </p>
+        <p>PJ Professionals is actief in de regio Noordoost-Brabant.</p>
       </SectionBlock>
 
       <SectionBlock id="aanmelding" title="Aanmelding en verwijzing" gray>
         <p>
-          Wij vinden het belangrijk dat verwijzers precies weten wat zij kunnen
-          verwachten. Daarom is ons aanmeldproces eenvoudig en duidelijk.
-          Aanmeldingen kunnen worden gedaan via e-mail, telefonisch overleg of
-          via het aanmeldformulier.
+          We vinden het belangrijk dat verwijzers precies weten wat zij van
+          ons kunnen verwachten. Daarom is ons aanmeldproces eenvoudig en
+          duidelijk ingericht. Aanmeldingen kunnen per e-mail, na telefonisch
+          overleg of via het aanmeldformulier op onze website worden gedaan.
+          Wmo-toewijzingen ontvangen we via het iWmo-berichtenverkeer.
+          Aanmeldingen binnen de forensische zorg verlopen via het
+          Informatiesysteem Forensische Zorg (IFZO).
         </p>
         <p>
-          Na ontvangst beoordelen wij de situatie zorgvuldig en nemen wij contact
-          op met de aanmelder en de cliënt. Wij streven naar snelle
-          terugkoppeling over de vervolgstappen.
+          Na ontvangst van de aanmelding beoordelen we of de hulpvraag
+          aansluit bij ons aanbod en onze beschikbare capaciteit. Vervolgens
+          nemen we contact op met de aanmelder en de cliënt. We streven
+          ernaar snel en duidelijk terug te koppelen over de mogelijkheden
+          en vervolgstappen.
         </p>
         <p>
-          Tijdens de intake bespreken wij leefgebieden, risicofactoren, doelen,
-          veiligheid en verwachtingen. Indien nodig stemmen wij direct af met de
-          verwijzer of andere betrokken ketenpartners.
+          Tijdens de intake brengen we de hulpvraag, relevante leefgebieden,
+          doelen en verwachtingen in kaart. Waar dit van toepassing is,
+          bespreken we ook risicofactoren, beschermende factoren en
+          veiligheid. Indien nodig stemmen we af met de verwijzer en andere
+          betrokken ketenpartners.
         </p>
+        <p>We werken onder meer samen met:</p>
+        <ul>
+          <li>gemeenten en wijkteams;</li>
+          <li>de reclassering;</li>
+          <li>huisartsen;</li>
+          <li>
+            professionals en organisaties binnen de geestelijke
+            gezondheidszorg;
+          </li>
+          <li>maatschappelijke organisaties;</li>
+        </ul>
         <p>
-          Wij werken samen met onder andere gemeenten en wijkteams, reclassering,
-          huisartsen, professionals binnen de geestelijke gezondheidszorg,
-          maatschappelijke organisaties, woonbegeleiders en consulenten binnen de
-          Wet langdurige zorg.
-        </p>
-        <p>
-          Wij bieden verwijzers duidelijke terugkoppeling, periodieke
-          rapportages, contact in risicovolle situaties, betrokkenheid bij
-          belangrijke beslismomenten en transparantie over draagkracht en
-          mogelijkheden.
+          Binnen de gemaakte afspraken en geldende privacyregels bieden we
+          verwijzers duidelijke terugkoppeling, periodieke rapportages en
+          tijdige afstemming bij risicovolle situaties of belangrijke
+          beslismomenten. Daarnaast zijn we transparant over onze
+          beschikbare capaciteit, expertise en de reikwijdte van ons aanbod.
         </p>
       </SectionBlock>
 
@@ -79,8 +95,8 @@ export default function VoorVerwijzers() {
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 not-prose mt-6">
           {[
-            "Den Bosch",
-            "MijnGemeenteDichtbij",
+            "'s-Hertogenbosch",
+            "Boxtel",
             "Meierijstad",
             "Sint Michielsgestel",
             "Vught",
@@ -100,18 +116,24 @@ export default function VoorVerwijzers() {
 
       <SectionBlock id="documenten" title="Documenten en informatie" gray>
         <p>
-          Op deze pagina kunnen verwijzers informatie vinden over het
-          aanmeldformulier, informatie over onze werkwijze, jaarverslagen en
-          kwaliteitsdocumenten. Wij zorgen dat alle documenten actueel en
-          overzichtelijk beschikbaar zijn.
+          Op deze pagina vinden verwijzers onder meer ons aanmeldformulier,
+          informatie over onze werkwijze, jaarverslagen en relevante
+          kwaliteitsdocumenten. We controleren en actualiseren deze
+          documenten periodiek en zorgen ervoor dat de informatie
+          overzichtelijk beschikbaar is.
         </p>
         <p>
-          Wij werken nauw samen met reclassering, GGZ-instellingen,
-          maatschappelijke organisaties, schuldhulpverlening en wooncorporaties.
-          Bij complexe casuïstiek betrekken wij waar nodig FACT-teams of andere
-          specialistische afdelingen. Wanneer cliënten doorstromen vanuit
-          justitie naar vrijwillige zorg, bieden wij een vloeiende overgang, wat
-          continuïteit en stabiliteit waarborgt.
+          We werken nauw samen met de reclassering, ggz-instellingen,
+          maatschappelijke organisaties, schuldhulpverlening en
+          woningcorporaties. Bij complexe casuïstiek stemmen we waar nodig
+          af met andere specialistische ketenpartners.
+        </p>
+        <p>
+          Bij de overgang van een forensisch kader naar vrijwillige
+          ondersteuning binnen de reguliere zorg streven we, in overleg met
+          de cliënt en betrokken ketenpartners, naar een zorgvuldige
+          overdracht of voortzetting van de begeleiding. Dit draagt bij aan
+          de continuïteit van zorg en het behoud van stabiliteit.
         </p>
       </SectionBlock>
 

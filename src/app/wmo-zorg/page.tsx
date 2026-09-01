@@ -21,30 +21,58 @@ export default function WmoZorg() {
 
       <SectionBlock id="wat-is-wmo" title="Wat is WMO?">
         <p>
-          WMO helpt volwassenen zelfstandig te leven en deel te nemen aan de
-          maatschappij. Veel cliënten lopen vast door problemen op meerdere
-          leefgebieden. WMO is er om overzicht, structuur en stabiliteit te
-          herstellen.
+          De Wmo staat voor Wet maatschappelijke ondersteuning. Officieel heet
+          deze wet de Wmo 2015. De wet bepaalt dat gemeenten inwoners
+          ondersteunen die onvoldoende zelfredzaam zijn of niet goed kunnen
+          deelnemen aan de samenleving.
         </p>
         <p>
-          De WMO richt zich op ondersteuning bij wonen, financiën, gezondheid,
-          sociale relaties, daginvulling en veiligheid. Voor veel cliënten die
-          bij ons komen, is er sprake van psychiatrische problemen,
-          verstandelijke beperkingen, verslaving, langdurige instabiliteit, of
-          een combinatie hiervan.
+          Wanneer iemand ondersteuning aanvraagt, onderzoekt de gemeente de
+          persoonlijke situatie, behoeften en mogelijkheden. Daarbij kijkt de
+          gemeente ook naar wat iemand zelf kan, welke hulp vanuit het sociale
+          netwerk beschikbaar is en of ondersteuning vanuit andere wetten
+          mogelijk is. Op basis van dit onderzoek bepaalt de gemeente welke
+          ondersteuning passend is.
         </p>
         <p>
-          Onze WMO is bestemd voor volwassenen vanaf 18 jaar die
-          ondersteuning nodig hebben bij zelfstandig functioneren. Dit kan gaan
-          om cliënten die kortdurend ondersteuning nodig hebben of langdurige
-          hulpvragen, crisissituaties, zorgmijding of wantrouwen richting
-          hulpverlening.
+          PJ Professionals biedt individuele begeleiding vanuit de Wmo.
+          Wanneer de gemeente deze begeleiding toekent, wordt dit vastgelegd
+          in een Wmo-beschikking.
         </p>
         <p>
-          De rol van de begeleider is overzicht bieden, rust creëren,
-          ondersteunen bij praktische taken, motiveren en vroegtijdig signaleren
-          van risico&apos;s. Onze begeleiding sluit aan op de leefwereld van de
-          cliënt en richt zich op duurzame vooruitgang.
+          Binnen onze begeleiding besteden we aandacht aan verschillende
+          leefgebieden, waaronder wonen, financiën, gezondheid, sociale
+          relaties, daginvulling en veiligheid. Veel cliënten die wij
+          begeleiden, hebben te maken met psychische problemen, een
+          verstandelijke beperking, verslavingsproblematiek, langdurige
+          instabiliteit of een combinatie daarvan.
+        </p>
+        <p>
+          Onze dienstverlening is bestemd voor volwassenen vanaf 18 jaar die
+          ondersteuning nodig hebben bij het zelfstandig functioneren. Dit
+          kunnen cliënten zijn met een kortdurende ondersteuningsbehoefte of
+          met langdurige en complexe hulpvragen. Ook kunnen zorgmijding,
+          wantrouwen tegenover hulpverlening of perioden van ontregeling een
+          rol spelen.
+        </p>
+        <p>
+          Onze begeleiders helpen cliënten om overzicht en structuur aan te
+          brengen, ondersteunen hen bij praktische taken en stimuleren hen om
+          haalbare stappen te zetten. Daarnaast signaleren zij vroegtijdig
+          veranderingen en mogelijke risico&apos;s. De begeleiding sluit aan
+          bij de leefwereld, mogelijkheden en doelen van de cliënt en richt
+          zich op het vergroten of behouden van de zelfredzaamheid en
+          maatschappelijke participatie.
+        </p>
+        <p>
+          Bij de uitvoering van onze Wmo-ondersteuning werken wij daarom
+          volgens de Samenwerkwijze. Hierbij staat niet het bestaande aanbod,
+          maar de vraag van de inwoner centraal. Samen onderzoeken we drie
+          vragen: wat wilt u, wat kunt u zelf en wat heeft u nodig? We kijken
+          naar alle relevante leefgebieden en betrekken, waar passend, het
+          eigen netwerk en andere professionals. Zo werken we gezamenlijk aan
+          passende oplossingen die de eigen regie en zelfredzaamheid
+          versterken.
         </p>
       </SectionBlock>
 
@@ -130,9 +158,9 @@ export default function WmoZorg() {
         </p>
       </SectionBlock>
 
-      {/* Parallax: holding hands close-up */}
+      {/* Parallax: watering can */}
       <ParallaxDivider
-        image="/images/pjprofessionals10-alt.jpg"
+        image="/images/pjprofessionals8-new.jpg"
         height="h-[35vh]"
         overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />

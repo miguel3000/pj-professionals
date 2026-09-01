@@ -21,215 +21,289 @@ export default function ForensischeZorg() {
 
       <SectionBlock id="wat-is-forensische-zorg" title="Wat is forensische zorg?">
         <p>
-          Forensische zorg is een vorm van gespecialiseerde ondersteuning voor
-          cliënten die te maken hebben met een justitieel kader of waarbij sprake
-          is van verhoogde risico&apos;s op herhaling van strafbaar gedrag,
-          ontregeling of onveilige situaties. Binnen PJ Professionals combineren
-          wij begeleiding, behandeling en diagnostiek in één geïntegreerde aanpak.
-          Dit stelt ons in staat om niet alleen te werken aan risicoreductie, maar
-          ook aan herstel, zelfredzaamheid en stabiliteit in het dagelijks leven.
+          Forensische zorg is gespecialiseerde zorg voor cliënten die te maken
+          hebben met een justitieel kader en bij wie sprake is van een
+          verhoogd risico op herhaling van strafbaar gedrag, ontregeling of
+          onveilige situaties. Binnen PJ Professionals combineren wij
+          begeleiding, behandeling en diagnostiek in één geïntegreerde
+          aanpak. Dit stelt ons in staat om niet alleen te werken aan
+          risicoreductie, maar ook aan herstel, zelfredzaamheid en
+          stabiliteit in het dagelijks leven.
         </p>
         <p>
-          Onze forensische zorg richt zich op volwassenen vanaf 18 jaar met
-          complexe problematiek, vaak in combinatie met psychiatrische klachten,
-          verslavingsproblemen, licht verstandelijke beperkingen of langdurige
-          terugval patronen. Veel van deze cliënten hebben al meerdere trajecten
-          doorlopen of zijn vastgelopen binnen de reguliere zorg. PJ Professionals
-          staat juist in deze situaties bekend om vasthoudendheid, nabijheid en
-          een praktische manier van werken. Wij blijven staan waar anderen
-          afhaken en bieden een benadering die aansluit op het echte leven van
-          de cliënt.
+          Onze forensische zorg richt zich op volwassenen vanaf 18 jaar die
+          binnen een justitieel kader begeleiding, diagnostiek of behandeling
+          nodig hebben. Vaak is sprake van complexe problematiek, zoals
+          psychische of psychiatrische klachten, verslavingsproblematiek of
+          een licht verstandelijke beperking. Veel cliënten hebben meerdere
+          zorgtrajecten doorlopen of hebben ervaren dat de reguliere zorg
+          onvoldoende bij hun behoeften aansloot.
+        </p>
+        <p>
+          Onze werkwijze kenmerkt zich door vasthoudendheid, professionele
+          betrokkenheid en een praktische aanpak. Ook wanneer de begeleiding
+          complex is, bieden wij continuïteit en stemmen we onze aanpak af op
+          de situatie, mogelijkheden en doelen van de cliënt.
         </p>
       </SectionBlock>
 
       <SectionBlock id="visie-en-werkwijze" title="Visie en werkwijze" gray>
         <p>
-          Onze visie is dat duurzame gedragsverandering alleen mogelijk is
-          wanneer begeleiding en behandeling plaatsvinden in de leefomgeving van
-          de cliënt. Forensische zorg betekent niet alleen het naleven van
-          voorwaarden, maar het begrijpen van de oorzaken achter risicovol gedrag
-          en het opbouwen van beschermende factoren. Wij geloven dat veiligheid
-          en vooruitgang hand in hand gaan: door de omgeving te stabiliseren en
-          vertrouwen op te bouwen, ontstaat ruimte voor verandering.
+          Wij geloven dat duurzame gedragsverandering wordt versterkt wanneer
+          begeleiding en behandeling nauw aansluiten bij de leefomgeving en
+          dagelijkse praktijk van de cliënt. Forensische zorg gaat daarbij
+          verder dan het naleven van opgelegde voorwaarden. Wij onderzoeken
+          welke factoren samenhangen met risicovol of delictgedrag en werken
+          gericht aan het versterken van beschermende factoren. Veiligheid en
+          herstel gaan hierin samen: door stabiliteit te bevorderen,
+          risico&apos;s te beperken en vertrouwen op te bouwen, ontstaat
+          ruimte voor gedragsverandering en maatschappelijke participatie.
         </p>
         <p>
-          Wij werken vanuit motiverende gespreksvoering, oplossingsgerichte
-          interventies en cognitieve gedragstherapeutische technieken. De relatie
-          tussen cliënt en professional staat centraal. Een goede werkrelatie
-          vermindert weerstand, vergroot motivatie en zorgt ervoor dat
-          risicovolle situaties sneller worden herkend en besproken.
+          Wij werken vanuit de uitgangspunten van het
+          Risk-Need-Responsivitymodel (RNR-model). Dit betekent dat wij de
+          intensiteit van de zorg afstemmen op het risico, ons richten op
+          veranderbare factoren die samenhangen met delictgedrag en onze
+          aanpak laten aansluiten bij de mogelijkheden, motivatie en leerstijl
+          van de cliënt. Het RNR-model vormt een belangrijk kader voor
+          effectieve forensische interventies.
+        </p>
+        <p>
+          Binnen dit kader maken wij onder meer gebruik van motiverende
+          gespreksvoering, oplossingsgerichte interventies en
+          cognitief-gedragstherapeutische technieken. De werkrelatie tussen
+          cliënt en professional staat daarbij centraal. Een goede
+          werkrelatie kan weerstand verminderen, motivatie versterken en
+          eraan bijdragen dat risicovolle situaties tijdig worden herkend en
+          bespreekbaar worden gemaakt.
         </p>
         <h3>Onze werkwijze</h3>
         <p>
-          Onze begeleiding is veelal outreachend. Wij komen vaak bij de cliënt
-          thuis, op straat, op de woonlocatie of in de wijk. Dit maakt het
-          mogelijk om nauw aan te sluiten op dagelijkse risico&apos;s én kansen.
-          Door actief aanwezig te zijn, signaleren we tijdig wanneer er
-          ontregeling dreigt, bijvoorbeeld door stress, middelengebruik of
-          spanningen in het netwerk.
+          Onze begeleiding vindt veelal outreachend plaats. Wij spreken
+          cliënten thuis, op straat, op hun woonlocatie of in de wijk.
+          Hierdoor kunnen wij nauw aansluiten bij de risico&apos;s,
+          ondersteuningsbehoeften en mogelijkheden in het dagelijks leven.
+          Door actief betrokken te zijn, kunnen wij veranderingen en
+          dreigende ontregeling vroegtijdig signaleren, bijvoorbeeld bij
+          toenemende stress, middelengebruik of spanningen binnen het
+          sociale netwerk.
         </p>
         <p>
-          Behandeling en diagnostiek vinden met name plaats op ons kantoor. Dit
-          biedt rust, structuur en een gecontroleerde setting, wat noodzakelijk
-          is om betrouwbaar te kunnen analyseren en behandelen.
+          Behandeling en diagnostiek vinden voornamelijk plaats op onze
+          kantoorlocaties. Deze omgeving biedt rust, structuur en privacy en
+          vormt daarmee een passende setting voor zorgvuldig diagnostisch
+          onderzoek en behandeling.
         </p>
         <p>
-          Wij starten met een intake waarin de hulpvraag, het delictverleden, de
-          psychosociale context en eerdere interventies systematisch in kaart
-          worden gebracht. Aansluitend voeren wij een risicotaxatie uit met
-          behulp van een erkend meetinstrument, de FARE. Daarbij worden statische
-          en dynamische risicofactoren, beschermende factoren en signalen voor
-          recidive in beeld gebracht.
+          We starten met een intake waarin onder meer de hulpvraag, het
+          delictverleden, het huidige functioneren, de psychosociale
+          omstandigheden en eerder ingezette interventies systematisch in
+          kaart worden gebracht. Vervolgens voeren we een risicotaxatie uit
+          met behulp van de Forensische Ambulante Risico Evaluatie (FARE).
+          Met dit instrument schatten we het algemene recidiverisico in en
+          volgen we veranderingen in dynamische risicofactoren gedurende het
+          traject. Daarbij brengen we statische, individuele dynamische en
+          contextuele dynamische risicofactoren in kaart. Ook aanvullende
+          risico- en beschermende factoren worden meegewogen.
         </p>
         <p>
-          Op basis van de verzamelde informatie wordt een delictanalyse
-          opgesteld. Dit betreft een onderzoek naar de samenhang tussen denken,
-          voelen en handelen rondom het delictgedrag. In deze fase ontstaan
-          hypothesen over de mechanismen die het gedrag in stand houden. De
-          delictanalyse vormt de inhoudelijke basis voor de verdere behandeling.
+          Op basis van de verzamelde informatie stellen we, wanneer dit
+          passend is, een delictanalyse op. Hierin onderzoeken we de
+          samenhang tussen gedachten, gevoelens, omstandigheden en gedrag
+          rondom het delict. We formuleren hypothesen over de factoren en
+          mechanismen die het delictgedrag hebben beïnvloed of in stand
+          kunnen houden. De delictanalyse biedt richting aan de doelen en
+          interventies binnen de verdere begeleiding en behandeling.
         </p>
-        <p>Onze werkwijze bestaat uit:</p>
+        <p>Onze werkwijze omvat:</p>
         <ul>
-          <li>Intensieve begeleiding bij complexe casuïstiek</li>
-          <li>Risicotaxatie en voortdurende risicobeoordeling</li>
-          <li>Vroegsignalering van spanningsopbouw of terugval</li>
-          <li>Samenwerking met reclassering en betrokken behandelaars</li>
-          <li>Duidelijke afspraken rondom veiligheid en grenzen</li>
-          <li>Het opstellen van behandel- en begeleidingsplannen</li>
-          <li>Het uitvoeren van interventies gericht op gedragsverandering</li>
-          <li>Ondersteuning bij praktische zaken (wonen, financiën, gezondheid)</li>
+          <li>Intensieve begeleiding bij complexe casuïstiek;</li>
+          <li>Risicotaxatie en doorlopende risicomonitoring;</li>
+          <li>Vroegsignalering van spanningsopbouw, ontregeling of terugval;</li>
+          <li>Samenwerking met ketenpartners;</li>
+          <li>
+            Duidelijke afspraken over veiligheid, grenzen en
+            verantwoordelijkheden;
+          </li>
+          <li>Het opstellen en evalueren van behandel- en begeleidingsplannen;</li>
+          <li>Het inzetten van interventies die zijn gericht op gedragsverandering;</li>
+          <li>
+            Ondersteuning bij praktische levensgebieden, zoals wonen,
+            financiën en gezondheid.
+          </li>
         </ul>
       </SectionBlock>
 
       <SectionBlock id="risicotaxatie" title="Risicotaxatie en veiligheid">
         <p>
-          Veiligheid vormt de basis van forensische zorg. Wij werken met
-          risicotaxaties om factoren zoals middelengebruik, agressieregulatie,
-          impulsiviteit, sociale druk en stress te beoordelen. Door dit
-          structureel te monitoren, kunnen wij vroegtijdig ingrijpen wanneer
-          spanningen toenemen. Onze medewerkers zijn getraind in het herkennen
-          van subtiele signalen van ontregeling en nemen verantwoordelijkheid
-          voor duidelijk handelen wanneer veiligheid in het geding is.
+          Veiligheid vormt de basis van onze forensische zorg. We combineren
+          periodieke risicotaxaties met voortdurende aandacht voor actuele
+          risico- en beschermende factoren. Daarbij kijken we onder meer naar
+          middelengebruik, agressief gedrag, impulsiviteit, stress en de
+          invloed van het sociale netwerk.
+        </p>
+        <p>
+          Door veranderingen structureel te volgen, kunnen we een toenemende
+          spanningsopbouw of dreigende ontregeling vroegtijdig signaleren.
+          Wanneer de veiligheid onder druk komt te staan, handelen we volgens
+          de gemaakte veiligheidsafspraken en stemmen we waar nodig af met de
+          cliënt en betrokken ketenpartners. Onze professionals zijn getraind
+          in het herkennen van signalen van ontregeling en handelen duidelijk
+          wanneer grenzen of veiligheid in het geding zijn.
         </p>
         <h3>Doel van onze forensische zorg</h3>
-        <p>Het doel is altijd tweeledig:</p>
+        <p>Onze forensische zorg heeft twee samenhangende doelen:</p>
         <ol>
-          <li>Het voorkomen van herhaling van strafbaar gedrag</li>
+          <li>Het verkleinen van het risico op herhaling van strafbaar gedrag.</li>
           <li>
-            Het opbouwen van een leven met meer structuur, rust en perspectief
+            Het ondersteunen van de cliënt bij het opbouwen van een
+            stabieler leven met meer structuur, zelfredzaamheid en
+            perspectief.
           </li>
         </ol>
         <p>
-          Wij streven naar duurzame ontwikkeling, niet tijdelijke
-          gedragsverandering. Door nabij te blijven, begeleiding op maat te
-          bieden en te investeren in vertrouwen, ontstaat een basis waarop
-          cliënten weer grip ervaren.
+          We streven naar veranderingen die ook in het dagelijks leven kunnen
+          worden volgehouden. Door begeleiding op maat te bieden, betrokken
+          te blijven en te investeren in een professionele
+          vertrouwensrelatie, ondersteunen we cliënten bij het vergroten van
+          de grip op hun gedrag en omstandigheden.
         </p>
         <h3>Een duurzaam vervolg</h3>
         <p>
-          Veel cliënten hebben na afloop van de juridische maatregel behoefte
-          aan voortzetting van ondersteuning. Dankzij onze brede expertise kunnen
-          wij dit bieden. Hierdoor ontstaat een soepele overgang van verplichte
-          zorg naar vrijwillige zorg, zonder dat stabiliteit verloren gaat. Dit
-          voorkomt terugval, dakloosheid, vereenzaming en hernieuwde risico&apos;s.
+          Na afloop van een strafrechtelijke maatregel of forensische
+          zorgtitel kan verdere ondersteuning nodig zijn. Waar dit passend is
+          en binnen de geldende indicatie mogelijk is, kan PJ Professionals
+          deze ondersteuning voortzetten of bijdragen aan een zorgvuldige
+          overdracht.
         </p>
         <p>
-          Forensische zorg bij PJ Professionals betekent investeren in
-          veiligheid, menselijkheid en toekomst. Wij staan naast de cliënt,
-          maar verliezen de kaders nooit uit het oog. Door deze balans kunnen
-          wij vasthouden waar anderen afhaken.
+          Zo bevorderen we de continuïteit van zorg en verkleinen we het
+          risico op ontregeling, terugval, dakloosheid of sociaal isolement.
+          De overgang van forensische zorg naar reguliere ondersteuning
+          verloopt daardoor zo zorgvuldig en geleidelijk mogelijk.
+        </p>
+        <p>
+          Forensische zorg bij PJ Professionals betekent werken aan
+          veiligheid, herstel en toekomstperspectief. We staan naast de
+          cliënt en zijn tegelijkertijd duidelijk over kaders, grenzen en
+          verantwoordelijkheden. Bij complexe trajecten bieden we
+          continuïteit, bewaken we de gezamenlijke koers en stemmen we onze
+          inzet zorgvuldig af met de cliënt en betrokken ketenpartners.
         </p>
       </SectionBlock>
 
       <SectionBlock id="begeleiding-behandeling" title="Begeleiding, behandeling en diagnostiek" gray>
         <p>
-          Wij bieden zowel ambulante begeleiding als ambulante behandeling en
-          diagnostiek. Behandeling kan bestaan uit gesprekken gericht op inzicht
-          in gedrag, het aanleren van nieuwe copingstrategieën, het verminderen
-          van risicofactoren en het versterken van beschermende factoren.
-          Begeleiding richt zich op het op orde krijgen van het dagelijks leven,
-          omdat dit een belangrijke voorwaarde is voor gedragsverandering. Beide
-          trajecten zijn nauw met elkaar verbonden.
+          Wij bieden ambulante begeleiding, behandeling en diagnostiek. De
+          behandeling kan bestaan uit gesprekken die zijn gericht op het
+          vergroten van inzicht in gedrag, het aanleren van nieuwe
+          copingvaardigheden, het verminderen van risicofactoren en het
+          versterken van beschermende factoren. Diagnostiek helpt om de
+          problematiek, het functioneren en de behandel- of
+          ondersteuningsbehoefte zorgvuldig in kaart te brengen.
         </p>
         <p>
-          Onze behandelaars en begeleiders worden intern geschoold en werken
-          conform de kwaliteitsnormen binnen de forensische zorg. Dit betekent
-          dat wij werken met duidelijke kaders, rapporteren volgens vastgestelde
-          richtlijnen en voortdurend aandacht hebben voor veiligheid, risico&apos;s
-          en signalering.
+          De begeleiding richt zich op het stabiliseren en structureren van
+          het dagelijks leven. Daarmee worden belangrijke voorwaarden
+          gecreëerd voor herstel en gedragsverandering. Begeleiding,
+          behandeling en diagnostiek worden waar nodig in samenhang ingezet
+          en op elkaar afgestemd.
+        </p>
+        <p>
+          Onze professionals worden intern en extern geschoold en werken
+          volgens de geldende professionele richtlijnen en kwaliteitsnormen
+          binnen de forensische zorg. Dit betekent dat we werken vanuit
+          duidelijke kaders, zorgvuldig rapporteren en evalueren en
+          voortdurend aandacht hebben voor veiligheid, risicofactoren,
+          beschermende factoren en vroegsignalering.
         </p>
       </SectionBlock>
 
       <SectionBlock id="ketenpartners" title="Samenwerking met ketenpartners">
         <p>
-          Forensische zorg kan alleen effectief zijn wanneer alle betrokken
-          partijen samenwerken. PJ Professionals heeft nauw contact met
-          reclassering, geestelijke gezondheidszorg, maatschappelijke
-          organisaties en gemeenten. Dit zorgt voor:
+          Een zorgvuldige afstemming tussen alle betrokken partijen is
+          essentieel binnen de forensische zorg. Daarom werkt PJ
+          Professionals nauw samen met onder meer de reclassering,
+          ggz-instellingen, maatschappelijke organisaties en gemeenten.
+          Binnen de geldende privacyregels en professionele kaders draagt
+          deze samenwerking bij aan:
         </p>
         <ul>
-          <li>Samenhang in het traject</li>
-          <li>Betere afstemming van interventies</li>
-          <li>Duidelijke communicatie over risico&apos;s</li>
-          <li>Minder kans op misverstanden of hiaten</li>
+          <li>samenhang en continuïteit binnen het traject;</li>
+          <li>goede afstemming van begeleiding en behandeling;</li>
           <li>
-            Een integraal plan dat aansluit op zowel justitie als zorg
+            duidelijke communicatie over risico&apos;s, doelen en
+            verantwoordelijkheden;
+          </li>
+          <li>het beperken van misverstanden en hiaten in de ondersteuning;</li>
+          <li>
+            een integraal plan waarin zorg, veiligheid en de justitiële
+            voorwaarden samenkomen.
           </li>
         </ul>
         <p>
-          Wanneer een cliënt een justitiële maatregel afrondt, stopt onze
-          betrokkenheid niet. Wij kunnen de zorg voortzetten binnen vrijwillige
-          kaders zoals de WMO. Dit voorkomt terugval, vergroot stabiliteit en
-          biedt rust voor zowel de cliënt als de ketenpartners.
+          Wanneer een cliënt een justitiële maatregel of forensische
+          zorgtitel afrondt, bekijken we samen met de cliënt en betrokken
+          ketenpartners welke vervolgondersteuning nodig is. Als de gemeente
+          hiervoor een Wmo-indicatie afgeeft, kan PJ Professionals de
+          ambulante begeleiding binnen een vrijwillig kader voortzetten. Deze
+          continuïteit kan bijdragen aan het behoud van stabiliteit en het
+          verkleinen van het risico op terugval.
         </p>
       </SectionBlock>
 
       {/* Parallax divider */}
       <ParallaxDivider
-        image="/images/pjprofessionals10-alt.jpg"
+        image="/images/pjprofessionals8-new.jpg"
         height="h-[35vh]"
         overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />
 
       <SectionBlock id="kwaliteit" title="Kwaliteit en ontwikkeling" gray>
         <p>
-          PJ Professionals werkt structureel aan het versterken en borgen van
-          kwaliteit. Vanuit het Kwaliteitskader Forensische Zorg (2022–2028) is
-          gericht geïnvesteerd in veiligheid, vakmanschap, samenwerking en
-          transparantie.
+          PJ Professionals werkt structureel aan het verbeteren en borgen van
+          de kwaliteit van zorg. Daarbij sluiten we aan bij het
+          Kwaliteitskader Forensische Zorg (2022–2028). We investeren gericht
+          in veiligheid, vakmanschap, samenwerking en transparantie.
         </p>
         <h3>Kwaliteitsborging</h3>
         <p>
-          Sinds 2022 is het kwaliteitsmanagementsysteem (ISO 9001) stapsgewijs
-          doorontwikkeld. Werkprocessen rondom veiligheid, risicotaxatie,
-          overdracht en samenwerking zijn vastgelegd, geëvalueerd en waar nodig
-          aangescherpt. Kwaliteit is steeds meer onderdeel van het dagelijks
-          handelen van het forensisch team, door vaste overlegmomenten, reflectie
-          en interne audits.
+          Sinds 2018 wordt ons kwaliteitsmanagementsysteem volgens ISO 9001
+          stapsgewijs doorontwikkeld. Werkprocessen rondom veiligheid,
+          risicotaxatie, overdracht en samenwerking zijn vastgelegd en worden
+          periodiek geëvalueerd en waar nodig aangescherpt. Door vaste
+          overlegmomenten, professionele reflectie en interne/externe audits
+          is kwaliteitsontwikkeling verankerd in het dagelijks handelen van
+          het forensische team.
         </p>
         <h3>Cliënt- en medewerkerparticipatie</h3>
         <p>
-          PJ Professionals voert structureel cliënt- en
-          medewerkerstevredenheidsonderzoeken uit. De uitkomsten worden opgenomen
-          in het kwaliteitsmanagementsysteem en leiden aantoonbaar tot
-          bijstellingen in beleid en werkwijze. Daarnaast is er een vaste
-          cliëntenraad, die meerdere keren per jaar bijeenkomt.
+          PJ Professionals voert structureel tevredenheidsonderzoeken uit
+          onder cliënten, medewerkers en ketenpartners. De uitkomsten worden
+          opgenomen in het kwaliteitsmanagementsysteem en gebruikt om het
+          beleid en de werkwijze verder te verbeteren. Daarnaast beschikt PJ
+          Professionals over een vaste cliëntenraad die meerdere keren per
+          jaar bijeenkomt en vanuit het cliëntperspectief meedenkt over de
+          kwaliteit van zorg.
         </p>
         <h3>Forensisch vakmanschap</h3>
         <p>
-          Medewerkers werken volgens erkende methodieken en volgen gerichte
-          scholing, waaronder modules uit de Forensische Leerlijn en interne
-          trainingen. PJ Professionals is een erkend leerbedrijf en werkt samen
-          met hogescholen en universiteiten. Studenten voeren praktijkgericht
-          onderzoek uit naar veiligheidscultuur, netwerkbetrokkenheid en
-          motiverende gespreksvoering.
+          Onze professionals werken volgens methodieken die aansluiten bij de
+          doelgroep en hun vakgebied. Zij volgen interne en externe scholing,
+          waaronder modules uit de Forensische Leerlijn. PJ Professionals is
+          een erkend leerbedrijf en werkt samen met onderwijsinstellingen op
+          mbo-, hbo- en universitair niveau. Studenten voeren binnen onze
+          organisatie praktijkgericht onderzoek uit naar onderwerpen zoals
+          veiligheidscultuur, netwerkbetrokkenheid en motiverende
+          gespreksvoering.
         </p>
         <h3>Samenwerking en transparantie</h3>
         <p>
-          PJ Professionals werkt intensief samen met reclassering, GGZ,
-          maatschappelijke opvang, gemeenten en andere ketenpartners. Deelname
-          aan lerende netwerken en regionale samenwerkingsverbanden draagt bij
-          aan kennisdeling en continuïteit van zorg.
+          PJ Professionals werkt intensief samen met de reclassering,
+          GGZ-instellingen, maatschappelijke opvang, gemeenten en andere
+          ketenpartners. Deelname aan lerende netwerken en regionale
+          samenwerkingsverbanden draagt bij aan kennisdeling, onderlinge
+          afstemming en continuïteit van zorg.
         </p>
       </SectionBlock>
 

@@ -280,9 +280,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Parallax: holding hands */}
+      {/* Parallax: watering can */}
       <ParallaxDivider
-        image="/images/pjprofessionals10-alt.jpg"
+        image="/images/pjprofessionals8-new.jpg"
         height="h-[40vh]"
         overlay="from-teal-dark/60 via-transparent to-teal-dark/60"
       />
