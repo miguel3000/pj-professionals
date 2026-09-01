@@ -5,7 +5,7 @@ export default function PageHero({
   image,
 }: {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   badge?: string;
   image?: string;
 }) {
@@ -42,9 +42,11 @@ export default function PageHero({
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
           {title}
         </h1>
-        <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
-          {subtitle}
-        </p>
+        {subtitle && (
+          <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+            {subtitle}
+          </p>
+        )}
       </div>
     </section>
   );

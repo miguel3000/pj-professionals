@@ -15,7 +15,6 @@ export default function WmoZorg() {
       <PageHero
         badge="WMO"
         title="Ondersteuning bij zelfstandig leven"
-        subtitle="WMO helpt volwassenen zelfstandig te leven en deel te nemen aan de maatschappij. Wij bieden overzicht, structuur en stabiliteit."
         image="/images/wmo.jpg"
       />
 
