@@ -67,8 +67,11 @@ export default function WlzZorg() {
         </p>
         <p>
           Heeft u een Wlz-indicatie en een persoonsgebonden budget, of wilt u
-          weten of onze ambulante begeleiding aansluit bij uw situatie? Neem
-          dan contact met ons op.
+          weten of onze ambulante begeleiding aansluit bij uw situatie?{" "}
+          <Link href="/contact" className="text-teal-medium hover:underline">
+            Neem dan contact met ons op
+          </Link>
+          .
         </p>
       </SectionBlock>
 
