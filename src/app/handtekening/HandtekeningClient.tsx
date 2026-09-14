@@ -17,8 +17,9 @@ const LOGO_URL = "https://www.pjprofessionals.nl/logo-pj-dark.png";
 const PHONE_ICON = "https://www.pjprofessionals.nl/handtekening/phone.png";
 const EMAIL_ICON = "https://www.pjprofessionals.nl/handtekening/email.png";
 const GLOBE_ICON = "https://www.pjprofessionals.nl/handtekening/globe.png";
+const OFFICE_ICON = "https://www.pjprofessionals.nl/handtekening/office.png";
 const TREE_ICON = "https://www.pjprofessionals.nl/handtekening/tree.png";
-const LINKEDIN_ICON = "https://www.pjprofessionals.nl/logos/linkedin.png";
+const LINKEDIN_ICON = "https://www.pjprofessionals.nl/handtekening/linkedin.png";
 
 const KANTOOR_TEL = "073 - 762 1035";
 const ADDRESSES = [
@@ -88,12 +89,9 @@ function buildSignatureHTML(
 
   const leftColumn = stackedColumn(
     [
-      `<p style="margin:0;color:#333333;font-size:12px;${FONT}line-height:1.4;">${ADDRESSES[0]}</p>`,
-      `<p style="margin:0;color:#333333;font-size:12px;${FONT}line-height:1.4;">${ADDRESSES[1]}</p>`,
-      `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>
-         <td valign="middle" style="padding:0 4px 0 0;color:#333333;font-size:12px;${FONT}">Volg PJ Professionals:</td>
-         <td valign="middle"><a href="https://www.linkedin.com/company/pjprofessionals/"><img src="${LINKEDIN_ICON}" width="16" height="16" alt="LinkedIn" style="display:block;border:0;outline:none;"></a></td>
-       </tr></table>`,
+      iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[0]}</span>`),
+      iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[1]}</span>`),
+      `<a href="https://www.linkedin.com/company/pjprofessionals/" style="text-decoration:none;">${iconCell(LINKEDIN_ICON, `<span style="color:#333333;font-size:12px;${FONT}">Volg PJ Professionals</span>`)}</a>`,
     ],
     24
   );
@@ -117,7 +115,7 @@ function buildSignatureHTML(
   .pj-stack-col { display:block !important; width:100% !important; }
 }
 </style>
-<table cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border-collapse:collapse;">
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
   <tr>
     <td style="padding:12px 0 12px 14px;vertical-align:middle;">
       <img src="${LOGO_URL}" width="104" height="104" alt="PJ Professionals" style="display:block;border:0;outline:none;width:104px;height:104px;">
