@@ -11,47 +11,116 @@ type Props = {
 // Hosted, not embedded — a base64 data-URI image is what most email clients
 // (Outlook included) silently strip when a signature is captured via
 // copy/paste, which is exactly the "not viewable" symptom this was causing.
-// A real https URL is how every mainstream signature tool does it.
+// A real https URL is how every mainstream signature tool does it. Same
+// reasoning applies to every icon below.
 const LOGO_URL = "https://www.pjprofessionals.nl/logo-pj-dark.png";
+const PHONE_ICON = "https://www.pjprofessionals.nl/handtekening/phone.png";
+const EMAIL_ICON = "https://www.pjprofessionals.nl/handtekening/email.png";
+const GLOBE_ICON = "https://www.pjprofessionals.nl/handtekening/globe.png";
+const TREE_ICON = "https://www.pjprofessionals.nl/handtekening/tree.png";
+const LINKEDIN_ICON = "https://www.pjprofessionals.nl/logos/linkedin.png";
+
+const KANTOOR_TEL = "073 - 762 1035";
+const ADDRESSES = [
+  "Bruistensingel 130, 5232 AC 's-Hertogenbosch",
+  "Raadhuishof 25, 5341 HR Oss",
+];
+
+const DISCLAIMER_TEXT = `Dit e-mail bericht is vertrouwelijk en uitsluitend bedoeld voor de geadresseerde. Gebruik door anderen dan geadresseerde is verboden. De informatie in dit email bericht (en bijlagen) kan vertrouwelijk van aard zijn en binnen het bereik van een geheimhoudingsplicht vallen.
+Indien u niet de geadresseerde bent wordt u verzocht  het e-mail bericht te retourneren aan afzender en dit bericht te vernietigen.
+PJ Professionals aanvaardt geen enkele aansprakelijkheid voor schade door of als gevolg van de informatie uit dit bericht.
+PJ Professionals betracht de grootst mogelijke zorgvuldigheid bij het voorkomen van virussen in de bijlage(n) bij dit bericht. Desondanks dient u zelf de bijlage(n) te controleren op de aanwezigheid van virussen en kan PJ Professionals niet aansprakelijk worden gehouden indien bijlage(n) schade, waaronder schade aan uw computer(systeem), veroorzaken.`;
 
 // ── Signature HTML builder ────────────────────────────────────────────────
 function buildSignatureHTML(
   naam: string,
   functie: string,
   mobiel: string,
-  telefoon: string,
   email: string,
-  werkdagen: string[],
-  vestiging: string,
-  groet: string
+  werkdagen: string[]
 ): string {
-  const logoSrc = LOGO_URL;
-  const vestigingLabel: Record<string, string> = {
-    denbosch: "Den Bosch",
-    oss: "Oss",
-    beide: "Den Bosch &amp; Oss",
-  };
+  const FONT = "font-family:Arial,Helvetica,sans-serif;";
 
-  let contactRows = "";
+  let personalRows = "";
   if (mobiel)
-    contactRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;font-family:Arial,Helvetica,sans-serif;white-space:nowrap;">M:&nbsp;<a href="tel:${mobiel.replace(/\s/g, "")}" style="color:#1b1447;text-decoration:none;font-family:Arial,Helvetica,sans-serif;">${mobiel}</a></td></tr>`;
-  if (telefoon)
-    contactRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;font-family:Arial,Helvetica,sans-serif;white-space:nowrap;">T:&nbsp;<a href="tel:${telefoon.replace(/\s/g, "")}" style="color:#1b1447;text-decoration:none;font-family:Arial,Helvetica,sans-serif;">${telefoon}</a></td></tr>`;
-  if (email)
-    contactRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;font-family:Arial,Helvetica,sans-serif;white-space:nowrap;">E:&nbsp;<a href="mailto:${email}" style="color:#1b1447;text-decoration:none;font-family:Arial,Helvetica,sans-serif;">${email}</a></td></tr>`;
+    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;">M:&nbsp;<a href="tel:${mobiel.replace(/\s/g, "")}" style="color:#1b1447;text-decoration:none;${FONT}">${mobiel}</a></td></tr>`;
+  // "Direct telefoonnummer" is no longer an employee-entered field — it's
+  // the same office number for everyone, already shown as "Kantoor" below,
+  // so it's always shown here too (not gated on any input) and styled grey
+  // to read as fixed/general info rather than something typed in per person.
+  personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#666666;font-size:13px;${FONT}white-space:nowrap;">T:&nbsp;<a href="tel:${KANTOOR_TEL.replace(/\s/g, "")}" style="color:#666666;text-decoration:none;${FONT}">${KANTOOR_TEL}</a></td></tr>`;
   if (werkdagen.length > 0)
-    contactRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;font-family:Arial,Helvetica,sans-serif;">Werkdagen:&nbsp;${werkdagen.join(", ")}</td></tr>`;
-  if (vestiging && vestigingLabel[vestiging])
-    contactRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;font-family:Arial,Helvetica,sans-serif;">Vestiging:&nbsp;${vestigingLabel[vestiging]}</td></tr>`;
+    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}">Werkdagen:&nbsp;${werkdagen.join(", ")}</td></tr>`;
 
-  const groetHtml = groet
-    ? `<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#333333;line-height:1.5;">${groet.replace(/\n/g, "<br>")}</p>`
-    : "";
+  // Icon + text rows use a 2-cell table with valign="middle" on both cells
+  // rather than inline vertical-align on the img/span — table-cell valign
+  // is what reliably centers icon against text across email clients
+  // (Outlook included); inline vertical-align:middle on mixed inline
+  // content lines up against the line box, not the text's own center.
+  const iconCell = (icon: string, inner: string) =>
+    `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+            <tr>
+              <td valign="middle" style="padding:0 6px 0 0;"><img src="${icon}" width="14" height="14" alt="" style="display:block;border:0;outline:none;"></td>
+              <td valign="middle">${inner}</td>
+            </tr>
+          </table>`;
 
-  return `${groetHtml}<table cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border-collapse:collapse;">
+  // Company block is two independent single-column tables (left: both
+  // addresses + "Volg PJ Professionals", right: email/website/Kantoor)
+  // rather than one shared-<tr> table. That's deliberate: under the mobile
+  // @media block the two <td class="pj-stack-col"> become full-width and
+  // stack in DOM order — with a shared-<tr> table that DOM order is
+  // inherently row-interleaved (addr1, email, addr2, website, volgpj,
+  // kantoor), but the requested mobile order is grouped by column (both
+  // addresses + volgpj, THEN email/website/kantoor). Each column's 3 row
+  // slots share the same fixed height as the matching slot in the other
+  // column, so desktop alignment (address 1 ↔ email, address 2 ↔ website,
+  // "Volg PJ Professionals" ↔ Kantoor) still holds by construction.
+  const ROW_HEIGHT = 20;
+  const stackedColumn = (rows: string[], padRight: number) =>
+    `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${rows
+      .map(
+        (row, i) => `
+      <tr><td height="${ROW_HEIGHT}" valign="middle" style="height:${ROW_HEIGHT}px;padding:0 ${padRight}px ${i < rows.length - 1 ? 6 : 0}px 0;">${row}</td></tr>`
+      )
+      .join("")}
+    </table>`;
+
+  const leftColumn = stackedColumn(
+    [
+      `<p style="margin:0;color:#333333;font-size:12px;${FONT}line-height:1.4;">${ADDRESSES[0]}</p>`,
+      `<p style="margin:0;color:#333333;font-size:12px;${FONT}line-height:1.4;">${ADDRESSES[1]}</p>`,
+      `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>
+         <td valign="middle" style="padding:0 4px 0 0;color:#333333;font-size:12px;${FONT}">Volg PJ Professionals:</td>
+         <td valign="middle"><a href="https://www.linkedin.com/company/pjprofessionals/"><img src="${LINKEDIN_ICON}" width="16" height="16" alt="LinkedIn" style="display:block;border:0;outline:none;"></a></td>
+       </tr></table>`,
+    ],
+    24
+  );
+
+  const rightColumn = stackedColumn(
+    [
+      iconCell(EMAIL_ICON, `<a href="mailto:${email}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${email}</a>`),
+      iconCell(GLOBE_ICON, `<a href="https://www.pjprofessionals.nl" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">www.pjprofessionals.nl</a>`),
+      iconCell(PHONE_ICON, `<span style="color:#333333;font-size:13px;${FONT}">Kantoor&nbsp;&nbsp;<a href="tel:${KANTOOR_TEL.replace(/\s/g, "")}" style="color:#333333;text-decoration:none;">${KANTOOR_TEL}</a></span>`),
+    ],
+    0
+  );
+
+  const companyRows = `<tr>
+    <td class="pj-stack-col" valign="top" style="padding:0 0 0 14px;">${leftColumn}</td>
+    <td class="pj-stack-col" valign="top" style="padding:0;">${rightColumn}</td>
+  </tr>`;
+
+  return `<style>
+@media only screen and (max-width: 480px) {
+  .pj-stack-col { display:block !important; width:100% !important; }
+}
+</style>
+<table cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border-collapse:collapse;">
   <tr>
     <td style="padding:12px 0 12px 14px;vertical-align:middle;">
-      <img src="${logoSrc}" width="104" height="104" alt="PJ Professionals" style="display:block;border:0;outline:none;width:104px;height:104px;">
+      <img src="${LOGO_URL}" width="104" height="104" alt="PJ Professionals" style="display:block;border:0;outline:none;width:104px;height:104px;">
     </td>
     <td style="padding:0 12px;vertical-align:middle;">
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto;">
@@ -59,13 +128,24 @@ function buildSignatureHTML(
       </table>
     </td>
     <td style="padding:12px 14px 12px 0;vertical-align:top;">
-      <p style="margin:0 0 2px 0;font-weight:bold;color:#1b1447;font-size:15px;line-height:1.3;font-family:Arial,Helvetica,sans-serif;">${naam || "Uw naam"}</p>
-      <p style="margin:0 0 10px 0;color:#666666;font-size:13px;line-height:1.3;font-family:Arial,Helvetica,sans-serif;">${functie || "Functie"}</p>
-      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${contactRows}
+      <p style="margin:0 0 8px 0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
+      <p style="margin:0 0 2px 0;font-weight:bold;color:#1b1447;font-size:15px;line-height:1.3;${FONT}">${naam || "Uw naam"}</p>
+      <p style="margin:0 0 10px 0;color:#666666;font-size:13px;line-height:1.3;${FONT}">${functie || "Functie"}</p>
+      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${personalRows}
       </table>
-      <p style="margin:8px 0 0 0;font-family:Arial,Helvetica,sans-serif;"><a href="https://www.pjprofessionals.nl" style="color:#1b1447;font-size:13px;text-decoration:none;font-family:Arial,Helvetica,sans-serif;">www.pjprofessionals.nl</a></p>
     </td>
   </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:14px;">
+${companyRows}
+</table>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:14px;">
+  <tr><td style="padding:0 0 6px 14px;">
+    ${iconCell(TREE_ICON, `<span style="color:#7a7a7a;font-size:11px;${FONT}">Denk aan het milieu voordat u besluit om deze mail te printen.</span>`)}
+  </td></tr>
+  <tr><td style="padding:0 24px 0 14px;color:#999999;font-size:10px;line-height:1.5;${FONT}">
+    <strong>DISCLAIMER:</strong><br>${DISCLAIMER_TEXT.split("\n").join("<br>")}
+  </td></tr>
 </table>`;
 }
 
@@ -198,11 +278,6 @@ function LoginForm() {
 
 // ── Generator ─────────────────────────────────────────────────────────────
 const DAYS = ["Ma", "Di", "Wo", "Do", "Vr"];
-const VESTIGINGEN = [
-  { value: "denbosch", label: "Den Bosch" },
-  { value: "oss", label: "Oss" },
-  { value: "beide", label: "Beide" },
-];
 
 function Generator({ email: userEmail }: { email: string }) {
   const router = useRouter();
@@ -211,14 +286,11 @@ function Generator({ email: userEmail }: { email: string }) {
   const [naam, setNaam] = useState("");
   const [functie, setFunctie] = useState("");
   const [mobiel, setMobiel] = useState("");
-  const [telefoon, setTelefoon] = useState("");
   const [emailField, setEmailField] = useState(userEmail);
   const [werkdagen, setWerkdagen] = useState<string[]>([]);
-  const [vestiging, setVestiging] = useState("");
-  const [groet, setGroet] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const signature = buildSignatureHTML(naam, functie, mobiel, telefoon, emailField, werkdagen, vestiging, groet);
+  const signature = buildSignatureHTML(naam, functie, mobiel, emailField, werkdagen);
 
   const toggleDag = useCallback((dag: string) => {
     setWerkdagen((prev) => prev.includes(dag) ? prev.filter((d) => d !== dag) : [...prev, dag]);
@@ -245,22 +317,6 @@ function Generator({ email: userEmail }: { email: string }) {
     }
     setCopied(true);
     setTimeout(() => setCopied(false), 3000);
-  }
-
-  async function downloadPng() {
-    if (!previewRef.current) return;
-    const { default: html2canvas } = await import("html2canvas");
-    const canvas = await html2canvas(previewRef.current, {
-      backgroundColor: "#ffffff",
-      scale: 2,
-      useCORS: true,
-      logging: false,
-    });
-    const filename = `handtekening-${naam.replace(/\s+/g, "-").toLowerCase() || "pj"}.png`;
-    const a = document.createElement("a");
-    a.href = canvas.toDataURL("image/png");
-    a.download = filename;
-    a.click();
   }
 
   async function logout() {
@@ -312,11 +368,6 @@ function Generator({ email: userEmail }: { email: string }) {
                 placeholder="Bijv. 06-12345678" className={inputCls} />
             </Field>
 
-            <Field label="Direct telefoonnummer">
-              <input type="tel" value={telefoon} onChange={(e) => setTelefoon(e.target.value)}
-                placeholder="Bijv. 073-1234567" className={inputCls} />
-            </Field>
-
             <Field label="E-mailadres" required>
               <input type="email" value={emailField} onChange={(e) => setEmailField(e.target.value)}
                 placeholder="naam@pjprofessionals.nl" className={inputCls} />
@@ -343,38 +394,6 @@ function Generator({ email: userEmail }: { email: string }) {
               </div>
             </Field>
 
-            <Field label="Vestiging">
-              <div className="flex gap-2 flex-wrap mt-0.5">
-                {VESTIGINGEN.map((v) => (
-                  <button
-                    key={v.value}
-                    type="button"
-                    onClick={() => setVestiging(vestiging === v.value ? "" : v.value)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
-                      vestiging === v.value
-                        ? "bg-teal-dark border-teal-dark text-white"
-                        : "border-gray-200 text-gray-500 hover:border-gray-400"
-                    }`}
-                  >
-                    {v.label}
-                  </button>
-                ))}
-              </div>
-            </Field>
-
-            <hr className="border-gray-100" />
-
-            <Field label="Standaard afsluitende groet">
-              <textarea
-                value={groet}
-                onChange={(e) => setGroet(e.target.value)}
-                placeholder={"Bijv. Met vriendelijke groet,\nEvelien"}
-                rows={3}
-                className={`${inputCls} resize-none`}
-              />
-              <p className="text-[0.7rem] text-gray-400 mt-1">Verschijnt boven de handtekening in je e-mail.</p>
-            </Field>
-
           </div>
         </div>
 
@@ -399,15 +418,6 @@ function Generator({ email: userEmail }: { email: string }) {
                 </svg>
                 {copied ? "Gekopieerd!" : "Kopieer HTML handtekening"}
               </button>
-              <button
-                onClick={downloadPng}
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-200 transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                Download als PNG
-              </button>
             </div>
           </div>
 
@@ -424,9 +434,6 @@ function Generator({ email: userEmail }: { email: string }) {
                 <code className="bg-gray-100 px-1 rounded">⌘V</code>) — geen aparte HTML-knop nodig,
                 de handtekening plakt meteen opgemaakt. Selecteer daarna de handtekening bij{" "}
                 <em>Nieuwe berichten</em> en <em>Antwoorden/Doorsturen</em> → OK.
-              </Instruction>
-              <Instruction title="Werkt plakken toch niet?">
-                Download de PNG hierboven en voeg die als afbeelding in bij Handtekeningen.
               </Instruction>
             </div>
           </div>
