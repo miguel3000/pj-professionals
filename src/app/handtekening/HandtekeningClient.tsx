@@ -6,8 +6,13 @@ import { useRouter } from "next/navigation";
 type Props = {
   authenticated: boolean;
   email: string;
-  logoB64: string;
 };
+
+// Hosted, not embedded — a base64 data-URI image is what most email clients
+// (Outlook included) silently strip when a signature is captured via
+// copy/paste, which is exactly the "not viewable" symptom this was causing.
+// A real https URL is how every mainstream signature tool does it.
+const LOGO_URL = "https://www.pjprofessionals.nl/logo-pj-dark.png";
 
 // ── Signature HTML builder ────────────────────────────────────────────────
 function buildSignatureHTML(
@@ -18,10 +23,9 @@ function buildSignatureHTML(
   email: string,
   werkdagen: string[],
   vestiging: string,
-  logoB64: string,
   groet: string
 ): string {
-  const logoSrc = `data:image/png;base64,${logoB64}`;
+  const logoSrc = LOGO_URL;
   const vestigingLabel: Record<string, string> = {
     denbosch: "Den Bosch",
     oss: "Oss",
@@ -47,11 +51,11 @@ function buildSignatureHTML(
   return `${groetHtml}<table cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border-collapse:collapse;">
   <tr>
     <td style="padding:12px 0 12px 14px;vertical-align:middle;">
-      <img src="${logoSrc}" width="80" height="80" alt="PJ Professionals" style="display:block;border:0;outline:none;width:80px;height:80px;">
+      <img src="${logoSrc}" width="104" height="104" alt="PJ Professionals" style="display:block;border:0;outline:none;width:104px;height:104px;">
     </td>
     <td style="padding:0 12px;vertical-align:middle;">
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto;">
-        <tr><td style="background-color:#1b1447;width:2px;height:75px;font-size:0;line-height:0;padding:0;">&nbsp;</td></tr>
+        <tr><td style="background-color:#1b1447;width:3px;height:98px;font-size:0;line-height:0;padding:0;">&nbsp;</td></tr>
       </table>
     </td>
     <td style="padding:12px 14px 12px 0;vertical-align:top;">
@@ -200,7 +204,7 @@ const VESTIGINGEN = [
   { value: "beide", label: "Beide" },
 ];
 
-function Generator({ email: userEmail, logoB64 }: { email: string; logoB64: string }) {
+function Generator({ email: userEmail }: { email: string }) {
   const router = useRouter();
   const previewRef = useRef<HTMLDivElement>(null);
 
@@ -214,14 +218,31 @@ function Generator({ email: userEmail, logoB64 }: { email: string; logoB64: stri
   const [groet, setGroet] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const signature = buildSignatureHTML(naam, functie, mobiel, telefoon, emailField, werkdagen, vestiging, logoB64, groet);
+  const signature = buildSignatureHTML(naam, functie, mobiel, telefoon, emailField, werkdagen, vestiging, groet);
 
   const toggleDag = useCallback((dag: string) => {
     setWerkdagen((prev) => prev.includes(dag) ? prev.filter((d) => d !== dag) : [...prev, dag]);
   }, []);
 
   async function copyHtml() {
-    await navigator.clipboard.writeText(signature);
+    // Outlook's signature box (and any rich-text editor) only renders a
+    // paste when the clipboard actually carries a text/html entry — a
+    // plain-text write just pastes the literal "<table>..." source as
+    // visible text, which is what made this "not viewable" before.
+    try {
+      const plainText = previewRef.current?.innerText ?? signature;
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          "text/html": new Blob([signature], { type: "text/html" }),
+          "text/plain": new Blob([plainText], { type: "text/plain" }),
+        }),
+      ]);
+    } catch {
+      // Older/unsupported browsers: fall back to plain text so the copy
+      // action still does *something*, even though pasting it into
+      // Outlook won't render as formatted content.
+      await navigator.clipboard.writeText(signature);
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 3000);
   }
@@ -395,12 +416,17 @@ function Generator({ email: userEmail, logoB64 }: { email: string; logoB64: stri
             <p className="text-xs font-semibold text-teal-dark uppercase tracking-widest mb-3">
               Handtekening instellen
             </p>
-            <div className="text-xs">
-              <Instruction title="Outlook (Windows)">
-                Bestand → Opties → E-mail → Handtekeningen → Nieuw → plak de HTML via de{" "}
-                <code className="bg-gray-100 px-1 rounded">HTML</code>-knop in de werkbalk.
-                Selecteer daarna de handtekening bij <em>Nieuwe berichten</em> en <em>Antwoorden/Doorsturen</em> → OK.
-                Werkt plakken niet? Download de PNG en voeg die als afbeelding in.
+            <div className="text-xs space-y-2">
+              <Instruction title="Outlook (Windows, Mac en web)">
+                Klik op <em>Kopieer HTML handtekening</em> hierboven. Ga naar Bestand → Opties → E-mail →
+                Handtekeningen → Nieuw, geef een naam, en plak direct in het tekstvak
+                (<code className="bg-gray-100 px-1 rounded">Ctrl+V</code> of{" "}
+                <code className="bg-gray-100 px-1 rounded">⌘V</code>) — geen aparte HTML-knop nodig,
+                de handtekening plakt meteen opgemaakt. Selecteer daarna de handtekening bij{" "}
+                <em>Nieuwe berichten</em> en <em>Antwoorden/Doorsturen</em> → OK.
+              </Instruction>
+              <Instruction title="Werkt plakken toch niet?">
+                Download de PNG hierboven en voeg die als afbeelding in bij Handtekeningen.
               </Instruction>
             </div>
           </div>
@@ -436,7 +462,7 @@ function Instruction({ title, children }: { title: string; children: React.React
 }
 
 // ── Root export ───────────────────────────────────────────────────────────
-export default function HandtekeningClient({ authenticated, email, logoB64 }: Props) {
+export default function HandtekeningClient({ authenticated, email }: Props) {
   if (!authenticated) return <LoginForm />;
-  return <Generator email={email} logoB64={logoB64} />;
+  return <Generator email={email} />;
 }

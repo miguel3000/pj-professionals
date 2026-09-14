@@ -1,6 +1,4 @@
 import { cookies } from "next/headers";
-import { readFileSync } from "fs";
-import { join } from "path";
 import { verifySession } from "@/lib/auth";
 import HandtekeningClient from "./HandtekeningClient";
 
@@ -14,14 +12,15 @@ export default async function HandtekeningPage() {
   const sessionToken = cookieStore.get("pj_session")?.value;
   const session = sessionToken ? verifySession(sessionToken) : null;
 
-  const logoPath = join(process.cwd(), "public", "logo-pj-dark.png");
-  const logoB64 = readFileSync(logoPath).toString("base64");
+  // Local-dev-only bypass so the generator can be tested without a real
+  // @pjprofessionals.nl inbox to receive the login code. Never active in
+  // production — the live site's login is untouched.
+  const isDevBypass = process.env.NODE_ENV === "development" && !session;
 
   return (
     <HandtekeningClient
-      authenticated={!!session}
-      email={session?.email ?? ""}
-      logoB64={logoB64}
+      authenticated={!!session || isDevBypass}
+      email={session?.email ?? (isDevBypass ? "test.gebruiker@pjprofessionals.nl" : "")}
     />
   );
 }
