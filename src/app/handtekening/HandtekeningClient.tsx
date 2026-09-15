@@ -46,17 +46,20 @@ function buildSignatureHTML(
   // rather than something typed in per person.
   personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#666666;font-size:13px;${FONT}white-space:nowrap;">T:&nbsp;<a href="tel:${KANTOOR_TEL.replace(/\s/g, "")}" style="color:#666666;text-decoration:none;${FONT}">${KANTOOR_TEL}</a></td></tr>`;
   if (werkdagen.length > 0)
-    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</td></tr>`;
+    personalRows += `\n        <tr><td style="padding:0 0 3px 0;"><span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span></td></tr>`;
 
   // Icon + text rows use a 2-cell table with valign="middle" on both cells
   // rather than inline vertical-align on the img/span — table-cell valign
   // is what reliably centers icon against text across email clients
   // (Outlook included); inline vertical-align:middle on mixed inline
   // content lines up against the line box, not the text's own center.
+  // border="0" is the legacy HTML attribute Word's renderer actually checks
+  // for — the CSS border:0 alone isn't enough to stop Outlook drawing a
+  // default border around a pasted image.
   const iconCell = (icon: string, inner: string) =>
     `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
             <tr>
-              <td valign="middle" style="padding:0 6px 0 0;"><img src="${icon}" width="14" height="14" alt="" style="display:block;border:0;outline:none;"></td>
+              <td valign="middle" style="padding:0 6px 0 0;"><img src="${icon}" width="14" height="14" border="0" alt="" style="display:block;border:0;outline:none;"></td>
               <td valign="middle">${inner}</td>
             </tr>
           </table>`;
@@ -111,7 +114,7 @@ function buildSignatureHTML(
 <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
   <tr>
     <td style="padding:12px 0 12px 14px;vertical-align:middle;">
-      <img src="${LOGO_URL}" width="104" height="104" alt="PJ Professionals" style="display:block;border:0;outline:none;width:104px;height:104px;">
+      <img src="${LOGO_URL}" width="104" height="104" border="0" alt="PJ Professionals" style="display:block;border:0;outline:none;width:104px;height:104px;">
     </td>
     <td style="padding:0 12px;vertical-align:middle;">
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto;">
@@ -120,8 +123,8 @@ function buildSignatureHTML(
     </td>
     <td style="padding:12px 14px 12px 0;vertical-align:top;">
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-        <tr><td style="height:24px;padding:0;">
-          <p style="margin:0;color:#333333;font-size:13px;${FONT}position:relative;top:-28px;">Met vriendelijke groet,</p>
+        <tr><td style="padding:0 0 8px 0;">
+          <p style="margin:0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
         </td></tr>
         <tr><td style="height:104px;padding:0;vertical-align:middle;">
           <p style="margin:0 0 2px 0;font-weight:bold;color:#1b1447;font-size:15px;line-height:1.3;${FONT}">${naam || "Uw naam"}</p>
@@ -139,8 +142,8 @@ ${companyRows}
 <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:14px;">
   <tr><td style="height:12px;line-height:12px;font-size:1px;">&nbsp;</td></tr>
   <tr><td style="height:12px;line-height:12px;font-size:1px;">&nbsp;</td></tr>
-  <tr><td style="padding:0 24px 4px 14px;color:#b3b3b3;font-size:9px;${FONT}">Vertrouwelijkheid</td></tr>
-  <tr><td style="padding:0 24px 0 14px;color:#b3b3b3;font-size:9px;line-height:1.5;${FONT}">${CONFIDENTIALITY_TEXT}</td></tr>
+  <tr><td style="padding:0 24px 4px 14px;"><span style="color:#b3b3b3;font-size:9px;${FONT}">Vertrouwelijkheid</span></td></tr>
+  <tr><td style="padding:0 24px 0 14px;line-height:1.5;"><span style="color:#b3b3b3;font-size:9px;${FONT}">${CONFIDENTIALITY_TEXT}</span></td></tr>
 </table>`;
 }
 
