@@ -20,8 +20,11 @@ const OFFICE_ICON = "https://www.pjprofessionals.nl/handtekening/office.png";
 const LINKEDIN_ICON = "https://www.pjprofessionals.nl/handtekening/linkedin.png";
 
 const KANTOOR_TEL = "073 762 1035";
+// "'s-Hertogenbosch" wrapped in its own nowrap span so a narrow screen
+// can't break the line right at the hyphen (confirmed happening in real
+// Outlook mobile) — the rest of the address can still wrap normally.
 const ADDRESSES = [
-  "Bruistensingel 130, 5232 AC 's-Hertogenbosch",
+  `Bruistensingel 130, 5232 AC <span style="white-space:nowrap;">'s-Hertogenbosch</span>`,
   "Raadhuishof 25, 5341 HR Oss",
 ];
 
@@ -64,16 +67,13 @@ function buildSignatureHTML(
             </tr>
           </table>`;
 
-  // Company block is two independent single-column tables (left: both
-  // addresses + the LinkedIn line, right: email/website) rather than one
-  // shared-<tr> table. That's deliberate: under the mobile @media block the
-  // two <td class="pj-stack-col"> become full-width and stack in DOM order —
-  // with a shared-<tr> table that DOM order is inherently row-interleaved,
-  // but the requested mobile order is grouped by column (both addresses +
-  // LinkedIn, THEN email/website). Matching row-slot heights between the two
-  // columns keep address 1 ↔ email and address 2 ↔ website aligned on
-  // desktop; the left column's 3rd row (LinkedIn) simply has nothing across
-  // from it now that the right column is 2 rows.
+  // Company block is a single stacked column, always — a two-column
+  // side-by-side layout with a @media query to collapse it on mobile was
+  // tried and confirmed broken in real Outlook: the <style> block doesn't
+  // survive Outlook's signature-editor paste, so the two columns kept
+  // fighting for space on a phone screen (address/email wrapping mid-word).
+  // A single column has nothing to switch, so it renders identically in
+  // every client regardless of what survives paste.
   const ROW_HEIGHT = 20;
   const stackedColumn = (rows: string[], padRight: number) =>
     `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${rows
@@ -84,34 +84,20 @@ function buildSignatureHTML(
       .join("")}
     </table>`;
 
-  const leftColumn = stackedColumn(
+  const companyItems = stackedColumn(
     [
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[0]}</span>`),
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[1]}</span>`),
-      `<a href="https://www.linkedin.com/company/pjprofessionals/" style="text-decoration:none;">${iconCell(LINKEDIN_ICON, `<span style="color:#333333;font-size:12px;${FONT}">LinkedIn | PJ Professionals</span>`)}</a>`,
-    ],
-    24
-  );
-
-  const rightColumn = stackedColumn(
-    [
       iconCell(EMAIL_ICON, `<a href="mailto:${email}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${email}</a>`),
       iconCell(GLOBE_ICON, `<a href="https://www.pjprofessionals.nl" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">www.pjprofessionals.nl</a>`),
+      `<a href="https://www.linkedin.com/company/pjprofessionals/" style="text-decoration:none;">${iconCell(LINKEDIN_ICON, `<span style="color:#333333;font-size:12px;${FONT}">LinkedIn | PJ Professionals</span>`)}</a>`,
     ],
     0
   );
 
-  const companyRows = `<tr>
-    <td class="pj-stack-col" valign="top" style="padding:0 0 0 14px;">${leftColumn}</td>
-    <td class="pj-stack-col" valign="top" style="padding:0;">${rightColumn}</td>
-  </tr>`;
+  const companyRows = `<tr><td style="padding:0 0 0 14px;">${companyItems}</td></tr>`;
 
-  return `<style>
-@media only screen and (max-width: 480px) {
-  .pj-stack-col { display:block !important; width:100% !important; }
-}
-</style>
-<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+  return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
   <tr>
     <td style="padding:12px 0 12px 14px;vertical-align:middle;">
       <img src="${LOGO_URL}" width="104" height="104" border="0" alt="PJ Professionals" style="display:block;border:0;outline:none;width:104px;height:104px;">
@@ -123,7 +109,7 @@ function buildSignatureHTML(
     </td>
     <td style="padding:12px 14px 12px 0;vertical-align:top;">
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-        <tr><td style="padding:0 0 8px 0;">
+        <tr><td style="padding:0 0 18px 0;">
           <p style="margin:0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
         </td></tr>
         <tr><td style="height:104px;padding:0;vertical-align:middle;">
