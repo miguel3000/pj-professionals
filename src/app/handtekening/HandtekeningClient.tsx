@@ -41,12 +41,6 @@ function buildSignatureHTML(
 ): string {
   const FONT = "font-family:Arial,Helvetica,sans-serif;";
 
-  let personalRows = "";
-  if (mobiel)
-    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;">M:&nbsp;<a href="tel:${mobiel}" style="color:#1b1447;text-decoration:none;${FONT}">${mobiel}</a></td></tr>`;
-  if (werkdagen.length > 0)
-    personalRows += `\n        <tr><td style="padding:0 0 3px 0;"><span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span></td></tr>`;
-
   // Icon + text rows use a 2-cell table with valign="middle" on both cells
   // rather than inline vertical-align on the img/span — table-cell valign
   // is what reliably centers icon against text across email clients
@@ -62,6 +56,12 @@ function buildSignatureHTML(
               <td valign="middle">${inner}</td>
             </tr>
           </table>`;
+
+  let personalRows = "";
+  if (mobiel)
+    personalRows += `\n        <tr><td style="padding:0 0 3px 0;">${iconCell(PHONE_ICON, `<a href="tel:${mobiel}" style="color:#1b1447;font-size:13px;text-decoration:none;${FONT}">${mobiel}</a>`)}</td></tr>`;
+  if (werkdagen.length > 0)
+    personalRows += `\n        <tr><td style="padding:0 0 3px 0;"><span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span></td></tr>`;
 
   // Company block is a single stacked column, always — a two-column
   // side-by-side layout with a @media query to collapse it on mobile was
@@ -94,7 +94,17 @@ function buildSignatureHTML(
 
   const companyRows = `<tr><td style="padding:0 0 0 14px;">${companyItems}</td></tr>`;
 
+  // Greeting is its own block above the logo row now — it used to be the
+  // first row inside the text column's nested table (to keep it pinned in
+  // place while Naam/Functie/personalRows centered against the logo below
+  // it). Pulling it out entirely means the logo row only ever has to center
+  // Naam→werkdagen against the logo/divider, one job instead of two.
   return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+  <tr><td style="padding:0 0 8px 14px;">
+    <p style="margin:0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
+  </td></tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
   <tr>
     <td style="padding:12px 0 12px 14px;vertical-align:middle;">
       <img src="${LOGO_URL}" width="104" height="104" border="0" alt="PJ Professionals" style="display:block;border:0;outline:none;width:104px;height:104px;">
@@ -104,17 +114,10 @@ function buildSignatureHTML(
         <tr><td style="background-color:#1b1447;width:3px;height:98px;font-size:0;line-height:0;padding:0;">&nbsp;</td></tr>
       </table>
     </td>
-    <td style="padding:12px 14px 12px 0;vertical-align:top;">
-      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-        <tr><td style="padding:0 0 18px 0;">
-          <p style="margin:0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
-        </td></tr>
-        <tr><td style="height:104px;padding:0;vertical-align:middle;">
-          <p style="margin:0 0 2px 0;font-weight:bold;color:#1b1447;font-size:15px;line-height:1.3;${FONT}">${naam || "Uw naam"}</p>
-          <p style="margin:0 0 10px 0;color:#666666;font-size:13px;line-height:1.3;${FONT}">${functie || "Functie"}</p>
-          <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${personalRows}
-          </table>
-        </td></tr>
+    <td style="padding:12px 14px 12px 0;vertical-align:middle;">
+      <p style="margin:0 0 2px 0;font-weight:bold;color:#1b1447;font-size:15px;line-height:1.3;${FONT}">${naam || "Uw naam"}</p>
+      <p style="margin:0 0 10px 0;color:#666666;font-size:13px;line-height:1.3;${FONT}">${functie || "Functie"}</p>
+      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${personalRows}
       </table>
     </td>
   </tr>
