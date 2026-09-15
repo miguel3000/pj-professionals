@@ -6,14 +6,17 @@ import { signOtpToken } from "@/lib/auth";
 export async function POST(request: NextRequest) {
   const { email } = await request.json();
 
-  if (!email || !String(email).toLowerCase().endsWith("@pjprofessionals.nl")) {
+  const normalizedEmail = String(email).toLowerCase().trim();
+  const isAllowed =
+    normalizedEmail.endsWith("@pjprofessionals.nl") || normalizedEmail === "pj@miguelm.nl";
+
+  if (!email || !isAllowed) {
     return NextResponse.json(
       { error: "Alleen @pjprofessionals.nl e-mailadressen zijn toegestaan." },
       { status: 400 }
     );
   }
 
-  const normalizedEmail = String(email).toLowerCase().trim();
   const otp = String(crypto.randomInt(100000, 999999));
   const token = signOtpToken(normalizedEmail, otp);
 
