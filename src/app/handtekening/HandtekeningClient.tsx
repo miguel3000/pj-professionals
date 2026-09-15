@@ -64,7 +64,7 @@ function buildSignatureHTML(
 
   let personalRows = "";
   if (mobiel)
-    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;">M:&nbsp;<a href="tel:${mobiel}" style="color:#1b1447;text-decoration:none;${FONT}">${formattedMobiel}</a></td></tr>`;
+    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;"><a href="tel:${mobiel}" style="color:#1b1447;text-decoration:none;${FONT}">${formattedMobiel}</a></td></tr>`;
   if (werkdagen.length > 0)
     personalRows += `\n        <tr><td style="padding:0 0 3px 0;"><span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span></td></tr>`;
 
@@ -105,7 +105,7 @@ function buildSignatureHTML(
   // it). Pulling it out entirely means the logo row only ever has to center
   // Naam→werkdagen against the logo/divider, one job instead of two.
   return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-  <tr><td style="padding:0 0 32px 14px;">
+  <tr><td style="padding:0 0 8px 14px;">
     <p style="margin:0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
   </td></tr>
 </table>
