@@ -17,9 +17,11 @@ const LOGO_URL = "https://www.pjprofessionals.nl/logo-pj-dark.png";
 const EMAIL_ICON = "https://www.pjprofessionals.nl/handtekening/email.png";
 const GLOBE_ICON = "https://www.pjprofessionals.nl/handtekening/globe.png";
 const OFFICE_ICON = "https://www.pjprofessionals.nl/handtekening/office.png";
+const PHONE_ICON = "https://www.pjprofessionals.nl/handtekening/phone.png";
 const LINKEDIN_ICON = "https://www.pjprofessionals.nl/handtekening/linkedin.png";
 
 const KANTOOR_TEL = "0737621035";
+const KANTOOR_EMAIL = "info@pjprofessionals.nl";
 // "'s-Hertogenbosch" wrapped in its own nowrap span so a narrow screen
 // can't break the line right at the hyphen (confirmed happening in real
 // Outlook mobile) — the rest of the address can still wrap normally.
@@ -35,7 +37,6 @@ function buildSignatureHTML(
   naam: string,
   functie: string,
   mobiel: string,
-  email: string,
   werkdagen: string[]
 ): string {
   const FONT = "font-family:Arial,Helvetica,sans-serif;";
@@ -43,11 +44,6 @@ function buildSignatureHTML(
   let personalRows = "";
   if (mobiel)
     personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;">M:&nbsp;<a href="tel:${mobiel}" style="color:#1b1447;text-decoration:none;${FONT}">${mobiel}</a></td></tr>`;
-  // "Direct telefoonnummer" is no longer an employee-entered field — it's
-  // the same office number for everyone, so it's always shown here (not
-  // gated on any input) and styled grey to read as fixed/general info
-  // rather than something typed in per person.
-  personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#666666;font-size:13px;${FONT}white-space:nowrap;">T:&nbsp;<a href="tel:${KANTOOR_TEL}" style="color:#666666;text-decoration:none;${FONT}">${KANTOOR_TEL}</a></td></tr>`;
   if (werkdagen.length > 0)
     personalRows += `\n        <tr><td style="padding:0 0 3px 0;"><span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span></td></tr>`;
 
@@ -88,7 +84,8 @@ function buildSignatureHTML(
     [
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[0]}</span>`),
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[1]}</span>`),
-      iconCell(EMAIL_ICON, `<a href="mailto:${email}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${email}</a>`),
+      iconCell(PHONE_ICON, `<a href="tel:${KANTOOR_TEL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">073 762 1035</a>`),
+      iconCell(EMAIL_ICON, `<a href="mailto:${KANTOOR_EMAIL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${KANTOOR_EMAIL}</a>`),
       iconCell(GLOBE_ICON, `<a href="https://www.pjprofessionals.nl" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">www.pjprofessionals.nl</a>`),
       `<a href="https://www.linkedin.com/company/pjprofessionals/" style="text-decoration:none;">${iconCell(LINKEDIN_ICON, `<span style="color:#333333;font-size:12px;${FONT}">LinkedIn | PJ Professionals</span>`)}</a>`,
     ],
@@ -270,11 +267,10 @@ function Generator({ email: userEmail }: { email: string }) {
   const [naam, setNaam] = useState("");
   const [functie, setFunctie] = useState("");
   const [mobiel, setMobiel] = useState("");
-  const [emailField, setEmailField] = useState(userEmail);
   const [werkdagen, setWerkdagen] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
 
-  const signature = buildSignatureHTML(naam, functie, mobiel, emailField, werkdagen);
+  const signature = buildSignatureHTML(naam, functie, mobiel, werkdagen);
 
   const toggleDag = useCallback((dag: string) => {
     setWerkdagen((prev) => prev.includes(dag) ? prev.filter((d) => d !== dag) : [...prev, dag]);
@@ -351,11 +347,6 @@ function Generator({ email: userEmail }: { email: string }) {
               <input type="tel" value={mobiel} onChange={(e) => setMobiel(e.target.value.replace(/[^0-9]/g, ""))}
                 placeholder="Bijv. 0612345678" className={inputCls} />
               <p className="text-[0.7rem] text-gray-400 mt-1">Alleen cijfers, geen spaties of streepjes.</p>
-            </Field>
-
-            <Field label="E-mailadres" required>
-              <input type="email" value={emailField} onChange={(e) => setEmailField(e.target.value)}
-                placeholder="naam@pjprofessionals.nl" className={inputCls} />
             </Field>
 
             <hr className="border-gray-100" />
