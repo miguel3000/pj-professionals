@@ -100,7 +100,7 @@ function buildSignatureHTML(
   // it). Pulling it out entirely means the logo row only ever has to center
   // Naam→werkdagen against the logo/divider, one job instead of two.
   return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-  <tr><td style="padding:0 0 8px 14px;">
+  <tr><td style="padding:0 0 16px 14px;">
     <p style="margin:0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
   </td></tr>
 </table>
