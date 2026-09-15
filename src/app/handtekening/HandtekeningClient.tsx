@@ -19,7 +19,7 @@ const GLOBE_ICON = "https://www.pjprofessionals.nl/handtekening/globe.png";
 const OFFICE_ICON = "https://www.pjprofessionals.nl/handtekening/office.png";
 const LINKEDIN_ICON = "https://www.pjprofessionals.nl/handtekening/linkedin.png";
 
-const KANTOOR_TEL = "073 762 1035";
+const KANTOOR_TEL = "0737621035";
 // "'s-Hertogenbosch" wrapped in its own nowrap span so a narrow screen
 // can't break the line right at the hyphen (confirmed happening in real
 // Outlook mobile) — the rest of the address can still wrap normally.
@@ -42,12 +42,12 @@ function buildSignatureHTML(
 
   let personalRows = "";
   if (mobiel)
-    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;">M:&nbsp;<a href="tel:${mobiel.replace(/\s/g, "")}" style="color:#1b1447;text-decoration:none;${FONT}">${mobiel}</a></td></tr>`;
+    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;">M:&nbsp;<a href="tel:${mobiel}" style="color:#1b1447;text-decoration:none;${FONT}">${mobiel}</a></td></tr>`;
   // "Direct telefoonnummer" is no longer an employee-entered field — it's
   // the same office number for everyone, so it's always shown here (not
   // gated on any input) and styled grey to read as fixed/general info
   // rather than something typed in per person.
-  personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#666666;font-size:13px;${FONT}white-space:nowrap;">T:&nbsp;<a href="tel:${KANTOOR_TEL.replace(/\s/g, "")}" style="color:#666666;text-decoration:none;${FONT}">${KANTOOR_TEL}</a></td></tr>`;
+  personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#666666;font-size:13px;${FONT}white-space:nowrap;">T:&nbsp;<a href="tel:${KANTOOR_TEL}" style="color:#666666;text-decoration:none;${FONT}">${KANTOOR_TEL}</a></td></tr>`;
   if (werkdagen.length > 0)
     personalRows += `\n        <tr><td style="padding:0 0 3px 0;"><span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span></td></tr>`;
 
@@ -348,8 +348,9 @@ function Generator({ email: userEmail }: { email: string }) {
             <hr className="border-gray-100" />
 
             <Field label="Mobiel nummer">
-              <input type="tel" value={mobiel} onChange={(e) => setMobiel(e.target.value)}
-                placeholder="Bijv. 06-12345678" className={inputCls} />
+              <input type="tel" value={mobiel} onChange={(e) => setMobiel(e.target.value.replace(/[^0-9]/g, ""))}
+                placeholder="Bijv. 0612345678" className={inputCls} />
+              <p className="text-[0.7rem] text-gray-400 mt-1">Alleen cijfers, geen spaties of streepjes.</p>
             </Field>
 
             <Field label="E-mailadres" required>
