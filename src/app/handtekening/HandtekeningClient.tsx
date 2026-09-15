@@ -14,23 +14,18 @@ type Props = {
 // A real https URL is how every mainstream signature tool does it. Same
 // reasoning applies to every icon below.
 const LOGO_URL = "https://www.pjprofessionals.nl/logo-pj-dark.png";
-const PHONE_ICON = "https://www.pjprofessionals.nl/handtekening/phone.png";
 const EMAIL_ICON = "https://www.pjprofessionals.nl/handtekening/email.png";
 const GLOBE_ICON = "https://www.pjprofessionals.nl/handtekening/globe.png";
 const OFFICE_ICON = "https://www.pjprofessionals.nl/handtekening/office.png";
-const TREE_ICON = "https://www.pjprofessionals.nl/handtekening/tree.png";
 const LINKEDIN_ICON = "https://www.pjprofessionals.nl/handtekening/linkedin.png";
 
-const KANTOOR_TEL = "073 - 762 1035";
+const KANTOOR_TEL = "073 762 1035";
 const ADDRESSES = [
   "Bruistensingel 130, 5232 AC 's-Hertogenbosch",
   "Raadhuishof 25, 5341 HR Oss",
 ];
 
-const DISCLAIMER_TEXT = `Dit e-mail bericht is vertrouwelijk en uitsluitend bedoeld voor de geadresseerde. Gebruik door anderen dan geadresseerde is verboden. De informatie in dit email bericht (en bijlagen) kan vertrouwelijk van aard zijn en binnen het bereik van een geheimhoudingsplicht vallen.
-Indien u niet de geadresseerde bent wordt u verzocht  het e-mail bericht te retourneren aan afzender en dit bericht te vernietigen.
-PJ Professionals aanvaardt geen enkele aansprakelijkheid voor schade door of als gevolg van de informatie uit dit bericht.
-PJ Professionals betracht de grootst mogelijke zorgvuldigheid bij het voorkomen van virussen in de bijlage(n) bij dit bericht. Desondanks dient u zelf de bijlage(n) te controleren op de aanwezigheid van virussen en kan PJ Professionals niet aansprakelijk worden gehouden indien bijlage(n) schade, waaronder schade aan uw computer(systeem), veroorzaken.`;
+const CONFIDENTIALITY_TEXT = `Dit e-mailbericht en eventuele bijlagen zijn uitsluitend bestemd voor de geadresseerde(n) en kunnen persoonlijke of vertrouwelijke informatie bevatten die onder een beroepsgeheim of geheimhoudingsplicht valt. Bent u niet de beoogde geadresseerde? Dan verzoeken wij u de afzender hierover te informeren, de inhoud niet te gebruiken, te delen of te verspreiden en het bericht en eventuele bijlagen te verwijderen.`;
 
 // ── Signature HTML builder ────────────────────────────────────────────────
 function buildSignatureHTML(
@@ -46,12 +41,12 @@ function buildSignatureHTML(
   if (mobiel)
     personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;">M:&nbsp;<a href="tel:${mobiel.replace(/\s/g, "")}" style="color:#1b1447;text-decoration:none;${FONT}">${mobiel}</a></td></tr>`;
   // "Direct telefoonnummer" is no longer an employee-entered field — it's
-  // the same office number for everyone, already shown as "Kantoor" below,
-  // so it's always shown here too (not gated on any input) and styled grey
-  // to read as fixed/general info rather than something typed in per person.
+  // the same office number for everyone, so it's always shown here (not
+  // gated on any input) and styled grey to read as fixed/general info
+  // rather than something typed in per person.
   personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#666666;font-size:13px;${FONT}white-space:nowrap;">T:&nbsp;<a href="tel:${KANTOOR_TEL.replace(/\s/g, "")}" style="color:#666666;text-decoration:none;${FONT}">${KANTOOR_TEL}</a></td></tr>`;
   if (werkdagen.length > 0)
-    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}">Werkdagen:&nbsp;${werkdagen.join(", ")}</td></tr>`;
+    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</td></tr>`;
 
   // Icon + text rows use a 2-cell table with valign="middle" on both cells
   // rather than inline vertical-align on the img/span — table-cell valign
@@ -67,16 +62,15 @@ function buildSignatureHTML(
           </table>`;
 
   // Company block is two independent single-column tables (left: both
-  // addresses + "Volg PJ Professionals", right: email/website/Kantoor)
-  // rather than one shared-<tr> table. That's deliberate: under the mobile
-  // @media block the two <td class="pj-stack-col"> become full-width and
-  // stack in DOM order — with a shared-<tr> table that DOM order is
-  // inherently row-interleaved (addr1, email, addr2, website, volgpj,
-  // kantoor), but the requested mobile order is grouped by column (both
-  // addresses + volgpj, THEN email/website/kantoor). Each column's 3 row
-  // slots share the same fixed height as the matching slot in the other
-  // column, so desktop alignment (address 1 ↔ email, address 2 ↔ website,
-  // "Volg PJ Professionals" ↔ Kantoor) still holds by construction.
+  // addresses + the LinkedIn line, right: email/website) rather than one
+  // shared-<tr> table. That's deliberate: under the mobile @media block the
+  // two <td class="pj-stack-col"> become full-width and stack in DOM order —
+  // with a shared-<tr> table that DOM order is inherently row-interleaved,
+  // but the requested mobile order is grouped by column (both addresses +
+  // LinkedIn, THEN email/website). Matching row-slot heights between the two
+  // columns keep address 1 ↔ email and address 2 ↔ website aligned on
+  // desktop; the left column's 3rd row (LinkedIn) simply has nothing across
+  // from it now that the right column is 2 rows.
   const ROW_HEIGHT = 20;
   const stackedColumn = (rows: string[], padRight: number) =>
     `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${rows
@@ -91,7 +85,7 @@ function buildSignatureHTML(
     [
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[0]}</span>`),
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[1]}</span>`),
-      `<a href="https://www.linkedin.com/company/pjprofessionals/" style="text-decoration:none;">${iconCell(LINKEDIN_ICON, `<span style="color:#333333;font-size:12px;${FONT}">Volg PJ Professionals</span>`)}</a>`,
+      `<a href="https://www.linkedin.com/company/pjprofessionals/" style="text-decoration:none;">${iconCell(LINKEDIN_ICON, `<span style="color:#333333;font-size:12px;${FONT}">LinkedIn | PJ Professionals</span>`)}</a>`,
     ],
     24
   );
@@ -100,7 +94,6 @@ function buildSignatureHTML(
     [
       iconCell(EMAIL_ICON, `<a href="mailto:${email}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${email}</a>`),
       iconCell(GLOBE_ICON, `<a href="https://www.pjprofessionals.nl" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">www.pjprofessionals.nl</a>`),
-      iconCell(PHONE_ICON, `<span style="color:#333333;font-size:13px;${FONT}">Kantoor&nbsp;&nbsp;<a href="tel:${KANTOOR_TEL.replace(/\s/g, "")}" style="color:#333333;text-decoration:none;">${KANTOOR_TEL}</a></span>`),
     ],
     0
   );
@@ -126,10 +119,16 @@ function buildSignatureHTML(
       </table>
     </td>
     <td style="padding:12px 14px 12px 0;vertical-align:top;">
-      <p style="margin:0 0 8px 0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
-      <p style="margin:0 0 2px 0;font-weight:bold;color:#1b1447;font-size:15px;line-height:1.3;${FONT}">${naam || "Uw naam"}</p>
-      <p style="margin:0 0 10px 0;color:#666666;font-size:13px;line-height:1.3;${FONT}">${functie || "Functie"}</p>
-      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${personalRows}
+      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+        <tr><td style="height:24px;padding:0;">
+          <p style="margin:0;color:#333333;font-size:13px;${FONT}position:relative;top:-28px;">Met vriendelijke groet,</p>
+        </td></tr>
+        <tr><td style="height:104px;padding:0;vertical-align:middle;">
+          <p style="margin:0 0 2px 0;font-weight:bold;color:#1b1447;font-size:15px;line-height:1.3;${FONT}">${naam || "Uw naam"}</p>
+          <p style="margin:0 0 10px 0;color:#666666;font-size:13px;line-height:1.3;${FONT}">${functie || "Functie"}</p>
+          <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${personalRows}
+          </table>
+        </td></tr>
       </table>
     </td>
   </tr>
@@ -138,12 +137,10 @@ function buildSignatureHTML(
 ${companyRows}
 </table>
 <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:14px;">
-  <tr><td style="padding:0 0 6px 14px;">
-    ${iconCell(TREE_ICON, `<span style="color:#7a7a7a;font-size:11px;${FONT}">Denk aan het milieu voordat u besluit om deze mail te printen.</span>`)}
-  </td></tr>
-  <tr><td style="padding:0 24px 0 14px;color:#999999;font-size:10px;line-height:1.5;${FONT}">
-    <strong>DISCLAIMER:</strong><br>${DISCLAIMER_TEXT.split("\n").join("<br>")}
-  </td></tr>
+  <tr><td style="height:12px;line-height:12px;font-size:1px;">&nbsp;</td></tr>
+  <tr><td style="height:12px;line-height:12px;font-size:1px;">&nbsp;</td></tr>
+  <tr><td style="padding:0 24px 4px 14px;color:#b3b3b3;font-size:9px;${FONT}">Vertrouwelijkheid</td></tr>
+  <tr><td style="padding:0 24px 0 14px;color:#b3b3b3;font-size:9px;line-height:1.5;${FONT}">${CONFIDENTIALITY_TEXT}</td></tr>
 </table>`;
 }
 
@@ -414,7 +411,7 @@ function Generator({ email: userEmail }: { email: string }) {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
                 </svg>
-                {copied ? "Gekopieerd!" : "Kopieer HTML handtekening"}
+                {copied ? "Gekopieerd!" : "Kopieer handtekening"}
               </button>
             </div>
           </div>
@@ -426,7 +423,7 @@ function Generator({ email: userEmail }: { email: string }) {
             </p>
             <div className="text-xs space-y-2">
               <Instruction title="Outlook (Windows, Mac en web)">
-                Klik op <em>Kopieer HTML handtekening</em> hierboven. Ga naar Bestand → Opties → E-mail →
+                Klik op <em>Kopieer handtekening</em> hierboven. Ga naar Bestand → Opties → E-mail →
                 Handtekeningen → Nieuw, geef een naam, en plak direct in het tekstvak
                 (<code className="bg-gray-100 px-1 rounded">Ctrl+V</code> of{" "}
                 <code className="bg-gray-100 px-1 rounded">⌘V</code>) — geen aparte HTML-knop nodig,
