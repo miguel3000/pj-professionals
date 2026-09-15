@@ -57,9 +57,14 @@ function buildSignatureHTML(
             </tr>
           </table>`;
 
+  // Grouped 2-4-4 (e.g. "06 1234 5678") for readability — mobiel itself
+  // stays raw digits (the tel: href needs no spaces, and the input already
+  // filters to digits-only on change).
+  const formattedMobiel = mobiel.replace(/(\d{2})(\d{4})(\d{0,4})/, (_, a, b, c) => [a, b, c].filter(Boolean).join(" "));
+
   let personalRows = "";
   if (mobiel)
-    personalRows += `\n        <tr><td style="padding:0 0 3px 0;">${iconCell(PHONE_ICON, `<a href="tel:${mobiel}" style="color:#1b1447;font-size:13px;text-decoration:none;${FONT}">${mobiel}</a>`)}</td></tr>`;
+    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;">M:&nbsp;<a href="tel:${mobiel}" style="color:#1b1447;text-decoration:none;${FONT}">${formattedMobiel}</a></td></tr>`;
   if (werkdagen.length > 0)
     personalRows += `\n        <tr><td style="padding:0 0 3px 0;"><span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span></td></tr>`;
 
