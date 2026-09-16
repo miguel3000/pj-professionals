@@ -19,6 +19,7 @@ const GLOBE_ICON = "https://www.pjprofessionals.nl/handtekening/globe.png";
 const OFFICE_ICON = "https://www.pjprofessionals.nl/handtekening/office.png";
 const PHONE_ICON = "https://www.pjprofessionals.nl/handtekening/phone.png";
 const SMARTPHONE_ICON = "https://www.pjprofessionals.nl/handtekening/smartphone.png";
+const CALENDAR_ICON = "https://www.pjprofessionals.nl/handtekening/calendar.png";
 const LINKEDIN_ICON = "https://www.pjprofessionals.nl/handtekening/linkedin.png";
 
 const KANTOOR_TEL = "0737621035";
@@ -58,17 +59,6 @@ function buildSignatureHTML(
             </tr>
           </table>`;
 
-  // Same 2-cell shape as iconCell but with a blank spacer instead of an
-  // <img> — keeps text-only rows (werkdagen) indented flush with the icon
-  // rows' text rather than sitting under the icons themselves.
-  const indentCell = (inner: string) =>
-    `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-            <tr>
-              <td style="width:20px;padding:0;font-size:0;line-height:0;">&nbsp;</td>
-              <td valign="middle">${inner}</td>
-            </tr>
-          </table>`;
-
   // Area/prefix code, then a space, then the rest run together
   // (e.g. "06 12345678", "073 7621035") — mobiel/KANTOOR_TEL themselves
   // stay raw digits for the tel: href.
@@ -104,7 +94,7 @@ function buildSignatureHTML(
   ].filter((row): row is string => row !== null);
 
   if (werkdagen.length > 0)
-    phoneRows.splice(1, 0, indentCell(`<span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span>`));
+    phoneRows.splice(1, 0, iconCell(CALENDAR_ICON, `<span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span>`));
 
   const companyItems = stackedColumn(
     [
