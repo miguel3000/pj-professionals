@@ -108,8 +108,12 @@ pdf-form-kit/
 
    # Export to PDF WITH real AcroForm fields — the ExportFormFields filter
    # option is required, plain --convert-to pdf silently drops all fields.
+   # UseLosslessCompression avoids LibreOffice's default lossy JPEG
+   # re-encoding of the backdrop images (Flate/PNG-style instead — usually
+   # comes out *smaller* too, since this kind of flat line-art/logo content
+   # compresses better losslessly than as a JPEG).
    soffice --headless --convert-to \
-     'pdf:writer_pdf_Export:{"ExportFormFields":{"type":"boolean","value":"true"}}' \
+     'pdf:writer_pdf_Export:{"ExportFormFields":{"type":"boolean","value":"true"},"UseLosslessCompression":{"type":"boolean","value":"true"}}' \
      myform-unprotected.docx
 
    "$KIT/.venv/bin/python3" "$KIT/scripts/finalize_pdf.py" \
@@ -165,6 +169,32 @@ pdf-form-kit/
 8. **The `ExportFormFields` LibreOffice filter option is required** on
    `--convert-to pdf` — without it, every content control just becomes flat
    text with zero AcroForm fields, silently.
+9. **A text field's exported `/Rect` is sized to fit only its own
+   placeholder text** (one line, as wide as the hint), not the full visible
+   shaded table cell around it — the interactive box ends up a small
+   fraction of what looks clickable on the page. `finalize_pdf.py` reads
+   the real shaded-cell rectangles out of the PDF's vector content (via
+   `pdfplumber`, not pixels) and snaps every field to the one it's inside,
+   inset by the cell's own `tcMar` (7.5pt / 5pt).
+10. **A field's own generated appearance paints an opaque white background**,
+    covering the page's own static cell-shading art the moment the field is
+    focused or filled in — so a filled field looks white while every
+    untouched field around it stays shaded, a visibly inconsistent page.
+    `finalize_pdf.py` sets `/MK/BG` on every text field so Acrobat paints
+    the same shading into its own appearance every time.
+11. **Acrobat/Reader's "Highlight Fields" blue tint is a per-viewer
+    preference**, not something a PDF can normally disable — it persists
+    across filling in and saving the form regardless of file content. The
+    one embeddable fix is a document-level JavaScript action
+    (`app.runtimeHighlight = false;`, via `writer.add_js(...)`), which
+    `finalize_pdf.py` adds — works in Acrobat/Reader desktop only, inert
+    (harmless) in Preview or a browser's built-in viewer.
+12. **LibreOffice's default `--convert-to pdf` re-encodes embedded images
+    as lossy JPEG**, even when the source was a clean PNG — pass
+    `"UseLosslessCompression":{"type":"boolean","value":"true"}` in the
+    export filter data to keep them lossless (Flate/PNG-style). For this
+    kind of flat line-art/logo backdrop it usually comes out *smaller*
+    than the JPEG version too, not just cleaner.
 
 ## Backdrop images
 
