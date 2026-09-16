@@ -53,11 +53,10 @@ DATE_FORMAT_JS = (
 
 # The two field-cell shading fills used throughout lib/docx-helpers.js
 # (F3F9FC value cells, F4F7F9 label cells -- open text boxes also use the
-# F3F9FC value fill), as the 0-1 RGB fractions pdfplumber reports.
-SHADE_FILLS = [
-    (0xF3 / 255, 0xF9 / 255, 0xFC / 255),
-    (0xF4 / 255, 0xF7 / 255, 0xF9 / 255),
-]
+# F3F9FC value fill), as the 0-1 RGB fractions pdfplumber/pypdf expect.
+VALUE_FILL = (0xF3 / 255, 0xF9 / 255, 0xFC / 255)
+LABEL_FILL = (0xF4 / 255, 0xF7 / 255, 0xF9 / 255)
+SHADE_FILLS = [VALUE_FILL, LABEL_FILL]
 SHADE_TOLERANCE = 0.01
 CELL_INSET_X = 7.5  # 150 twips
 CELL_INSET_Y = 5.0  # 100 twips
@@ -153,6 +152,19 @@ def main():
                 # except a live, NeedAppearances-driven render.
                 if "/AP" in obj:
                     del obj[NameObject("/AP")]
+                # The field's own pale-blue box (F3F9FC) is only painted as
+                # static page art underneath it -- Acrobat's own generated
+                # appearance (drawn the moment the field is focused or
+                # filled in) is opaque and paints over that with plain
+                # white, so a filled field loses its shading while every
+                # untouched field around it keeps it, a visibly
+                # inconsistent look. /MK/BG tells Acrobat what background
+                # to paint into ITS OWN appearance, so it matches every time.
+                mk = obj.get("/MK")
+                if mk is None:
+                    mk = DictionaryObject()
+                    obj[NameObject("/MK")] = mk
+                mk[NameObject("/BG")] = ArrayObject([FloatObject(c) for c in VALUE_FILL])
                 # Snap the widget's /Rect to the shaded cell it visually
                 # sits inside -- LibreOffice sized it to its own placeholder
                 # text instead, leaving a tiny sliver of the real box
