@@ -361,9 +361,9 @@ function Generator({ email: userEmail }: { email: string }) {
 
             <hr className="border-gray-100" />
 
-            <Field label="Mobiel nummer">
+            <Field label="Mobiel nummer" required>
               <input type="tel" value={mobiel} onChange={(e) => setMobiel(e.target.value.replace(/[^0-9]/g, ""))}
-                placeholder="Bijv. 0612345678" className={inputCls} />
+                placeholder="Bijv. 0612345678" required className={inputCls} />
               <p className="text-[0.7rem] text-gray-400 mt-1">Alleen cijfers, geen spaties of streepjes.</p>
             </Field>
 
