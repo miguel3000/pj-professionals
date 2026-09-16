@@ -1,0 +1,19 @@
+{
+  "name": "pdf-form-kit",
+  "version": "1.0.0",
+  "description": "Reusable docx-js/AcroForm-PDF pipeline for PJ Professionals fillable forms — see README.md",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "docx": "^9.7.1"
+  }
+}
