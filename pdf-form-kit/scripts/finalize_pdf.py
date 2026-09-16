@@ -223,6 +223,16 @@ def main():
 
     acroform[NameObject("/NeedAppearances")] = BooleanObject(True)
 
+    # Acrobat/Reader paints its own persistent blue "Highlight Fields"
+    # tint over every form field by default -- that's a per-viewer
+    # preference (Preferences > Forms), not something baked into the PDF,
+    # so it survives filling in and saving the form. The one embeddable
+    # fix is a document-level JavaScript action that runs on open and
+    # turns the highlight off for THIS document specifically, for anyone
+    # opening it in Acrobat/Reader (inert in Preview or a browser viewer,
+    # same class of limitation as every other Acrobat-JS feature here).
+    writer.add_js("app.runtimeHighlight = false;")
+
     with open(out_path, "wb") as f:
         writer.write(f)
 
