@@ -354,9 +354,9 @@ function Generator({ email: userEmail }: { email: string }) {
                 placeholder="Bijv. Evelien de Vries" className={inputCls} />
             </Field>
 
-            <Field label="Functie">
+            <Field label="Functie" required>
               <input type="text" value={functie} onChange={(e) => setFunctie(e.target.value)}
-                placeholder="Bijv. Trajectbegeleider" className={inputCls} />
+                placeholder="Bijv. Trajectbegeleider" required className={inputCls} />
             </Field>
 
             <hr className="border-gray-100" />
