@@ -18,6 +18,7 @@ const EMAIL_ICON = "https://www.pjprofessionals.nl/handtekening/email.png";
 const GLOBE_ICON = "https://www.pjprofessionals.nl/handtekening/globe.png";
 const OFFICE_ICON = "https://www.pjprofessionals.nl/handtekening/office.png";
 const PHONE_ICON = "https://www.pjprofessionals.nl/handtekening/phone.png";
+const LANDLINE_ICON = "https://www.pjprofessionals.nl/handtekening/landline.png";
 const LINKEDIN_ICON = "https://www.pjprofessionals.nl/handtekening/linkedin.png";
 
 const KANTOOR_TEL = "0737621035";
@@ -63,8 +64,6 @@ function buildSignatureHTML(
   const formattedMobiel = mobiel.replace(/(\d{2})(\d{4})(\d{0,4})/, (_, a, b, c) => [a, b, c].filter(Boolean).join(" "));
 
   let personalRows = "";
-  if (mobiel)
-    personalRows += `\n        <tr><td style="padding:0 0 3px 0;color:#333333;font-size:13px;${FONT}white-space:nowrap;"><a href="tel:${mobiel}" style="color:#1b1447;text-decoration:none;${FONT}">${formattedMobiel}</a></td></tr>`;
   if (werkdagen.length > 0)
     personalRows += `\n        <tr><td style="padding:0 0 3px 0;"><span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span></td></tr>`;
 
@@ -87,13 +86,16 @@ function buildSignatureHTML(
 
   const companyItems = stackedColumn(
     [
+      mobiel
+        ? iconCell(PHONE_ICON, `<a href="tel:${mobiel}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${formattedMobiel}</a>`)
+        : null,
+      iconCell(LANDLINE_ICON, `<a href="tel:${KANTOOR_TEL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">073 762 1035</a>`),
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[0]}</span>`),
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[1]}</span>`),
-      iconCell(PHONE_ICON, `<a href="tel:${KANTOOR_TEL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">073 762 1035</a>`),
       iconCell(EMAIL_ICON, `<a href="mailto:${KANTOOR_EMAIL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${KANTOOR_EMAIL}</a>`),
       iconCell(GLOBE_ICON, `<a href="https://www.pjprofessionals.nl" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">www.pjprofessionals.nl</a>`),
       `<a href="https://www.linkedin.com/company/pjprofessionals/" style="text-decoration:none;">${iconCell(LINKEDIN_ICON, `<span style="color:#333333;font-size:12px;${FONT}">LinkedIn | PJ Professionals</span>`)}</a>`,
-    ],
+    ].filter((row): row is string => row !== null),
     0
   );
 
