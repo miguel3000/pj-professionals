@@ -18,7 +18,7 @@ const EMAIL_ICON = "https://www.pjprofessionals.nl/handtekening/email.png";
 const GLOBE_ICON = "https://www.pjprofessionals.nl/handtekening/globe.png";
 const OFFICE_ICON = "https://www.pjprofessionals.nl/handtekening/office.png";
 const PHONE_ICON = "https://www.pjprofessionals.nl/handtekening/phone.png";
-const LANDLINE_ICON = "https://www.pjprofessionals.nl/handtekening/landline.png";
+const SMARTPHONE_ICON = "https://www.pjprofessionals.nl/handtekening/smartphone.png";
 const LINKEDIN_ICON = "https://www.pjprofessionals.nl/handtekening/linkedin.png";
 
 const KANTOOR_TEL = "0737621035";
@@ -58,10 +58,12 @@ function buildSignatureHTML(
             </tr>
           </table>`;
 
-  // Grouped 2-4-4 (e.g. "06 1234 5678") for readability — mobiel itself
-  // stays raw digits (the tel: href needs no spaces, and the input already
-  // filters to digits-only on change).
-  const formattedMobiel = mobiel.replace(/(\d{2})(\d{4})(\d{0,4})/, (_, a, b, c) => [a, b, c].filter(Boolean).join(" "));
+  // Area/prefix code, then a space, then the rest run together
+  // (e.g. "06 12345678", "073 7621035") — mobiel/KANTOOR_TEL themselves
+  // stay raw digits for the tel: href.
+  const splitTel = (num: string, prefixLen: number) => `${num.slice(0, prefixLen)} ${num.slice(prefixLen)}`;
+  const formattedMobiel = splitTel(mobiel, 2);
+  const formattedKantoorTel = splitTel(KANTOOR_TEL, 3);
 
   let personalRows = "";
   if (werkdagen.length > 0)
@@ -87,9 +89,9 @@ function buildSignatureHTML(
   const companyItems = stackedColumn(
     [
       mobiel
-        ? iconCell(PHONE_ICON, `<a href="tel:${mobiel}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${formattedMobiel}</a>`)
+        ? iconCell(SMARTPHONE_ICON, `<a href="tel:${mobiel}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${formattedMobiel}</a>`)
         : null,
-      iconCell(LANDLINE_ICON, `<a href="tel:${KANTOOR_TEL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">073 762 1035</a>`),
+      iconCell(PHONE_ICON, `<a href="tel:${KANTOOR_TEL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${formattedKantoorTel}</a>`),
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[0]}</span>`),
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[1]}</span>`),
       iconCell(EMAIL_ICON, `<a href="mailto:${KANTOOR_EMAIL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${KANTOOR_EMAIL}</a>`),
