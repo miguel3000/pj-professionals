@@ -83,9 +83,9 @@ function buildSignatureHTML(
       .join("")}
     </table>`;
 
-  // Phone rows first, then werkdagen spliced in right after whichever one
-  // renders first (mobiel if filled in, otherwise the 073 landline) — so
-  // werkdagen always reads as "the line right under the first phone number."
+  // Phone rows first, then werkdagen spliced in — ahead of mobiel when it's
+  // filled in (swapped places with it), otherwise right after the 073
+  // landline (nothing to swap with, so it stays second).
   const phoneRows = [
     mobiel
       ? iconCell(SMARTPHONE_ICON, `<a href="tel:${mobiel}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${formattedMobiel}</a>`)
@@ -94,7 +94,7 @@ function buildSignatureHTML(
   ].filter((row): row is string => row !== null);
 
   if (werkdagen.length > 0)
-    phoneRows.splice(1, 0, iconCell(CALENDAR_ICON, `<span style="color:#333333;font-size:12px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span>`));
+    phoneRows.splice(mobiel ? 0 : 1, 0, iconCell(CALENDAR_ICON, `<span style="color:#333333;font-size:12px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span>`));
 
   const companyItems = stackedColumn(
     [
