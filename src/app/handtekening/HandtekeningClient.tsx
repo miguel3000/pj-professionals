@@ -94,7 +94,7 @@ function buildSignatureHTML(
   ].filter((row): row is string => row !== null);
 
   if (werkdagen.length > 0)
-    phoneRows.splice(1, 0, iconCell(CALENDAR_ICON, `<span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span>`));
+    phoneRows.splice(1, 0, iconCell(CALENDAR_ICON, `<span style="color:#333333;font-size:12px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span>`));
 
   const companyItems = stackedColumn(
     [
