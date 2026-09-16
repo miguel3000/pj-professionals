@@ -42,6 +42,13 @@ function buildSignatureHTML(
   werkdagen: string[]
 ): string {
   const FONT = "font-family:Arial,Helvetica,sans-serif;";
+  // Explicit transparent background on every table (CSS property + the
+  // legacy bgcolor attribute, same belt-and-suspenders pattern as
+  // border="0" on images) — a real-world test showed Outlook painting a
+  // solid white box behind the signature on a dark-mode read, which only
+  // happens when a table has no background declared at all. An explicit
+  // "transparent" is what stops Outlook substituting its own white fallback.
+  const NOBG = `background-color:transparent;`;
 
   // Icon + text rows use a 2-cell table with valign="middle" on both cells
   // rather than inline vertical-align on the img/span — table-cell valign
@@ -52,10 +59,10 @@ function buildSignatureHTML(
   // for — the CSS border:0 alone isn't enough to stop Outlook drawing a
   // default border around a pasted image.
   const iconCell = (icon: string, inner: string) =>
-    `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+    `<table cellpadding="0" cellspacing="0" border="0" bgcolor="transparent" style="border-collapse:collapse;${NOBG}">
             <tr>
-              <td valign="middle" style="padding:0 6px 0 0;"><img src="${icon}" width="14" height="14" border="0" alt="" style="display:block;border:0;outline:none;"></td>
-              <td valign="middle">${inner}</td>
+              <td valign="middle" style="padding:0 6px 0 0;${NOBG}"><img src="${icon}" width="14" height="14" border="0" alt="" style="display:block;border:0;outline:none;"></td>
+              <td valign="middle" style="${NOBG}">${inner}</td>
             </tr>
           </table>`;
 
@@ -75,10 +82,10 @@ function buildSignatureHTML(
   // every client regardless of what survives paste.
   const ROW_HEIGHT = 20;
   const stackedColumn = (rows: string[], padRight: number) =>
-    `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${rows
+    `<table cellpadding="0" cellspacing="0" border="0" bgcolor="transparent" style="border-collapse:collapse;${NOBG}">${rows
       .map(
         (row, i) => `
-      <tr><td height="${ROW_HEIGHT}" valign="middle" style="height:${ROW_HEIGHT}px;padding:0 ${padRight}px ${i < rows.length - 1 ? 6 : 0}px 0;">${row}</td></tr>`
+      <tr><td height="${ROW_HEIGHT}" valign="middle" style="height:${ROW_HEIGHT}px;padding:0 ${padRight}px ${i < rows.length - 1 ? 6 : 0}px 0;${NOBG}">${row}</td></tr>`
       )
       .join("")}
     </table>`;
@@ -116,35 +123,35 @@ function buildSignatureHTML(
   // it out entirely means the logo row only ever has to center Naam/Functie
   // against the logo/divider, one job instead of two. Mobiel and werkdagen
   // both moved down into the company block below.
-  return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-  <tr><td style="padding:0 0 8px 14px;">
+  return `<table cellpadding="0" cellspacing="0" border="0" bgcolor="transparent" style="border-collapse:collapse;${NOBG}">
+  <tr><td style="padding:0 0 8px 14px;${NOBG}">
     <p style="margin:0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
   </td></tr>
 </table>
-<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="transparent" style="border-collapse:collapse;${NOBG}">
   <tr>
-    <td style="padding:12px 0 12px 14px;vertical-align:middle;">
+    <td style="padding:12px 0 12px 14px;vertical-align:middle;${NOBG}">
       <img src="${LOGO_URL}" width="104" height="104" border="0" alt="PJ Professionals" style="display:block;border:0;outline:none;width:104px;height:104px;">
     </td>
-    <td style="padding:0 12px;vertical-align:middle;">
+    <td style="padding:0 12px;vertical-align:middle;${NOBG}">
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto;">
         <tr><td style="background-color:#1b1447;width:3px;height:98px;font-size:0;line-height:0;padding:0;">&nbsp;</td></tr>
       </table>
     </td>
-    <td style="padding:12px 14px 12px 0;vertical-align:middle;">
+    <td style="padding:12px 14px 12px 0;vertical-align:middle;${NOBG}">
       <p style="margin:0 0 2px 0;font-weight:bold;color:#1b1447;font-size:15px;line-height:1.3;${FONT}">${naam || "Uw naam"}</p>
       <p style="margin:0;color:#666666;font-size:13px;line-height:1.3;${FONT}">${functie || "Functie"}</p>
     </td>
   </tr>
 </table>
-<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:14px;">
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="transparent" style="border-collapse:collapse;margin-top:14px;${NOBG}">
 ${companyRows}
 </table>
-<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:14px;">
-  <tr><td style="height:12px;line-height:12px;font-size:1px;">&nbsp;</td></tr>
-  <tr><td style="height:12px;line-height:12px;font-size:1px;">&nbsp;</td></tr>
-  <tr><td style="padding:0 24px 4px 14px;"><span style="color:#b3b3b3;font-size:9px;${FONT}">Vertrouwelijkheid</span></td></tr>
-  <tr><td style="padding:0 24px 0 14px;line-height:1.5;"><span style="color:#b3b3b3;font-size:9px;${FONT}">${CONFIDENTIALITY_TEXT}</span></td></tr>
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="transparent" style="border-collapse:collapse;margin-top:14px;${NOBG}">
+  <tr><td style="height:12px;line-height:12px;font-size:1px;${NOBG}">&nbsp;</td></tr>
+  <tr><td style="height:12px;line-height:12px;font-size:1px;${NOBG}">&nbsp;</td></tr>
+  <tr><td style="padding:0 24px 4px 14px;${NOBG}"><span style="color:#b3b3b3;font-size:9px;${FONT}">Vertrouwelijkheid</span></td></tr>
+  <tr><td style="padding:0 24px 0 14px;line-height:1.5;${NOBG}"><span style="color:#b3b3b3;font-size:9px;${FONT}">${CONFIDENTIALITY_TEXT}</span></td></tr>
 </table>`;
 }
 
