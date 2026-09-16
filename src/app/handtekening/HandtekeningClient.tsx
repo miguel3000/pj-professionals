@@ -58,16 +58,23 @@ function buildSignatureHTML(
             </tr>
           </table>`;
 
+  // Same 2-cell shape as iconCell but with a blank spacer instead of an
+  // <img> — keeps text-only rows (werkdagen) indented flush with the icon
+  // rows' text rather than sitting under the icons themselves.
+  const indentCell = (inner: string) =>
+    `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+            <tr>
+              <td style="width:20px;padding:0;font-size:0;line-height:0;">&nbsp;</td>
+              <td valign="middle">${inner}</td>
+            </tr>
+          </table>`;
+
   // Area/prefix code, then a space, then the rest run together
   // (e.g. "06 12345678", "073 7621035") — mobiel/KANTOOR_TEL themselves
   // stay raw digits for the tel: href.
   const splitTel = (num: string, prefixLen: number) => `${num.slice(0, prefixLen)} ${num.slice(prefixLen)}`;
   const formattedMobiel = splitTel(mobiel, 2);
   const formattedKantoorTel = splitTel(KANTOOR_TEL, 3);
-
-  let personalRows = "";
-  if (werkdagen.length > 0)
-    personalRows += `\n        <tr><td style="padding:0 0 3px 0;"><span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span></td></tr>`;
 
   // Company block is a single stacked column, always — a two-column
   // side-by-side layout with a @media query to collapse it on mobile was
@@ -86,18 +93,28 @@ function buildSignatureHTML(
       .join("")}
     </table>`;
 
+  // Phone rows first, then werkdagen spliced in right after whichever one
+  // renders first (mobiel if filled in, otherwise the 073 landline) — so
+  // werkdagen always reads as "the line right under the first phone number."
+  const phoneRows = [
+    mobiel
+      ? iconCell(SMARTPHONE_ICON, `<a href="tel:${mobiel}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${formattedMobiel}</a>`)
+      : null,
+    iconCell(PHONE_ICON, `<a href="tel:${KANTOOR_TEL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${formattedKantoorTel}</a>`),
+  ].filter((row): row is string => row !== null);
+
+  if (werkdagen.length > 0)
+    phoneRows.splice(1, 0, indentCell(`<span style="color:#333333;font-size:11px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span>`));
+
   const companyItems = stackedColumn(
     [
-      mobiel
-        ? iconCell(SMARTPHONE_ICON, `<a href="tel:${mobiel}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${formattedMobiel}</a>`)
-        : null,
-      iconCell(PHONE_ICON, `<a href="tel:${KANTOOR_TEL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${formattedKantoorTel}</a>`),
+      ...phoneRows,
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[0]}</span>`),
       iconCell(OFFICE_ICON, `<span style="color:#333333;font-size:12px;${FONT}">${ADDRESSES[1]}</span>`),
       iconCell(EMAIL_ICON, `<a href="mailto:${KANTOOR_EMAIL}" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">${KANTOOR_EMAIL}</a>`),
       iconCell(GLOBE_ICON, `<a href="https://www.pjprofessionals.nl" style="color:#333333;font-size:13px;text-decoration:none;${FONT}">www.pjprofessionals.nl</a>`),
       `<a href="https://www.linkedin.com/company/pjprofessionals/" style="text-decoration:none;">${iconCell(LINKEDIN_ICON, `<span style="color:#333333;font-size:12px;${FONT}">LinkedIn | PJ Professionals</span>`)}</a>`,
-    ].filter((row): row is string => row !== null),
+    ],
     0
   );
 
@@ -105,9 +122,10 @@ function buildSignatureHTML(
 
   // Greeting is its own block above the logo row now — it used to be the
   // first row inside the text column's nested table (to keep it pinned in
-  // place while Naam/Functie/personalRows centered against the logo below
-  // it). Pulling it out entirely means the logo row only ever has to center
-  // Naam→werkdagen against the logo/divider, one job instead of two.
+  // place while Naam/Functie centered against the logo below it). Pulling
+  // it out entirely means the logo row only ever has to center Naam/Functie
+  // against the logo/divider, one job instead of two. Mobiel and werkdagen
+  // both moved down into the company block below.
   return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
   <tr><td style="padding:0 0 8px 14px;">
     <p style="margin:0;color:#333333;font-size:13px;${FONT}">Met vriendelijke groet,</p>
@@ -125,9 +143,7 @@ function buildSignatureHTML(
     </td>
     <td style="padding:12px 14px 12px 0;vertical-align:middle;">
       <p style="margin:0 0 2px 0;font-weight:bold;color:#1b1447;font-size:15px;line-height:1.3;${FONT}">${naam || "Uw naam"}</p>
-      <p style="margin:0 0 10px 0;color:#666666;font-size:13px;line-height:1.3;${FONT}">${functie || "Functie"}</p>
-      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">${personalRows}
-      </table>
+      <p style="margin:0;color:#666666;font-size:13px;line-height:1.3;${FONT}">${functie || "Functie"}</p>
     </td>
   </tr>
 </table>
