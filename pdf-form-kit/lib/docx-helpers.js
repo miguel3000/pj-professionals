@@ -79,13 +79,30 @@ function h1(text, opts = {}) {
 // unzipped. Marker shapes:
 //   ⟦FIELD:tag|0|placeholder text⟧    - single-line fillable field
 //   ⟦FIELD:tag|1|placeholder text⟧    - multi-line fillable field
+//   ⟦FIELD:tag|0|placeholder|STYLE:size=80,bold=1,font=Playfair Display⟧
+//                                      - same, with a non-default type style
+//                                        (size in half-points) for both the
+//                                        typed-text and placeholder runs —
+//                                        e.g. a cover-page title field.
 //   ⟦DATEFIELD:tag|placeholder text⟧  - single-line field that also gets a
 //                                        native Acrobat calendar picker
 //                                        (finalize_pdf.py wires the
 //                                        AFDate_FormatEx JS onto it)
 //   ⟦CHECKBOX:tag⟧                    - a checkbox (label is a separate run)
-function fieldMarker(tag, placeholder, multiline = false) {
-  return `⟦FIELD:${tag}|${multiline ? 1 : 0}|${placeholder}⟧`;
+//
+// The style object accepts size/font/bold/color — only pass what a caller
+// wants to override, the rest fall back to the normal field styling.
+function styleSuffix(style) {
+  if (!style) return "";
+  const parts = [];
+  if (style.size) parts.push(`size=${style.size}`);
+  if (style.bold) parts.push("bold=1");
+  if (style.font) parts.push(`font=${style.font}`);
+  if (style.color) parts.push(`color=${style.color}`);
+  return parts.length ? `|STYLE:${parts.join(",")}` : "";
+}
+function fieldMarker(tag, placeholder, multiline = false, style = null) {
+  return `⟦FIELD:${tag}|${multiline ? 1 : 0}|${placeholder}${styleSuffix(style)}⟧`;
 }
 function dateFieldMarker(tag, placeholder) {
   return `⟦DATEFIELD:${tag}|${placeholder}⟧`;
@@ -93,8 +110,14 @@ function dateFieldMarker(tag, placeholder) {
 function checkboxMarker(tag) {
   return `⟦CHECKBOX:${tag}⟧`;
 }
-function fieldRun(tag, placeholder, multiline = false) {
-  return new TextRun({ text: fieldMarker(tag, placeholder, multiline), font: BODY_FONT, size: 20, color: COLORS.bodyText });
+function fieldRun(tag, placeholder, multiline = false, style = null) {
+  return new TextRun({
+    text: fieldMarker(tag, placeholder, multiline, style),
+    font: (style && style.font) || BODY_FONT,
+    size: (style && style.size) || 20,
+    bold: !!(style && style.bold),
+    color: (style && style.color) || COLORS.bodyText,
+  });
 }
 function dateFieldRun(tag, placeholder) {
   return new TextRun({ text: dateFieldMarker(tag, placeholder), font: BODY_FONT, size: 20, color: COLORS.bodyText });

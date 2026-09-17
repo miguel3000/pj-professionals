@@ -16,7 +16,7 @@ import sys
 import json
 
 FIELD_RE = re.compile(
-    r'<w:r>(?:(?!<w:r>).)*?<w:t[^>]*>⟦FIELD:([a-zA-Z0-9_]+)\|([01])\|([^⟧]*)⟧</w:t></w:r>',
+    r'<w:r>(?:(?!<w:r>).)*?<w:t[^>]*>⟦FIELD:([a-zA-Z0-9_]+)\|([01])\|([^⟧|]*)(?:\|STYLE:([^⟧]*))?⟧</w:t></w:r>',
     re.DOTALL,
 )
 DATEFIELD_RE = re.compile(
@@ -39,11 +39,12 @@ def next_id():
     return _id_counter[0]
 
 
-def rpr(font=BODY_FONT, color=BODY_TEXT, size=20, italic=False):
+def rpr(font=BODY_FONT, color=BODY_TEXT, size=20, italic=False, bold=False):
     i = "<w:i/><w:iCs/>" if italic else ""
+    b = "<w:b/><w:bCs/>" if bold else ""
     return (
         f'<w:rPr><w:rFonts w:ascii="{font}" w:cs="{font}" w:eastAsia="{font}" w:hAnsi="{font}"/>'
-        f'{i}<w:color w:val="{color}"/><w:sz w:val="{size}"/><w:szCs w:val="{size}"/></w:rPr>'
+        f'{b}{i}<w:color w:val="{color}"/><w:sz w:val="{size}"/><w:szCs w:val="{size}"/></w:rPr>'
     )
 
 
@@ -55,10 +56,42 @@ def xml_escape(text):
     )
 
 
-def make_field_sdt(tag, multiline, placeholder):
+def parse_style(style_str):
+    """'size=80,bold=1,font=Playfair Display' -> {'size': 80, 'bold': True, 'font': 'Playfair Display'}"""
+    if not style_str:
+        return {}
+    style = {}
+    for part in style_str.split(","):
+        if "=" not in part:
+            continue
+        key, val = part.split("=", 1)
+        key = key.strip()
+        val = val.strip()
+        if key == "size":
+            style["size"] = int(val)
+        elif key == "bold":
+            style["bold"] = val == "1"
+        elif key in ("font", "color"):
+            style[key] = val
+    return style
+
+
+def make_field_sdt(tag, multiline, placeholder, style=None):
+    style = style or {}
     sid = next_id()
-    field_rpr = rpr()
-    placeholder_rpr = rpr(color=PLACEHOLDER, italic=True)
+    field_rpr = rpr(
+        font=style.get("font", BODY_FONT),
+        color=style.get("color", BODY_TEXT),
+        size=style.get("size", 20),
+        bold=style.get("bold", False),
+    )
+    placeholder_rpr = rpr(
+        font=style.get("font", BODY_FONT),
+        color=PLACEHOLDER,
+        size=style.get("size", 20),
+        bold=style.get("bold", False),
+        italic=True,
+    )
     ml = "1" if multiline == "1" else "0"
     esc_placeholder = xml_escape(placeholder)
     return (
@@ -101,9 +134,9 @@ def main():
     registry = {}
 
     def field_sub(m):
-        tag, multiline, placeholder = m.group(1), m.group(2), m.group(3)
+        tag, multiline, placeholder, style_str = m.group(1), m.group(2), m.group(3), m.group(4)
         registry[tag] = {"type": "text", "multiline": multiline == "1"}
-        return make_field_sdt(tag, multiline, placeholder)
+        return make_field_sdt(tag, multiline, placeholder, parse_style(style_str))
 
     def datefield_sub(m):
         tag, placeholder = m.group(1), m.group(2)
