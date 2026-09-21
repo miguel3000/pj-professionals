@@ -230,10 +230,44 @@ export default function Merkboek() {
         </div>
       </section>
 
-      {/* ── 05 DOWNLOADS ──────────────────────────────────────────────── */}
+      {/* ── 05 BERICHTEN ──────────────────────────────────────────────── */}
+      <section style={{ padding: "clamp(3rem,8vw,5rem) clamp(1.5rem,5vw,4rem)", background: "#E6F2F8" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto" }}>
+          <p className="mb-sans" style={{ fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#2E86AB", marginBottom: "0.75rem" }}>05 · Berichten</p>
+          <h2 className="mb-display" style={{ fontSize: "clamp(1.6rem,4vw,2.4rem)", fontWeight: 700, color: "#0B3C5D", marginBottom: "1rem" }}>LOGO Berichten Diensten</h2>
+          <p className="mb-sans" style={{ fontSize: "1rem", fontWeight: 300, color: "#0A2540", opacity: 0.65, lineHeight: 1.75, maxWidth: 600, marginBottom: "2.5rem" }}>
+            Gebruik dit logo als profielfoto in berichtendiensten op je (werk)telefoon, zoals WhatsApp, Teams en Signal. Het beeldmerk is vierkant aangeleverd, zodat het in de ronde uitsnede van de app netjes in beeld blijft.
+          </p>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "2.5rem", alignItems: "center" }}>
+            <Image src="/merkboek/logos/PJ-Professionals-Logo-Berichten.png" alt="PJ Professionals logo voor berichtendiensten" width={910} height={910} style={{ width: 200, height: 200, borderRadius: "50%", border: "1px solid rgba(11,60,93,0.12)" }} />
+            <div style={{ flex: "1 1 260px" }}>
+              <p className="mb-sans" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#0B3C5D" }}>PJ-Professionals-Logo-Berichten.png</p>
+              <p className="mb-sans" style={{ fontSize: "0.68rem", letterSpacing: "0.06em", color: "rgba(10,37,64,0.45)", margin: "0.2rem 0 1.25rem" }}>PNG · 910×910 px</p>
+              <a href="/merkboek/logos/PJ-Professionals-Logo-Berichten.png" download="PJ-Professionals-Logo-Berichten.png" style={{ display: "inline-block", padding: "0.7rem 1.5rem", background: "#0B3C5D", color: "#fff", fontFamily: "inherit", fontSize: "0.82rem", fontWeight: 600, textDecoration: "none", borderRadius: 2 }}>
+                ↓ Download logo
+              </a>
+            </div>
+          </div>
+
+          <div style={{ marginTop: "2.5rem", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: "1.5rem" }}>
+            {[
+              { t: "iPhone", d: "Tik op Download logo. Houd de afbeelding ingedrukt en kies ‘Bewaar in Foto’s’. Kies daarna de foto als profielfoto in de app." },
+              { t: "Android", d: "Tik op Download logo. Staat de afbeelding open in de browser: houd hem ingedrukt en kies ‘Afbeelding downloaden’. Kies daarna de foto als profielfoto in de app." },
+            ].map((x) => (
+              <div key={x.t} style={{ padding: "1.25rem 1.5rem", background: "#fff", borderRadius: 2 }}>
+                <p className="mb-sans" style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#2E86AB", marginBottom: "0.5rem" }}>{x.t}</p>
+                <p className="mb-sans" style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "#0B3C5D" }}>{x.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 06 DOWNLOADS ──────────────────────────────────────────────── */}
       <section style={{ padding: "clamp(3rem,8vw,5rem) clamp(1.5rem,5vw,4rem)", background: "#0A2540" }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <p className="mb-sans" style={{ fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#3FA7D6", marginBottom: "0.75rem" }}>05 · Downloads</p>
+          <p className="mb-sans" style={{ fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#3FA7D6", marginBottom: "0.75rem" }}>06 · Downloads</p>
           <h2 className="mb-display" style={{ fontSize: "clamp(1.6rem,4vw,2.4rem)", fontWeight: 700, color: "#fff", marginBottom: "1rem" }}>Logo bestanden</h2>
           <p className="mb-sans" style={{ fontSize: "1rem", fontWeight: 300, color: "rgba(255,255,255,0.45)", lineHeight: 1.75, maxWidth: 560, marginBottom: "2.5rem" }}>
             Download de logo&apos;s als PNG met transparante achtergrond. Voor vectorbestanden neem contact op met de directie.
