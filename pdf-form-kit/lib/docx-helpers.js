@@ -101,8 +101,12 @@ function styleSuffix(style) {
   if (style.color) parts.push(`color=${style.color}`);
   return parts.length ? `|STYLE:${parts.join(",")}` : "";
 }
-function fieldMarker(tag, placeholder, multiline = false, style = null) {
-  return `⟦FIELD:${tag}|${multiline ? 1 : 0}|${placeholder}${styleSuffix(style)}⟧`;
+// `bind` (optional): a key shared by every field that should mirror the same
+// value — e.g. the cover title and a footer line on every later page. All
+// fields with the same key are data-bound to one custom-XML node by
+// inject_sdt.py, so typing in one updates the others live in Word.
+function fieldMarker(tag, placeholder, multiline = false, style = null, bind = null) {
+  return `⟦FIELD:${tag}|${multiline ? 1 : 0}|${placeholder}${styleSuffix(style)}${bind ? `|BIND:${bind}` : ""}⟧`;
 }
 function dateFieldMarker(tag, placeholder) {
   return `⟦DATEFIELD:${tag}|${placeholder}⟧`;
@@ -110,9 +114,9 @@ function dateFieldMarker(tag, placeholder) {
 function checkboxMarker(tag) {
   return `⟦CHECKBOX:${tag}⟧`;
 }
-function fieldRun(tag, placeholder, multiline = false, style = null) {
+function fieldRun(tag, placeholder, multiline = false, style = null, bind = null) {
   return new TextRun({
-    text: fieldMarker(tag, placeholder, multiline, style),
+    text: fieldMarker(tag, placeholder, multiline, style, bind),
     font: (style && style.font) || BODY_FONT,
     size: (style && style.size) || 20,
     bold: !!(style && style.bold),
