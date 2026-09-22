@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import CopyButton from "./CopyButton";
 
 export const metadata = {
   title: "Merkboek — PJ Professionals",
@@ -260,6 +261,77 @@ export default function Merkboek() {
                 <p className="mb-sans" style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "#0B3C5D" }}>{x.d}</p>
               </div>
             ))}
+          </div>
+
+          {/* ── WhatsApp Business instellen ──────────────────────────── */}
+          <div style={{ marginTop: "3.5rem", paddingTop: "3rem", borderTop: "1px solid rgba(11,60,93,0.1)" }}>
+            <p className="mb-sans" style={{ fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#2E86AB", marginBottom: "0.75rem" }}>WhatsApp Business</p>
+            <h3 className="mb-display" style={{ fontSize: "clamp(1.3rem,3vw,1.8rem)", fontWeight: 700, color: "#0B3C5D", marginBottom: "1rem" }}>WhatsApp Business instellen</h3>
+            <p className="mb-sans" style={{ fontSize: "0.95rem", fontWeight: 300, color: "#0A2540", opacity: 0.65, lineHeight: 1.75, maxWidth: 600, marginBottom: "2rem" }}>
+              Dit bedrijfsprofiel is verplicht voor elke medewerker die WhatsApp Business gebruikt namens PJ Professionals. Ga naar Instellingen → jouw naam en vul het profiel exact zo in:
+            </p>
+
+            <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "1.1rem" }}>
+              {[
+                { d: <>Klik op <strong>Instellingen</strong>.</> },
+                { d: <>Klik op je naam.</> },
+                {
+                  d: <>Gebruik <code style={{ background: "rgba(11,60,93,0.08)", padding: "0.1rem 0.35rem", borderRadius: 2 }}>PJ-Professionals-Logo-Berichten.png</code> als profielfoto — <strong>niet schalen of aanpassen</strong>.</>,
+                },
+                {
+                  d: (
+                    <>
+                      Gebruik <code style={{ background: "rgba(11,60,93,0.08)", padding: "0.1rem 0.35rem", borderRadius: 2 }}>Foto homepage.png</code> als omslagfoto.{" "}
+                      <a href={`${BASE}/merkboek/logos/PJ-Professionals-Cover-Homepage.png`} download="Foto homepage.png" style={{ color: "#3FA7D6", textDecoration: "none", fontWeight: 500 }}>
+                        ↓ download
+                      </a>
+                    </>
+                  ),
+                },
+                { d: <>Categorie: <strong>Medical &amp; Health</strong>.</> },
+                { d: <>Openingstijden: vul alleen je eigen werkdagen in, laat de overige dagen op <strong>Gesloten</strong>.</> },
+                {
+                  d: (
+                    <>
+                      Adres: vul beide bedrijfsadressen in, in deze volgorde.
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginTop: "0.6rem" }}>
+                        {["Bruistensingel 130, 5232 AC 's-Hertogenbosch", "Raadhuishof 25, 5341 HR Oss"].map((addr) => (
+                          <div key={addr} style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexWrap: "wrap" }}>
+                            <span className="mb-sans" style={{ fontSize: "0.85rem", color: "#0B3C5D" }}>{addr}</span>
+                            <CopyButton text={addr} />
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  ),
+                },
+                {
+                  d: (
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexWrap: "wrap" }}>
+                      <span>Website:</span>
+                      <span className="mb-sans" style={{ fontSize: "0.85rem", color: "#0B3C5D" }}>www.pjprofessionals.nl</span>
+                      <CopyButton text="www.pjprofessionals.nl" />
+                    </div>
+                  ),
+                },
+                { d: <>E-mail: vul je eigen <code style={{ background: "rgba(11,60,93,0.08)", padding: "0.1rem 0.35rem", borderRadius: 2 }}>@pjprofessionals.nl</code> e-mailadres in.</> },
+              ].map((step, i) => (
+                <li key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+                  <span className="mb-sans" style={{
+                    flexShrink: 0, width: "1.6rem", height: "1.6rem", borderRadius: "50%",
+                    background: "#0B3C5D", color: "#fff", fontSize: "0.75rem", fontWeight: 700,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>{i + 1}</span>
+                  <div className="mb-sans" style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "#0B3C5D" }}>{step.d}</div>
+                </li>
+              ))}
+            </ol>
+
+            <div style={{ marginTop: "1.75rem", padding: "1rem 1.25rem", background: "rgba(11,60,93,0.06)", borderLeft: "3px solid #0B3C5D", borderRadius: 2 }}>
+              <p className="mb-sans" style={{ fontSize: "0.85rem", fontWeight: 700, color: "#0B3C5D", margin: 0 }}>
+                × Laat alle overige velden leeg.
+              </p>
+            </div>
           </div>
         </div>
       </section>
