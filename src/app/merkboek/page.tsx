@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import fs from "fs";
+import path from "path";
 import CopyButton from "./CopyButton";
 import Accordion from "./Accordion";
 
@@ -61,6 +63,16 @@ const DOWNLOADS = [
   { name: "Beeldmerk — wit",          file: "PJ-Professionals-beeldmerk-wit.png",     size: "754×750 px", bg: "#0A2540",  light: true  },
   { name: "Beeldmerk — donker",       file: "PJ-Professionals-beeldmerk-donker.png",  size: "754×750 px", bg: "#FFFFFF", light: false },
 ];
+
+const BASE64_LOGOS = DOWNLOADS.map((d) => {
+  const base = d.file.replace(/\.png$/, "");
+  const txtFile = `${base}.txt`;
+  const dataUri = fs.readFileSync(
+    path.join(process.cwd(), "public", "merkboek", "logos", "base64", txtFile),
+    "utf-8"
+  );
+  return { ...d, txtFile, dataUri };
+});
 
 export default function Merkboek() {
   return (
@@ -392,6 +404,34 @@ export default function Merkboek() {
               Lettertypen: <strong style={{ color: "rgba(255,255,255,0.45)" }}>Playfair Display</strong> (<a href={`${BASE}/fonts/playfair-display.ttf`} download style={{ color: "#3FA7D6", textDecoration: "none" }}>.ttf</a>) · <strong style={{ color: "rgba(255,255,255,0.45)" }}>DM Sans</strong> (<a href={`${BASE}/fonts/dmsans.ttf`} download style={{ color: "#3FA7D6", textDecoration: "none" }}>.ttf</a>)<br />
               Vragen over de huisstijl: <strong style={{ color: "rgba(255,255,255,0.45)" }}>info@pjprofessionals.nl</strong>
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 07 BASE64 ─────────────────────────────────────────────────── */}
+      <section style={{ padding: "clamp(3rem,8vw,5rem) clamp(1.5rem,5vw,4rem)", background: "#F4F7F9" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto" }}>
+          <p className="mb-sans" style={{ fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#2E86AB", marginBottom: "0.75rem" }}>07 · Base64</p>
+          <h2 className="mb-display" style={{ fontSize: "clamp(1.6rem,4vw,2.4rem)", fontWeight: 700, color: "#0B3C5D", marginBottom: "1rem" }}>Logo als base64</h2>
+          <p className="mb-sans" style={{ fontSize: "1rem", fontWeight: 300, color: "#4A5A66", lineHeight: 1.75, maxWidth: 620, marginBottom: "2.5rem" }}>
+            Voor tools die geen externe afbeeldingslink accepteren (bijv. plakken als inline-afbeelding). Kopieer de complete <code style={{ background: "rgba(11,60,93,0.08)", padding: "0.1rem 0.35rem", borderRadius: 2 }}>data:</code>-string, of open het bestand rechtstreeks via de link.
+          </p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(11,60,93,0.1)" }}>
+            {BASE64_LOGOS.map((d) => (
+              <div key={d.file} style={{ background: "#fff", padding: "1.5rem", display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap" }}>
+                <div style={{ background: d.bg, padding: "0.5rem", borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center", width: 56, height: 56, flexShrink: 0, border: d.bg === "#FFFFFF" ? "1px solid rgba(11,60,93,0.1)" : undefined }}>
+                  <Image src={`/merkboek/logos/${d.file}`} alt={d.name} width={100} height={110} style={{ maxWidth: 40, maxHeight: 40, width: "auto", height: "auto", objectFit: "contain" }} />
+                </div>
+                <div style={{ flex: "1 1 200px", minWidth: 0 }}>
+                  <p className="mb-sans" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#0B3C5D" }}>{d.name}</p>
+                  <a href={`${BASE}/merkboek/logos/base64/${d.txtFile}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: "0.68rem", letterSpacing: "0.06em", color: "#3FA7D6", textDecoration: "none" }}>
+                    {BASE}/merkboek/logos/base64/{d.txtFile}
+                  </a>
+                </div>
+                <CopyButton text={d.dataUri} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
