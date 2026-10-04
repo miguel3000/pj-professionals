@@ -101,7 +101,7 @@ function buildSignatureHTML(
   ].filter((row): row is string => row !== null);
 
   if (werkdagen.length > 0)
-    phoneRows.splice(mobiel ? 0 : 1, 0, iconCell(CALENDAR_ICON, `<span style="color:#333333;font-size:12px;${FONT}">werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span>`));
+    phoneRows.splice(mobiel ? 0 : 1, 0, iconCell(CALENDAR_ICON, `<span style="color:#333333;font-size:12px;${FONT}">Werkdagen:&nbsp;${werkdagen.join(", ").toLowerCase()}</span>`));
 
   const companyItems = stackedColumn(
     [
@@ -436,6 +436,31 @@ function Generator({ email: userEmail }: { email: string }) {
                 de handtekening plakt meteen opgemaakt. Selecteer daarna de handtekening bij{" "}
                 <em>Nieuwe berichten</em> en <em>Antwoorden/Doorsturen</em> → OK.
               </Instruction>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-100 px-5 py-4">
+            <p className="text-xs font-semibold text-teal-dark uppercase tracking-widest mb-3">
+              Handtekening instellen op je telefoon
+            </p>
+            <div className="text-xs space-y-2">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-2">
+                <p className="font-semibold text-gray-700">Outlook-app (iPhone en Android)</p>
+                <p className="text-gray-500 leading-relaxed">
+                  Open de Outlook-app en tik linksboven op je profielfoto of initialen. Ga vervolgens
+                  via het tandwieltje ⚙ naar <em>Handtekening</em>. Gebruik je meerdere e-mailaccounts?
+                  Zet dan <em>Handtekening per account</em> aan en kies je zakelijke PJ-account.
+                </p>
+                <p className="text-gray-500 leading-relaxed">
+                  Verwijder je oude handtekening en plak de nieuwe PJ-handtekening uit de
+                  handtekeninggenerator in het veld. Controleer daarna of je naam, functie,
+                  telefoonnummer en werkdagen correct worden weergegeven.
+                </p>
+                <p className="text-gray-500 leading-relaxed">
+                  Maak tot slot op je telefoon een nieuwe e-mail om te controleren of de handtekening
+                  automatisch en correct verschijnt.
+                </p>
+              </div>
             </div>
           </div>
         </div>

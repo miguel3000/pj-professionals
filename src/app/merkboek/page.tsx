@@ -74,6 +74,34 @@ const BASE64_LOGOS = DOWNLOADS.map((d) => {
   return { ...d, txtFile, dataUri };
 });
 
+const CODE_CHIP = { background: "rgba(11,60,93,0.08)", padding: "0.1rem 0.35rem", borderRadius: 2 } as const;
+const DL_LINK = { color: "#3FA7D6", textDecoration: "none", fontWeight: 500 } as const;
+
+function Steps({ items }: { items: { d: React.ReactNode }[] }) {
+  return (
+    <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "1.1rem" }}>
+      {items.map((step, i) => (
+        <li key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+          <span className="mb-sans" style={{
+            flexShrink: 0, width: "1.6rem", height: "1.6rem", borderRadius: "50%",
+            background: "#0B3C5D", color: "#fff", fontSize: "0.75rem", fontWeight: 700,
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}>{i + 1}</span>
+          <div className="mb-sans" style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "#0B3C5D" }}>{step.d}</div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function Callout({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ marginTop: "1.75rem", padding: "1rem 1.25rem", background: "rgba(11,60,93,0.06)", borderLeft: "3px solid #0B3C5D", borderRadius: 2 }}>
+      <p className="mb-sans" style={{ fontSize: "0.85rem", fontWeight: 700, color: "#0B3C5D", margin: 0 }}>{children}</p>
+    </div>
+  );
+}
+
 export default function Merkboek() {
   return (
     <>
@@ -108,10 +136,13 @@ export default function Merkboek() {
         }
         .mb-display { font-family: 'Playfair Display', Georgia, serif; }
         .mb-sans    { font-family: 'DM Sans', system-ui, sans-serif; }
+        @media (min-width: 1024px) {
+          .mb-hero { padding-top: calc(clamp(2rem,5vw,4rem) + 6rem) !important; }
+        }
       `}</style>
 
       {/* ── COVER ─────────────────────────────────────────────────────── */}
-      <section style={{ background: "#0A2540", minHeight: "85vh", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(2rem,5vw,4rem)" }}>
+      <section className="mb-hero" style={{ background: "#0A2540", minHeight: "85vh", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(2rem,5vw,4rem)" }}>
         <Image src="/merkboek/logos/PJ-Professionals-logo-wit.png" alt="PJ Professionals" width={200} height={220} style={{ width: "clamp(100px,18vw,180px)", height: "auto" }} />
         <div style={{ maxWidth: 640 }}>
           <p className="mb-sans" style={{ fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "#3FA7D6", marginBottom: "1.25rem" }}>Merkboek &amp; Huisstijlgids</p>
@@ -266,11 +297,11 @@ export default function Merkboek() {
             </div>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "1.25rem", alignItems: "center" }}>
-              <Image src="/merkboek/logos/PJ-Professionals-Cover-Homepage.png" alt="Omslagfoto voor berichtendiensten" width={1672} height={941} style={{ width: 160, height: 90, objectFit: "cover", borderRadius: 2, border: "1px solid rgba(11,60,93,0.12)" }} />
+              <Image src="/merkboek/logos/PJ-Professionals-WhatsApp-Achtergrond.png" alt="Omslagfoto (achtergrond) voor berichtendiensten" width={1916} height={821} style={{ width: 180, height: 77, objectFit: "cover", borderRadius: 2, border: "1px solid rgba(11,60,93,0.12)" }} />
               <div>
-                <p className="mb-sans" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#0B3C5D" }}>Omslagfoto</p>
-                <p className="mb-sans" style={{ fontSize: "0.68rem", letterSpacing: "0.06em", color: "rgba(10,37,64,0.45)", margin: "0.2rem 0 0.85rem" }}>Foto homepage.png · 1672×941 px</p>
-                <a href={`${BASE}/merkboek/logos/PJ-Professionals-Cover-Homepage.png`} download="Foto homepage.png" style={{ display: "inline-block", padding: "0.6rem 1.2rem", background: "#0B3C5D", color: "#fff", fontFamily: "inherit", fontSize: "0.78rem", fontWeight: 600, textDecoration: "none", borderRadius: 2 }}>
+                <p className="mb-sans" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#0B3C5D" }}>Omslagfoto (achtergrond)</p>
+                <p className="mb-sans" style={{ fontSize: "0.68rem", letterSpacing: "0.06em", color: "rgba(10,37,64,0.45)", margin: "0.2rem 0 0.85rem" }}>WhatsappAchtergrondPJ.png · 1916×821 px</p>
+                <a href={`${BASE}/merkboek/logos/PJ-Professionals-WhatsApp-Achtergrond.png`} download="WhatsappAchtergrondPJ.png" style={{ display: "inline-block", padding: "0.6rem 1.2rem", background: "#0B3C5D", color: "#fff", fontFamily: "inherit", fontSize: "0.78rem", fontWeight: 600, textDecoration: "none", borderRadius: 2 }}>
                   ↓ Download
                 </a>
               </div>
@@ -296,8 +327,7 @@ export default function Merkboek() {
                 Dit bedrijfsprofiel is verplicht voor elke medewerker die WhatsApp Business gebruikt namens PJ Professionals. Ga naar Instellingen → jouw naam en vul het profiel exact zo in:
               </p>
 
-              <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "1.1rem" }}>
-                {[
+              <Steps items={[
                   { d: <>Klik op <strong>Instellingen</strong>.</> },
                   { d: <>Klik op je naam.</> },
                   {
@@ -313,14 +343,24 @@ export default function Merkboek() {
                   {
                     d: (
                       <>
-                        Gebruik <code style={{ background: "rgba(11,60,93,0.08)", padding: "0.1rem 0.35rem", borderRadius: 2 }}>Foto homepage.png</code> als omslagfoto.{" "}
-                        <a href={`${BASE}/merkboek/logos/PJ-Professionals-Cover-Homepage.png`} download="Foto homepage.png" style={{ color: "#3FA7D6", textDecoration: "none", fontWeight: 500 }}>
+                        Gebruik <code style={{ background: "rgba(11,60,93,0.08)", padding: "0.1rem 0.35rem", borderRadius: 2 }}>WhatsappAchtergrondPJ.png</code> als omslagfoto (achtergrond).{" "}
+                        <a href={`${BASE}/merkboek/logos/PJ-Professionals-WhatsApp-Achtergrond.png`} download="WhatsappAchtergrondPJ.png" style={{ color: "#3FA7D6", textDecoration: "none", fontWeight: 500 }}>
                           ↓ download
                         </a>
                       </>
                     ),
                   },
                   { d: <>Categorie: <strong>Medical &amp; Health</strong>.</> },
+                  {
+                    d: (
+                      <>
+                        Beschrijving: vul in <strong>Bureaudienst: 073 7621035</strong>.
+                        <div style={{ marginTop: "0.6rem" }}>
+                          <CopyButton text="Bureaudienst: 073 7621035" />
+                        </div>
+                      </>
+                    ),
+                  },
                   { d: <>Openingstijden: vul alleen je eigen werkdagen in, laat de overige dagen op <strong>Gesloten</strong>.</> },
                   {
                     d: (
@@ -346,26 +386,44 @@ export default function Merkboek() {
                     ),
                   },
                   { d: <>E-mail: vul je eigen <code style={{ background: "rgba(11,60,93,0.08)", padding: "0.1rem 0.35rem", borderRadius: 2 }}>@pjprofessionals.nl</code> e-mailadres in.</> },
-                ].map((step, i) => (
-                  <li key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
-                    <span className="mb-sans" style={{
-                      flexShrink: 0, width: "1.6rem", height: "1.6rem", borderRadius: "50%",
-                      background: "#0B3C5D", color: "#fff", fontSize: "0.75rem", fontWeight: 700,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                    }}>{i + 1}</span>
-                    <div className="mb-sans" style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "#0B3C5D" }}>{step.d}</div>
-                  </li>
-                ))}
-              </ol>
+              ]} />
 
-              <div style={{ marginTop: "1.75rem", padding: "1rem 1.25rem", background: "rgba(11,60,93,0.06)", borderLeft: "3px solid #0B3C5D", borderRadius: 2 }}>
-                <p className="mb-sans" style={{ fontSize: "0.85rem", fontWeight: 700, color: "#0B3C5D", margin: 0 }}>
-                  × Laat alle overige velden leeg.
-                </p>
-              </div>
+              <Callout>× Laat alle overige velden leeg.</Callout>
             </Accordion>
 
-            {/* Signal-accordion volgt hier */}
+            <Accordion eyebrow="Berichtenapp" title="Signal instellen">
+              <p className="mb-sans" style={{ fontSize: "0.95rem", fontWeight: 300, color: "#0A2540", opacity: 0.65, lineHeight: 1.75, maxWidth: 600, marginBottom: "2rem" }}>
+                Ook je Signal-profiel is verplicht en wordt voor iedere medewerker op dezelfde manier ingevuld. Signal kent alleen een profielfoto, naam en een korte omschrijving.
+              </p>
+
+              <Steps items={[
+                { d: <>Open Signal en tik linksboven op je <strong>profielfoto</strong> of initialen. Tik daarna op je profiel.</> },
+                {
+                  d: (
+                    <>
+                      Gebruik <code style={CODE_CHIP}>PJ-Professionals-Logo-Berichten.png</code> als profielfoto — <strong>niet schalen of aanpassen</strong>.{" "}
+                      <a href="/merkboek/logos/PJ-Professionals-Logo-Berichten.png" download="PJ-Professionals-Logo-Berichten.png" style={DL_LINK}>
+                        ↓ download
+                      </a>
+                    </>
+                  ),
+                },
+                { d: <>Naam: vul je eigen voor- en achternaam in.</> },
+                {
+                  d: (
+                    <>
+                      Over: vul in <strong>PJ Professionals · Bureaudienst 073 7621035</strong>.
+                      <div style={{ marginTop: "0.6rem" }}>
+                        <CopyButton text="PJ Professionals · Bureaudienst 073 7621035" />
+                      </div>
+                    </>
+                  ),
+                },
+                { d: <>Tik op <strong>Opslaan</strong>.</> },
+              ]} />
+
+              <Callout>× Signal heeft geen omslagfoto of zakelijke velden. Laat alle overige velden leeg.</Callout>
+            </Accordion>
           </div>
         </div>
       </section>

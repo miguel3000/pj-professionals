@@ -124,10 +124,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Two main services with background images */}
+      {/* Three main services with background images */}
       <section className="py-20 bg-teal-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Link
               href="/wmo-zorg"
               className="group relative overflow-hidden rounded-2xl h-[400px] hover:scale-[1.02] transition-transform duration-300"
@@ -141,7 +141,7 @@ export default function Home() {
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/40 to-teal-dark/20 group-hover:from-teal-dark/80 transition-colors duration-300" />
-              <div className="relative h-full flex flex-col justify-end p-10 sm:p-12">
+              <div className="relative h-full flex flex-col justify-end p-10 sm:p-12 lg:p-8">
                 <h2 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">
                   WMO
                 </h2>
@@ -183,7 +183,7 @@ export default function Home() {
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/40 to-teal-dark/20 group-hover:from-teal-dark/80 transition-colors duration-300" />
-              <div className="relative h-full flex flex-col justify-end p-10 sm:p-12">
+              <div className="relative h-full flex flex-col justify-end p-10 sm:p-12 lg:p-8">
                 <h2 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">
                   Forensische zorg
                 </h2>
@@ -191,6 +191,47 @@ export default function Home() {
                   Begeleiding, diagnostiek en behandeling binnen de forensische
                   zorg. Wij werken samen met ketenpartners aan veiligheid,
                   herstel en duurzame terugkeer in de maatschappij.
+                </p>
+                <span className="inline-flex items-center gap-2 text-white/90 font-medium text-sm group-hover:text-white transition-colors">
+                  Meer informatie
+                  <svg
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </Link>
+
+            <Link
+              href="/wlz-zorg"
+              className="group relative overflow-hidden rounded-2xl h-[400px] hover:scale-[1.02] transition-transform duration-300 md:col-span-2 lg:col-span-1"
+            >
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: "url(/images/wlz.jpg)",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/40 to-teal-dark/20 group-hover:from-teal-dark/80 transition-colors duration-300" />
+              <div className="relative h-full flex flex-col justify-end p-10 sm:p-12 lg:p-8">
+                <h2 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">
+                  WLZ
+                </h2>
+                <p className="text-white/80 leading-relaxed mb-4 drop-shadow-md">
+                  De Wet langdurige zorg (Wlz) is bedoeld voor mensen die
+                  blijvend intensieve zorg nodig hebben. Wij bieden ambulante
+                  begeleiding binnen de Wlz via een persoonsgebonden budget.
                 </p>
                 <span className="inline-flex items-center gap-2 text-white/90 font-medium text-sm group-hover:text-white transition-colors">
                   Meer informatie
