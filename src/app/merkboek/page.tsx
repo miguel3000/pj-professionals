@@ -142,16 +142,14 @@ export default function Merkboek() {
       `}</style>
 
       {/* ── COVER ─────────────────────────────────────────────────────── */}
-      <section className="mb-hero" style={{ background: "#0A2540", minHeight: "85vh", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "clamp(2rem,5vw,4rem)" }}>
-        <Image src="/merkboek/logos/PJ-Professionals-logo-wit.png" alt="PJ Professionals" width={200} height={220} style={{ width: "clamp(100px,18vw,180px)", height: "auto" }} />
-        <div style={{ maxWidth: 640 }}>
-          <p className="mb-sans" style={{ fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "#3FA7D6", marginBottom: "1.25rem" }}>Merkboek &amp; Huisstijlgids</p>
-          <h1 className="mb-display" style={{ fontSize: "clamp(2.5rem,7vw,5rem)", fontWeight: 700, lineHeight: 1.08, color: "#fff", marginBottom: "1rem" }}>PJ Professionals</h1>
-          <p className="mb-sans" style={{ fontSize: "1rem", fontWeight: 300, color: "rgba(255,255,255,0.55)", lineHeight: 1.7 }}>Richtlijnen voor het gebruik van onze visuele identiteit — logo, kleuren, typografie en beeldtaal. Versie 1.0, 2026.</p>
-        </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "1rem" }}>
-          <span className="mb-display" style={{ fontStyle: "italic", fontSize: "0.95rem", color: "rgba(255,255,255,0.4)" }}>&ldquo;Een veilige basis om verder te komen.&rdquo;</span>
-          <span className="mb-sans" style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>Versie 1.0 · 2026</span>
+      <section className="mb-hero" style={{ background: "#0A2540", padding: "clamp(2rem,5vw,4rem)", paddingBottom: "clamp(2.5rem,6vw,4.5rem)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "clamp(1.75rem,5vw,4rem)" }}>
+          <Image src="/merkboek/logos/PJ-Professionals-logo-wit.png" alt="PJ Professionals" width={200} height={220} style={{ width: "clamp(100px,14vw,160px)", height: "auto", flexShrink: 0 }} />
+          <div style={{ flex: "1 1 340px", minWidth: 0 }}>
+            <p className="mb-sans" style={{ fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#3FA7D6", marginBottom: "1rem" }}>Versie 1.0 · 2026</p>
+            <h1 className="mb-display" style={{ fontSize: "clamp(2.25rem,6vw,4.25rem)", fontWeight: 700, lineHeight: 1.1, color: "#fff", marginBottom: "1.25rem", textWrap: "balance" }}>Merkboek &amp; Huisstijlgids</h1>
+            <p className="mb-sans" style={{ fontSize: "clamp(1rem,1.6vw,1.2rem)", fontWeight: 300, color: "rgba(255,255,255,0.78)", lineHeight: 1.65, maxWidth: 620 }}>Richtlijnen voor het gebruik van onze visuele identiteit — logo, kleuren, typografie en beeldtaal.</p>
+          </div>
         </div>
       </section>
 
