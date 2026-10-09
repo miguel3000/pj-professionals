@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import fs from "fs";
 import path from "path";
+import { cookies } from "next/headers";
+import { verifySession } from "@/lib/auth";
+import LoginForm from "@/components/LoginForm";
 import CopyButton from "./CopyButton";
 import Accordion from "./Accordion";
 
@@ -102,7 +105,14 @@ function Callout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function Merkboek() {
+export default async function Merkboek() {
+  const cookieStore = await cookies();
+  const sessionToken = cookieStore.get("pj_session")?.value;
+  const session = sessionToken ? verifySession(sessionToken) : null;
+  // Local-dev-only bypass (same as the handtekening page); never active in production.
+  const isDevBypass = process.env.NODE_ENV === "development" && !session;
+  if (!session && !isDevBypass) return <LoginForm title="Merkboek" />;
+
   return (
     <>
       <style>{`

@@ -33,12 +33,12 @@ export async function POST(request: NextRequest) {
   await transporter.sendMail({
     from: "website@pjprofessionals.nl",
     to: normalizedEmail,
-    subject: "Inlogcode — Handtekening generator",
+    subject: "Inlogcode — PJ Professionals",
     html: `
       <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,sans-serif;color:#333;max-width:480px;">
         <tr><td style="padding:32px 0 16px;">
           <p style="margin:0 0 8px;font-size:15px;">Hallo,</p>
-          <p style="margin:0 0 24px;font-size:15px;">Jouw inlogcode voor de handtekening generator:</p>
+          <p style="margin:0 0 24px;font-size:15px;">Jouw inlogcode voor PJ Professionals:</p>
           <p style="margin:0 0 24px;font-size:36px;font-weight:bold;letter-spacing:10px;color:#1b1447;">${otp}</p>
           <p style="margin:0 0 8px;font-size:13px;color:#888;">De code is 10 minuten geldig.</p>
           <p style="margin:0;font-size:13px;color:#888;">Heb jij dit niet aangevraagd? Dan kun je deze e-mail negeren.</p>
