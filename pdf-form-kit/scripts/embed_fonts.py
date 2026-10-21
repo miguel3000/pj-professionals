@@ -101,6 +101,11 @@ def main():
     # <Relationships .../> (no separate close tag) when there are no
     # existing relationships yet, so it needs its own self-close -> open+
     # entries+close rewrite rather than a naive </Relationships> replace.
+    if not os.path.exists(rels_path):
+        # legacy documents (not docx-js output) often have no fontTable rels yet
+        with open(rels_path, "w", encoding="utf-8") as f:
+            f.write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+                    '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"/>')
     with open(rels_path, "r", encoding="utf-8") as f:
         rels_xml = f.read()
     if rels_xml.rstrip().endswith("/>"):
@@ -128,8 +133,12 @@ def main():
     with open(settings_path, "r", encoding="utf-8") as f:
         settings_xml = f.read()
     if "<w:embedTrueTypeFonts" not in settings_xml:
-        anchor = re.search(r"<w:displayBackgroundShape[^/]*/>", settings_xml)
-        insert_at = anchor.end() if anchor else re.search(r"<w:settings[^>]*>", settings_xml).end()
+        # last present element of the CT_Settings prefix that must precede embedTrueTypeFonts
+        prefix = ("writeProtection|view|zoom|removePersonalInformation|removeDateAndTime|"
+                  "doNotDisplayPageBoundaries|displayBackgroundShape|printPostScriptOverText|"
+                  "printFractionalCharacterWidth|printFormsData")
+        ends = [m.end() for m in re.finditer(rf"<w:(?:{prefix})\b[^>]*?/>", settings_xml)]
+        insert_at = max(ends) if ends else re.search(r"<w:settings[^>]*>", settings_xml).end()
         settings_xml = (
             settings_xml[:insert_at]
             + "<w:embedTrueTypeFonts/><w:saveSubsetFonts/>"

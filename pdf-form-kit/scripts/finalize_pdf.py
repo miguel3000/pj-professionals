@@ -89,6 +89,30 @@ def extract_shaded_rects(pdf_path):
     return shaded_by_page
 
 
+RIGHT_MARGIN_PT = 65.0  # 1300 twips
+
+
+def extract_words(pdf_path):
+    """Per page: [(x0, y0, x1, y1)] of every text word in PDF point space (bottom-left origin)."""
+    out = []
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            h = float(page.height)
+            out.append((float(page.width), [(float(w["x0"]), h - float(w["bottom"]), float(w["x1"]), h - float(w["top"])) for w in page.extract_words()]))
+    return out
+
+
+def widen_to_next_word(rect, page_w, words):
+    """Fields outside a shaded cell (legacy forms) come out as wide as their placeholder text.
+    Stretch them to the right until the next word on the same line, or the right margin."""
+    x0, y0, x1, y1 = (float(v) for v in rect)
+    limit = page_w - RIGHT_MARGIN_PT
+    for wx0, wy0, wx1, wy1 in words:
+        if wx0 > x1 - 1 and min(wy1, y1) - max(wy0, y0) > 2:  # same line, to the right
+            limit = min(limit, wx0 - 4)
+    return [x0, y0, max(x1, limit), max(y1, y0 + 14)]
+
+
 def find_containing_rect(rects, field_rect):
     fx0, fy0, fx1, fy1 = (float(v) for v in field_rect)
     cx, cy = (fx0 + fx1) / 2, (fy0 + fy1) / 2
@@ -105,13 +129,21 @@ def main():
         with open(sys.argv[3], "r", encoding="utf-8") as f:
             registry = json.load(f)
     date_tags = {tag for tag, meta in registry.items() if meta.get("type") == "date"}
+    checked_tags = {tag for tag, meta in registry.items() if meta.get("checked")}
 
     shaded_by_page = extract_shaded_rects(in_path)
+    words_by_page = extract_words(in_path)
 
     reader = PdfReader(in_path)
     writer = PdfWriter()
     writer.append(reader)
 
+    if "/AcroForm" not in writer._root_object:  # document without any fillable field: nothing to finalize
+        with open(out_path, "wb") as f:
+            writer.write(f)
+        print("no form fields; wrote plain PDF")
+        print(f"wrote {out_path}")
+        return
     acroform = writer._root_object["/AcroForm"]
 
     renamed = 0
@@ -181,6 +213,10 @@ def main():
                         ]
                     )
                     resized += 1
+                elif page_index < len(words_by_page):
+                    pw, pwords = words_by_page[page_index]
+                    obj[NameObject("/Rect")] = ArrayObject([FloatObject(v) for v in widen_to_next_word(obj["/Rect"], pw, pwords)])
+                    resized += 1
                 if tu and str(tu) in date_tags:
                     aa = DictionaryObject()
                     fmt = DictionaryObject()
@@ -190,6 +226,7 @@ def main():
                     obj[NameObject("/AA")] = aa
                     date_fields += 1
             elif ft == "/Btn":
+                _want_on = bool(tu and str(tu) in checked_tags)
                 ap = obj.get("/AP")
                 n = ap.get("/N") if ap else None
                 if n is not None:
@@ -213,6 +250,9 @@ def main():
                             ap[NameObject("/N")] = new_n
                             obj[NameObject("/AS")] = NameObject("/Off")
                             checkbox_fixed += 1
+                if _want_on:
+                    obj[NameObject("/AS")] = NameObject("/Yes")
+                    obj[NameObject("/V")] = NameObject("/Yes")
 
     # Every /Tx field's /DA references /Helv, but LibreOffice's own export
     # only ever needed its Type3 design fonts + checkbox symbol font in

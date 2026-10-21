@@ -24,7 +24,7 @@ When building or converting a document: **open the matching reference, copy its 
 | Brieven | `Briefpapier PJ Professionals BV.png` | Logo band top, address/KvK/AGB art at the bottom. |
 | Formulieren, policy/Beleid body pages | `Briefpapier Formulier PJ Professionals.png` | Logo band top only. Identical art to the Evaluatie / "zonder voettekst" backdrop. |
 | Cover of policy/Beleid/report documents | `Voorblad Template PJ Professionals BV (blank).png` | Big PJ circle in the middle; title above it, version block below. |
-| Landscape pages | *(not created yet — see §10)* | Portrait art must never be stretched or rotated. |
+| Landscape pages | `Briefpapier Formulier landscape.png` (generated from crops of the portrait art: logo block left, tagline right, hairline redrawn across, watermark bottom-right) | Portrait art must never be stretched or rotated. Used for the Sociogram. |
 
 Page size is **always A4 portrait** (11906 × 16838 twips) unless a document is explicitly landscape. US Letter is converted to A4.
 
@@ -69,10 +69,10 @@ Rules that follow:
 
 ## 6. Cover page recipe (from `Template PJ Professionals BV.docx`)
 
-- Title paragraph: centered, `spacing before 2006`, **Titel** 40 pt (`sz 80`) Playfair Display bold `1A1A1A`, line break, **Sub titel** 24 pt (`sz 48`) Playfair Display. Both are content controls bound to `titel` / `subtitel`.
-- Longer titles: reduce the size so title + subtitle end above the circle (**above 4000 twips**). Sizes used in the pilot (28 pt up to 26 chars, 22 pt beyond, `before` ≈ 1700) are a first guess, **not verified in Word** — check each cover.
-- Version block (10 pt DM Sans, `1A1A1A`, exact line 210): `Versienummer: <field>` (this paragraph carries `spacing before 11014`), `Versiedatum: <field>`, `Documenteigenaar: PJ Professionals` (**fixed text, not a field**). The block must end **above the hairline at 15921**.
-- The line-break run after the title must use the small (10 pt) run properties, otherwise the subtitle drops into the logo circle.
+- **Every cover line has an EXACT line height** (`w:lineRule="exact"`). Legacy documents inherit a 1.16× default line spacing (`pPrDefault line=278`) the Template does not have; with automatic line height the 40 pt title block grew in Word and the subtitle drifted toward the logo circle (pilot, Oct 2026). Exact heights make the cover independent of inherited spacing, font metrics and installed fonts.
+- Title paragraph: centered, `spacing before 2006`, line exact = 1.25 × font size, **Titel** 40 pt (`sz 80`) Playfair Display bold `1A1A1A`, bound to `titel`. **Sub titel** is its own paragraph right below (`before 0`, exact 1.25 × size), 24 pt (`sz 48`) Playfair Display, bound to `subtitel`. Rendered position to match the Template: title box 124.8 → 164.8 pt, subtitle 173 → 197 pt, both **above the circle at 204 pt**.
+- Longer titles: the size is chosen automatically — the largest of 40/32/28/24/22/20/18 pt that keeps the title on **one line** (greedy word-wrap estimate, bold Playfair ≈ 0.72 em/char, regular ≈ 0.58, usable width 455 pt); if none fits, the largest that fits in two lines. `spacing before` shrinks (2006 → min 700) until title + subtitle end above the circle (**under 3950 twips**), and the version block's `before` is computed from the estimated line counts so it always starts at 14760 twips. Checked in LibreOffice on 6 covers; **not yet verified in Word**.
+- Version block (10 pt DM Sans, `1A1A1A`, exact line 210): `Versienummer: <field>`, `Versiedatum: <field>`, `Documenteigenaar: PJ Professionals` (**fixed text, not a field**). The first line's box top is placed at **14760 twips** from the page top (Template: 748.9 pt) by computing its `spacing before`; the block must end **above the hairline at 15921**.
 - Cover fields are pre-filled with the document's real values when converting existing documents (never leave "X").
 
 ## 7. Fields and checkboxes
@@ -84,6 +84,10 @@ Rules that follow:
 - Address block in letters: Naam / Adres / Postcode-Plaats / blank / Plaats, Datum, each exact line height 210 (≈ 10.5 pt), blank line 300. Looser spacing was rejected.
 - Multi-line fields in PDF forms: box height is a UX choice, not a chars-per-line calculation; character counters sit directly under the box (limits are per field, see the Evaluatie/Zorgplan PDFs).
 - Free-text fields in forms must not carry the date-picker script.
+- **Empty answer cells in tables** (incl. whitespace-only ones) get a multi-line text control; its tag comes from the label cell to the left, else the nearest label above. Empty paragraphs in legacy documents are self-closing (`<w:p …/>`) — handle that when inserting.
+- Bullets that were really tick choices (Mentor / Curator / Informeel) become checkboxes; `Ja/Nee` text becomes two checkboxes (Ja, Nee); `[ ]` text becomes a checkbox.
+- Dot-leader example lists (Intake "........ woont zelfstandig") are examples, not fields: left as text.
+- Legacy colours that clash with the brand (teal table header `008080`, mixed blues in Beleid headings) are remapped to Primair `0B3C5D`; semantic colours (stoplight red/orange/green in the Signaleringsplan, grey section bars) stay.
 
 ## 8. Typography
 
@@ -99,11 +103,33 @@ Rules that follow:
 4. Automated checks per file: Word-schema validation (`validate.py --original`), no text in keep-out zones (§3), control counts equal original counts, fonts embedded, A4, page-count change reported, old footer/logo text absent.
 5. **PDFs only after an explicit "go" on the docx set.** Writeable PDF = `finalize_pdf.py` (+ counters where the form had them). Standard: unencrypted AcroForm, Helvetica 10 pt field text, shaded field background (`/MK/BG`), `app.runtimeHighlight=false`.
 6. **Commit and push only on an explicit "commit and push"**, and only the files of that task.
-7. Rebuild after changing a source: PDFs are generated from the Word source, never edited by hand.
+7. **Generated paragraphs must set their own spacing** (`before/after/line`) — never rely on inherited defaults; legacy documents differ from the Template here and Word and LibreOffice then disagree.
+8. Rebuild after changing a source: PDFs are generated from the Word source, never edited by hand.
 
 ## 10. Open questions / not decided yet
 
-- Landscape backdrop (Sociogram, Interne audit): generate from the portrait art vs. other approach — pending.
-- **Pilot rejected (Oct 2026):** the first three converted documents (waarschuwingsbrief, Risico inventarisatie, Jaarplan) show text over the logo/footer in the user's Word. Cause not yet identified (LibreOffice renders show no overlap) — needs a Word screenshot; update §3–§5 once found.
+- Landscape pages: backdrop generated (§2). Floating diagram text boxes (Sociogram) stay anchored to their paragraph; start the diagram section on a new page so no box lands on the footer.
+- **Interne audit 2026 not converted:** it is a PDF-to-Word export (headings and the table of contents live inside floating text boxes, 10 sections with 2/3-column breaks, zero margins, tables wider than the page, 49 boxes split across runs). Needs a proper rebuild, decision pending.
+- **Pilot rejected (Oct 2026):** objection = cover title/subtitle position in Word (header/footer do **not** overlap in Word, checked by the user). Fixed with exact line heights (§6) — to be re-checked in Word. Other objections, if any, still to be collected.
 - Legacy-document typography restyle (DM Sans / Playfair) — chosen, but unverified against page counts and TOC refresh in Word.
 - Table-of-contents refresh: `updateFields` on open (Word prompts once) vs. pre-refreshed TOC for PDFs.
+
+## Interne audit 2026 (rebuild)
+- The PDF-to-Word export could not be converted in place; rebuilt from extracted content (`pdf-form-kit/scripts/rebuild_interne_audit.py`): Template cover, TOC page, portrait section 1, landscape section 2 (single findings table, repeating header row, Formulier landscape backdrop).
+- Categorie column: 3 real checkboxes per finding; the option without a leading ☐ in the export was the selected one. Directiebeoordeling (ISO 9.3) had none selected -> left unchecked, to confirm with owner.
+- Version number unknown (cover field left as placeholder). "Mandaatdocument ... d.d." has no date in the source.
+
+## Chapters start on a new page (rule, decided 2026-10-21)
+- Every chapter (Heading 1 / "Kop1") starts on a new page — in all documents, Beleid and forms alike. Sub-headings (Heading 2+) flow normally.
+- Implemented as `pageBreakBefore` on the Heading 1 style (not per paragraph), via `restyle_docx.chapters_on_new_page(pkg)`; CLI wrapper pattern: unzip -> call -> rezip.
+- The function also removes what would turn that rule into blank pages: empty Heading 1 paragraphs (style dropped), and empty / hard-page-break paragraphs sitting directly in front of a chapter heading.
+- New or rebuilt documents: build headings with the real Heading 1 style (never bold text), then run the function; never add manual page breaks before chapters.
+- A document title that is the first heading (e.g. "Privacyverklaring ...") is unaffected, it already sits at the top of a page.
+- Check after applying: every chapter heading is the first line of its page (pdftotext per page) and there are no near-empty pages. TOC page numbers change -> TOC field must be refreshed before the PDF is made.
+- Open data issue (not changed without OK): 07 kindcheck has two chapters numbered "2." ("Kinderen in het huishouden" and "Opvoedsituatie").
+
+## Writeable PDFs (step 2, started 2026-10-21 after explicit "go")
+- Order per document: docx final -> `refresh_toc.py` (cached TOC page numbers) -> `make_writeable_pdf.py <docx> <pdf>`; PDF is written next to the docx in `documenten/Nieuwe stationary/<map>/`.
+- Pre-filled text controls (cover title/subtitle/date, footer title, audit findings) are flattened to static text so they keep their typography; empty controls stay fillable. Pre-ticked checkboxes keep their state.
+- `finalize_pdf.py`: fields outside a shaded cell are widened to the next word / right margin; documents with no fields get a plain PDF.
+- Known limits: footer controls (page footer "versie X") are static in the PDF; multi-line answer cells in legacy tables are single-line fields.
