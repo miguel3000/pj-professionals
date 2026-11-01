@@ -2,6 +2,8 @@ import PageHero from "@/components/PageHero";
 import SectionBlock from "@/components/SectionBlock";
 import ParallaxDivider from "@/components/ParallaxDivider";
 import Link from "next/link";
+import DownloadButton from "@/components/DownloadButton";
+import { kwaliteitsverslagen } from "@/lib/documents";
 
 export const metadata = {
   title: "Forensische zorg - PJ Professionals",
@@ -276,6 +278,23 @@ export default function ForensischeZorg() {
           is kwaliteitsontwikkeling verankerd in het dagelijks handelen van
           het forensische team.
         </p>
+        <h3>Kwaliteitsjaarverslag Forensische Zorg</h3>
+        <p>
+          Ieder jaar leggen wij verantwoording af over de kwaliteit van onze
+          forensische zorg in een kwaliteitsjaarverslag.
+        </p>
+        <DownloadButton doc={kwaliteitsverslagen[0]} />
+        <h4 className="!mt-8 !mb-2 text-base font-semibold text-teal-dark">Eerdere kwaliteitsverslagen</h4>
+        <ul className="not-prose flex flex-wrap gap-x-6 gap-y-1 text-sm">
+          {kwaliteitsverslagen.slice(1).map((doc) => (
+            <li key={doc.href}>
+              <a href={doc.href} download={doc.filename} className="text-teal-dark underline underline-offset-2 hover:text-teal-medium">
+                Kwaliteitsjaarverslag {doc.title.slice(-4)}
+              </a>
+              <span className="ml-2 text-gray-400">{doc.size}</span>
+            </li>
+          ))}
+        </ul>
         <h3>Cliënt- en medewerkerparticipatie</h3>
         <p>
           PJ Professionals voert structureel tevredenheidsonderzoeken uit

@@ -1,6 +1,8 @@
 import PageHero from "@/components/PageHero";
 import SectionBlock from "@/components/SectionBlock";
 import ParallaxDivider from "@/components/ParallaxDivider";
+import DownloadButton from "@/components/DownloadButton";
+import { privacyverklaring, klachtenreglement, clienttevredenheid } from "@/lib/documents";
 
 export const metadata = {
   title: "Over PJ Professionals",
@@ -202,6 +204,7 @@ export default function OverOns() {
           cliënten en bieden aanknopingspunten voor verdere verbetering van
           onze zorgverlening.
         </p>
+        <DownloadButton doc={clienttevredenheid} label="Download het cliënttevredenheidsonderzoek 2025" />
         <p>
           PJ Professionals is gecertificeerd volgens ISO 9001. Dit betekent
           dat ons kwaliteitsmanagementsysteem onafhankelijk is getoetst aan
@@ -227,9 +230,23 @@ export default function OverOns() {
           privacy, informatiebeveiliging en het zorgvuldig omgaan met
           vertrouwelijke informatie.
         </p>
+        <p>
+          In onze privacyverklaring leest u welke gegevens wij verwerken, op
+          welke grondslag, hoe lang wij ze bewaren en welke rechten u heeft.
+        </p>
+        <DownloadButton doc={privacyverklaring} label="Download de privacyverklaring" />
       </SectionBlock>
 
-      <SectionBlock id="clientenraad" title="Cliëntenraad">
+      <SectionBlock id="klachten" title="Klachten">
+        <p>
+          Wanneer iets niet naar wens verloopt, horen wij dat graag. In ons
+          klachtenreglement staat hoe u een klacht kunt indienen, hoe wij die
+          behandelen en welke onafhankelijke ondersteuning er voor u is.
+        </p>
+        <DownloadButton doc={klachtenreglement} label="Download het klachtenreglement" />
+      </SectionBlock>
+
+      <SectionBlock id="clientenraad" title="Cliëntenraad" gray>
         <p>
           De cliëntenraad behartigt de gemeenschappelijke belangen van onze
           cliënten en brengt het cliëntperspectief in bij onderwerpen die hen

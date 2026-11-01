@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { privacyverklaring, klachtenreglement } from "@/lib/documents";
 
 export default function Footer() {
   return (
@@ -157,10 +158,13 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} PJ Professionals. Alle rechten
             voorbehouden.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/over-ons#privacy" className="text-white/40 hover:text-white text-sm transition-colors">
-              Privacybeleid
-            </Link>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <a href={privacyverklaring.href} target="_blank" rel="noopener" className="text-white/40 hover:text-white text-sm transition-colors">
+              Privacyverklaring
+            </a>
+            <a href={klachtenreglement.href} target="_blank" rel="noopener" className="text-white/40 hover:text-white text-sm transition-colors">
+              Klachtenreglement
+            </a>
             <Link href="/contact#klachten" className="text-white/40 hover:text-white text-sm transition-colors">
               Klachtenprocedure
             </Link>

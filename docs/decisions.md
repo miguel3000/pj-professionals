@@ -133,3 +133,8 @@ Rules that follow:
 - Pre-filled text controls (cover title/subtitle/date, footer title, audit findings) are flattened to static text so they keep their typography; empty controls stay fillable. Pre-ticked checkboxes keep their state.
 - `finalize_pdf.py`: fields outside a shaded cell are widened to the next word / right margin; documents with no fields get a plain PDF.
 - Known limits: footer controls (page footer "versie X") are static in the PDF; multi-line answer cells in legacy tables are single-line fields.
+
+## Public website documents (2026-11-01)
+- Converted with `pdf-form-kit/scripts/convert_beleid.py` (cover + bound footer + chapters on new pages), then `refresh_toc.py` and `make_writeable_pdf.py`: Cliënttevredenheidsonderzoek 2025 (v1.0, 31 maart 2026), Klachtenreglement (v1.3, 8 oktober 2026), Privacyverklaring (v2.1, no date in source -> empty date field).
+- Site downloads live in `public/documenten/` with URL-safe names; paths, titles and sizes are defined once in `src/lib/documents.ts` (footer, Over ons, Forensische zorg and /documenten all read from it). Update sizes there when a PDF changes.
+- Footer links (Privacyverklaring, Klachtenreglement) open the PDF directly; the Documenten page lists everything.

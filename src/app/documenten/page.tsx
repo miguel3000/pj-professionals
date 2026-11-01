@@ -1,12 +1,12 @@
 import PageHero from "@/components/PageHero";
+import { privacyverklaring, klachtenreglement, clienttevredenheid, kwaliteitsverslagen, type SiteDocument } from "@/lib/documents";
 
-const documents: {
-  title: string;
-  description: string;
-  href: string;
-  filename: string;
-  size: string;
-}[] = [];
+const documents: SiteDocument[] = [
+  privacyverklaring,
+  klachtenreglement,
+  ...kwaliteitsverslagen,
+  clienttevredenheid,
+];
 
 export const metadata = {
   title: "Documenten - PJ Professionals",
@@ -32,7 +32,7 @@ export default function Documenten() {
           <div className="grid sm:grid-cols-2 gap-6">
             {documents.map((doc) => (
               <a
-                key={doc.filename}
+                key={doc.href}
                 href={doc.href}
                 download={doc.filename}
                 className="block p-8 rounded-2xl border border-gray-200 bg-teal-surface hover:border-teal-dark/20 hover:shadow-lg transition-all group"
