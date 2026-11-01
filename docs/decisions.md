@@ -138,3 +138,7 @@ Rules that follow:
 - Converted with `pdf-form-kit/scripts/convert_beleid.py` (cover + bound footer + chapters on new pages), then `refresh_toc.py` and `make_writeable_pdf.py`: Cliënttevredenheidsonderzoek 2025 (v1.0, 31 maart 2026), Klachtenreglement (v1.3, 8 oktober 2026), Privacyverklaring (v2.1, 8 oktober 2026 per client).
 - Site downloads live in `public/documenten/` with URL-safe names; paths, titles and sizes are defined once in `src/lib/documents.ts` (footer, Over ons, Forensische zorg and /documenten all read from it). Update sizes there when a PDF changes.
 - Footer links (Privacyverklaring, Klachtenreglement) open the PDF directly; the Documenten page lists everything.
+
+## Exception to the chapter rule: Klachtenreglement (2026-11-01)
+- Short legal text: chapters flow (no page break before Heading 1) to keep the document short. Page 2 = chapters 1-3 (if they ever stop fitting, chapter 3 starts on a new page), page 3 = 4-6, page 4 = 7-9 (explicit page break before chapter 7). Cover + 3 pages instead of cover + 9.
+- Done by removing `pageBreakBefore` from the Heading 1 style of this document only. The general rule above stays the default.

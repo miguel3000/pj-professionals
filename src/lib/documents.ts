@@ -21,7 +21,7 @@ export const klachtenreglement: SiteDocument = {
   description: "Hoe u een klacht kunt indienen en hoe wij die behandelen.",
   href: `${dir}/Klachtenreglement-PJ-Professionals.pdf`,
   filename: "Klachtenreglement PJ Professionals.pdf",
-  size: "PDF · 405 KB",
+  size: "PDF · 399 KB",
 };
 
 export const clienttevredenheid: SiteDocument = {
