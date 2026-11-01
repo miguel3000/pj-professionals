@@ -127,6 +127,17 @@ export default function Contact() {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [turnstileToken, setTurnstileToken] = useState("");
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
+
+  // Deep links (?reden=klacht#contactformulier, or the old #klachten): preselect the reason and jump to the form.
+  useEffect(() => {
+    const wanted = new URLSearchParams(window.location.search).get("reden");
+    const fromHash = window.location.hash === "#klachten" ? "klacht" : null;
+    const value = wanted ?? fromHash;
+    if (value && contactReasons.some((r) => r.value === value)) {
+      setReason(value);
+      document.getElementById("contactformulier")?.scrollIntoView({ block: "start" });
+    }
+  }, []);
   const turnstileWidgetId = useRef<string | undefined>(undefined);
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [cvError, setCvError] = useState("");
@@ -302,7 +313,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10">
+          <div id="contactformulier" className="scroll-mt-28 bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10">
             <h2 className="text-2xl font-bold text-teal-dark mb-2">Contactformulier</h2>
             <p className="text-gray-500 text-sm mb-8">
               Liever telefonisch contact? Onze bureaudienst is bereikbaar tijdens kantooruren via 073-7621035.

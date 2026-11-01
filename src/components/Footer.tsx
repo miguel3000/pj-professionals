@@ -38,6 +38,7 @@ export default function Footer() {
                 { label: "Over ons", href: "/over-ons" },
                 { label: "Vacatures", href: "/vacatures" },
                 { label: "Veelgestelde vragen", href: "/veelgestelde-vragen" },
+                { label: "Contact", href: "/contact" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
@@ -165,7 +166,7 @@ export default function Footer() {
             <a href={klachtenreglement.href} target="_blank" rel="noopener" className="text-white/40 hover:text-white text-sm transition-colors">
               Klachtenreglement
             </a>
-            <Link href="/contact#klachten" className="text-white/40 hover:text-white text-sm transition-colors">
+            <Link href="/contact?reden=klacht#contactformulier" className="text-white/40 hover:text-white text-sm transition-colors">
               Klachtenprocedure
             </Link>
           </div>
