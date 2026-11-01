@@ -29,6 +29,30 @@ function esc(value: unknown): string {
     .replace(/'/g, "&#39;");
 }
 
+// Review mailbox for blocked submissions, so rejected forms can be reviewed over time.
+const ALERT_EMAIL = "alertformPJ@michielmaessen.com";
+
+// Clear attack patterns -> the submission is rejected (and a copy goes to ALERT_EMAIL).
+const REJECT_PATTERNS: [RegExp, string][] = [
+  [/<\s*\/?\s*(script|iframe|object|embed)\b/i, "script/iframe/object/embed tag"],
+  [/<[^>]*\bon[a-z]+\s*=/i, "event handler (on...=) inside a tag"],
+  [/\b(href|src|action)\s*=\s*["']?\s*javascript\s*:/i, "javascript: link"],
+];
+// Any other tag-like text -> the mail is sent, with a warning at the top.
+const FLAG_PATTERN = /<\s*\/?\s*[a-z][^>]*>/i;
+
+function scanForHtml(fields: Record<string, unknown>) {
+  const rejected: string[] = [];
+  const flagged: string[] = [];
+  for (const [key, value] of Object.entries(fields)) {
+    if (typeof value !== "string" || !value) continue;
+    const hit = REJECT_PATTERNS.find(([re]) => re.test(value));
+    if (hit) rejected.push(`${key}: ${hit[1]}`);
+    else if (FLAG_PATTERN.test(value)) flagged.push(key);
+  }
+  return { rejected, flagged };
+}
+
 // Strip line breaks from anything used in a mail header (prevents header injection).
 const oneLine = (value: unknown) => String(value ?? "").replace(/[\r\n]+/g, " ").trim();
 
@@ -56,6 +80,18 @@ const reasonLabels: Record<string, string> = {
   ketenpartner: "Overleg voor ketenpartners / verwijzers",
   klacht: "Klacht indienen",
 };
+
+function createTransporter() {
+  return nodemailer.createTransport({
+    host: "mail-eu.smtp2go.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+}
 
 async function verifyTurnstileToken(token: string, remoteIp: string | null) {
   const secret = process.env.TURNSTILE_SECRET_KEY;
@@ -114,12 +150,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Scan every text field for HTML: clear attacks are rejected (copy kept in ALERT_EMAIL), other tags are flagged.
+    const { rejected, flagged } = scanForHtml({ reason, voornaam, achternaam, email, telefoon, bericht, ...extraFields });
+    if (rejected.length > 0) {
+      try {
+        const rows = Object.entries({ reason, voornaam, achternaam, email, telefoon, bericht, ...extraFields })
+          .map(([k, v]) => `<tr><td style="${LABEL_CELL}">${esc(k)}</td><td style="${VALUE_CELL}">${esc(v)}</td></tr>`)
+          .join("");
+        await createTransporter().sendMail({
+          from: "website@pjprofessionals.nl",
+          to: ALERT_EMAIL,
+          subject: oneLine(`[GEBLOKKEERD] Contactformulier: ${esc(reasonLabels[reason] || reason)}`),
+          html: `<p style="${FONT}"><strong>Inzending geweigerd</strong> (HTML-aanval).<br>Reden: ${esc(rejected.join("; "))}<br>IP: ${esc(remoteIp)}<br>Tijd: ${esc(new Date().toISOString())}</p>
+            <table style="border-collapse: collapse; width: 100%; max-width: 640px;">${rows}</table>`,
+        });
+      } catch (alertError) {
+        console.error("Could not send blocked-submission alert:", alertError);
+      }
+      console.warn("Contact form rejected:", rejected.join("; "), remoteIp);
+      return NextResponse.json(
+        { error: "Uw bericht bevat code die wij om veiligheidsredenen niet kunnen verwerken. Verwijder eventuele HTML-code en probeer het opnieuw." },
+        { status: 400 }
+      );
+    }
+
     // Determine recipient
     const toEmail = emailRouting[reason] || "bureaudienst@pjprofessionals.nl";
     const reasonLabel = esc(reasonLabels[reason] || reason);
 
     // Build email body
-    let htmlBody = `
+    let htmlBody = flagged.length
+      ? `<p style="${FONT} background: #fff4e5; border: 1px solid #f0b86e; padding: 10px 14px; max-width: 640px;"><strong>Let op:</strong> dit bericht bevat HTML-achtige code (veld: ${esc(flagged.join(", "))}). De inhoud is veilig als tekst weergegeven; open geen onverwachte links.</p>`
+      : "";
+    htmlBody += `
       <h2 style="font-family: Arial, Helvetica, sans-serif; font-size: 20px; color: #0B3C5D; margin: 0 0 16px;">Nieuw contactformulier: ${reasonLabel}</h2>
       <table style="border-collapse: collapse; width: 100%; max-width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.5; color: #222;">
         <tr>
@@ -185,22 +248,14 @@ export async function POST(request: NextRequest) {
 
     htmlBody += "</table>";
 
-    const transporter = nodemailer.createTransport({
-      host: "mail-eu.smtp2go.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
+    const transporter = createTransporter();
 
     // Send email
     await transporter.sendMail({
       from: "website@pjprofessionals.nl",
       to: toEmail,
       replyTo: oneLine(email),
-      subject: oneLine(`Contactformulier: ${reasonLabels[reason] || reason} - ${voornaam} ${achternaam}`),
+      subject: oneLine(`${flagged.length ? "[Let op: HTML] " : ""}Contactformulier: ${reasonLabels[reason] || reason} - ${voornaam} ${achternaam}`),
       html: htmlBody,
       attachments: cvBuffer && cvFilename ? [{ filename: cvFilename, content: cvBuffer }] : undefined,
     });
