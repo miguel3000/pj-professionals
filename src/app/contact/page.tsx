@@ -130,13 +130,19 @@ export default function Contact() {
 
   // Deep links (?reden=klacht#contactformulier, or the old #klachten): preselect the reason and jump to the form.
   useEffect(() => {
-    const wanted = new URLSearchParams(window.location.search).get("reden");
-    const fromHash = window.location.hash === "#klachten" ? "klacht" : null;
-    const value = wanted ?? fromHash;
-    if (value && contactReasons.some((r) => r.value === value)) {
-      setReason(value);
-      document.getElementById("contactformulier")?.scrollIntoView({ block: "start" });
-    }
+    const apply = () => {
+      const wanted = new URLSearchParams(window.location.search).get("reden");
+      const value = wanted ?? (window.location.hash === "#klachten" ? "klacht" : null);
+      if (value && contactReasons.some((r) => r.value === value)) {
+        setReason(value);
+        const jump = () => document.getElementById("contactformulier")?.scrollIntoView({ block: "start", behavior: "instant" });
+        jump();
+        setTimeout(jump, 250); // after layout / scroll restoration settle
+      }
+    };
+    apply();
+    window.addEventListener("hashchange", apply);
+    return () => window.removeEventListener("hashchange", apply);
   }, []);
   const turnstileWidgetId = useRef<string | undefined>(undefined);
   const [cvFile, setCvFile] = useState<File | null>(null);

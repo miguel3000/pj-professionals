@@ -166,9 +166,10 @@ export default function Footer() {
             <a href={klachtenreglement.href} target="_blank" rel="noopener" className="text-white/40 hover:text-white text-sm transition-colors">
               Klachtenreglement
             </a>
-            <Link href="/contact?reden=klacht#contactformulier" className="text-white/40 hover:text-white text-sm transition-colors">
+            {/* plain <a>: full page load, so the contact form always re-reads ?reden= (also when already on /contact) */}
+            <a href="/contact?reden=klacht#contactformulier" className="text-white/40 hover:text-white text-sm transition-colors">
               Klachtenprocedure
-            </Link>
+            </a>
           </div>
         </div>
       </div>
