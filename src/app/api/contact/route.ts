@@ -19,6 +19,19 @@ function validateCvAttachment(filename: string, buffer: Buffer): string | null {
   return null;
 }
 
+// Everything a visitor types ends up in HTML mail: escape it so tags show up as plain text.
+function esc(value: unknown): string {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Strip line breaks from anything used in a mail header (prevents header injection).
+const oneLine = (value: unknown) => String(value ?? "").replace(/[\r\n]+/g, " ").trim();
+
 // Mail clients (Outlook especially) don't inherit font settings into table cells and fall back to a tiny
 // default, so every cell carries its own family/size.
 const FONT = "font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.5; color: #222;";
@@ -103,7 +116,7 @@ export async function POST(request: NextRequest) {
 
     // Determine recipient
     const toEmail = emailRouting[reason] || "bureaudienst@pjprofessionals.nl";
-    const reasonLabel = reasonLabels[reason] || reason;
+    const reasonLabel = esc(reasonLabels[reason] || reason);
 
     // Build email body
     let htmlBody = `
@@ -115,15 +128,15 @@ export async function POST(request: NextRequest) {
         </tr>
         <tr>
           <td style="${LABEL_CELL}">Naam</td>
-          <td style="${VALUE_CELL}">${voornaam} ${achternaam}</td>
+          <td style="${VALUE_CELL}">${esc(voornaam)} ${esc(achternaam)}</td>
         </tr>
         <tr>
           <td style="${LABEL_CELL}">E-mail</td>
-          <td style="${VALUE_CELL}"><a href="mailto:${email}">${email}</a></td>
+          <td style="${VALUE_CELL}"><a href="mailto:${esc(email)}">${esc(email)}</a></td>
         </tr>
         ${telefoon ? `<tr>
           <td style="${LABEL_CELL}">Telefoon</td>
-          <td style="${VALUE_CELL}">${telefoon}</td>
+          <td style="${VALUE_CELL}">${esc(telefoon)}</td>
         </tr>` : ""}
     `;
 
@@ -145,11 +158,11 @@ export async function POST(request: NextRequest) {
 
     for (const [key, value] of Object.entries(extraFields)) {
       if (value && key !== "privacy") {
-        const label = fieldLabels[key] || key;
+        const label = esc(fieldLabels[key] || key);
         htmlBody += `
         <tr>
           <td style="${LABEL_CELL}">${label}</td>
-          <td style="${VALUE_CELL}">${value}</td>
+          <td style="${VALUE_CELL}">${esc(value)}</td>
         </tr>`;
       }
     }
@@ -158,7 +171,7 @@ export async function POST(request: NextRequest) {
       htmlBody += `
         <tr>
           <td style="${LABEL_CELL}">Bericht</td>
-          <td style="${VALUE_CELL}">${bericht.replace(/\n/g, "<br>")}</td>
+          <td style="${VALUE_CELL}">${esc(bericht).replace(/\r?\n/g, "<br>")}</td>
         </tr>`;
     }
 
@@ -166,7 +179,7 @@ export async function POST(request: NextRequest) {
       htmlBody += `
         <tr>
           <td style="${LABEL_CELL}">CV</td>
-          <td style="${VALUE_CELL}">${cvFilename} (bijgevoegd)</td>
+          <td style="${VALUE_CELL}">${esc(cvFilename)} (bijgevoegd)</td>
         </tr>`;
     }
 
@@ -186,8 +199,8 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail({
       from: "website@pjprofessionals.nl",
       to: toEmail,
-      replyTo: email,
-      subject: `Contactformulier: ${reasonLabel} - ${voornaam} ${achternaam}`,
+      replyTo: oneLine(email),
+      subject: oneLine(`Contactformulier: ${reasonLabels[reason] || reason} - ${voornaam} ${achternaam}`),
       html: htmlBody,
       attachments: cvBuffer && cvFilename ? [{ filename: cvFilename, content: cvBuffer }] : undefined,
     });
