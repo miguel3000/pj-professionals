@@ -219,6 +219,7 @@ export default function Contact() {
     data.reason = reason;
     data.turnstileToken = turnstileToken;
     delete data.cv;
+    delete data["cf-turnstile-response"]; // hidden input from the Turnstile widget; the token goes along as turnstileToken
 
     const errors = validate(data);
     if (reason === "sollicitatie" && cvFile) {

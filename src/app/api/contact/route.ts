@@ -19,6 +19,12 @@ function validateCvAttachment(filename: string, buffer: Buffer): string | null {
   return null;
 }
 
+// Mail clients (Outlook especially) don't inherit font settings into table cells and fall back to a tiny
+// default, so every cell carries its own family/size.
+const FONT = "font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.5; color: #222;";
+const LABEL_CELL = `padding: 10px 14px; border: 1px solid #ddd; font-weight: bold; vertical-align: top; background: #f4f7f9; ${FONT}`;
+const VALUE_CELL = `padding: 10px 14px; border: 1px solid #ddd; vertical-align: top; ${FONT}`;
+
 // Email routing based on contact reason (from documentation)
 const emailRouting: Record<string, string> = {
   aanmelding: "aanmeldingen@pjprofessionals.nl",
@@ -65,6 +71,7 @@ export async function POST(request: NextRequest) {
 
     const { reason, voornaam, achternaam, email, telefoon, bericht, turnstileToken, cv, cvFilename, ...extraFields } = data;
     delete extraFields.cvMimeType;
+    delete extraFields["cf-turnstile-response"]; // hidden input added by the Turnstile widget; verified via turnstileToken
 
     // Validate required fields
     if (!reason || !voornaam || !achternaam || !email) {
@@ -100,23 +107,23 @@ export async function POST(request: NextRequest) {
 
     // Build email body
     let htmlBody = `
-      <h2>Nieuw contactformulier: ${reasonLabel}</h2>
-      <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
+      <h2 style="font-family: Arial, Helvetica, sans-serif; font-size: 20px; color: #0B3C5D; margin: 0 0 16px;">Nieuw contactformulier: ${reasonLabel}</h2>
+      <table style="border-collapse: collapse; width: 100%; max-width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.5; color: #222;">
         <tr>
-          <td style="padding: 8px 12px; border: 1px solid #ddd; font-weight: bold; width: 200px;">Reden van contact</td>
-          <td style="padding: 8px 12px; border: 1px solid #ddd;">${reasonLabel}</td>
+          <td style="${LABEL_CELL} width: 200px;">Reden van contact</td>
+          <td style="${VALUE_CELL}">${reasonLabel}</td>
         </tr>
         <tr>
-          <td style="padding: 8px 12px; border: 1px solid #ddd; font-weight: bold;">Naam</td>
-          <td style="padding: 8px 12px; border: 1px solid #ddd;">${voornaam} ${achternaam}</td>
+          <td style="${LABEL_CELL}">Naam</td>
+          <td style="${VALUE_CELL}">${voornaam} ${achternaam}</td>
         </tr>
         <tr>
-          <td style="padding: 8px 12px; border: 1px solid #ddd; font-weight: bold;">E-mail</td>
-          <td style="padding: 8px 12px; border: 1px solid #ddd;"><a href="mailto:${email}">${email}</a></td>
+          <td style="${LABEL_CELL}">E-mail</td>
+          <td style="${VALUE_CELL}"><a href="mailto:${email}">${email}</a></td>
         </tr>
         ${telefoon ? `<tr>
-          <td style="padding: 8px 12px; border: 1px solid #ddd; font-weight: bold;">Telefoon</td>
-          <td style="padding: 8px 12px; border: 1px solid #ddd;">${telefoon}</td>
+          <td style="${LABEL_CELL}">Telefoon</td>
+          <td style="${VALUE_CELL}">${telefoon}</td>
         </tr>` : ""}
     `;
 
@@ -141,8 +148,8 @@ export async function POST(request: NextRequest) {
         const label = fieldLabels[key] || key;
         htmlBody += `
         <tr>
-          <td style="padding: 8px 12px; border: 1px solid #ddd; font-weight: bold;">${label}</td>
-          <td style="padding: 8px 12px; border: 1px solid #ddd;">${value}</td>
+          <td style="${LABEL_CELL}">${label}</td>
+          <td style="${VALUE_CELL}">${value}</td>
         </tr>`;
       }
     }
@@ -150,16 +157,16 @@ export async function POST(request: NextRequest) {
     if (bericht) {
       htmlBody += `
         <tr>
-          <td style="padding: 8px 12px; border: 1px solid #ddd; font-weight: bold;">Bericht</td>
-          <td style="padding: 8px 12px; border: 1px solid #ddd;">${bericht.replace(/\n/g, "<br>")}</td>
+          <td style="${LABEL_CELL}">Bericht</td>
+          <td style="${VALUE_CELL}">${bericht.replace(/\n/g, "<br>")}</td>
         </tr>`;
     }
 
     if (cvBuffer && cvFilename) {
       htmlBody += `
         <tr>
-          <td style="padding: 8px 12px; border: 1px solid #ddd; font-weight: bold;">CV</td>
-          <td style="padding: 8px 12px; border: 1px solid #ddd;">${cvFilename} (bijgevoegd)</td>
+          <td style="${LABEL_CELL}">CV</td>
+          <td style="${VALUE_CELL}">${cvFilename} (bijgevoegd)</td>
         </tr>`;
     }
 
