@@ -13,7 +13,7 @@ export const privacyverklaring: SiteDocument = {
   description: "Hoe wij omgaan met uw persoonsgegevens, op welke grondslag en welke rechten u heeft.",
   href: `${dir}/Privacyverklaring-PJ-Professionals.pdf`,
   filename: "Privacyverklaring PJ Professionals.pdf",
-  size: "PDF · 363 KB",
+  size: "PDF · 366 KB",
 };
 
 export const klachtenreglement: SiteDocument = {
