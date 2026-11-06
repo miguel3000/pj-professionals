@@ -14,7 +14,7 @@ const faqSections = [
     faqs: [
       {
         q: "Hoe kan ik contact opnemen met PJ Professionals?",
-        a: "U kunt op verschillende manieren contact opnemen: Algemene vragen via bureaudienst@pjprofessionals.nl, telefonisch via 073-7621035, aanmeldingen via aanmeldingen@pjprofessionals.nl, sollicitaties via info@pjprofessionals.nl.",
+        a: "U kunt op verschillende manieren contact opnemen: Algemene vragen via bureaudienst@pjprofessionals.nl, telefonisch via 073-7621035, aanmeldingen via aanmeldingen@pjprofessionals.nl, sollicitaties via het contactformulier op de pagina Contact (kies daar \"Sollicitatie of stageverzoek\") of via de knop Solliciteer op de pagina Vacatures.",
       },
       {
         q: "Wat doet PJ Professionals precies?",
