@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import PageHero from "@/components/PageHero";
 import SectionBlock from "@/components/SectionBlock";
+import { applicationChoices, findChoice } from "@/lib/vacatures";
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
@@ -40,6 +41,7 @@ declare global {
         container: HTMLElement,
         options: {
           sitekey: string;
+          action?: string;
           theme?: "light" | "dark" | "auto";
           callback: (token: string) => void;
           "expired-callback"?: () => void;
@@ -122,6 +124,7 @@ function TextAreaField({
 
 export default function Contact() {
   const [reason, setReason] = useState("");
+  const [application, setApplication] = useState(""); // what a sollicitatie is about: a vacancy slug, "open" or "stage"
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
@@ -129,12 +132,16 @@ export default function Contact() {
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
 
   // Deep links (?reden=klacht#contactformulier, or the old #klachten): preselect the reason and jump to the form.
+  // ?vacature=<slug> (from the Vacatures page) also selects "sollicitatie" and the vacancy.
   useEffect(() => {
     const apply = () => {
-      const wanted = new URLSearchParams(window.location.search).get("reden");
+      const params = new URLSearchParams(window.location.search);
+      const vacature = findChoice(params.get("vacature"));
+      const wanted = params.get("reden") ?? (vacature ? "sollicitatie" : null);
       const value = wanted ?? (window.location.hash === "#klachten" ? "klacht" : null);
       if (value && contactReasons.some((r) => r.value === value)) {
         setReason(value);
+        if (vacature && value === "sollicitatie") setApplication(vacature.value);
         const jump = () => document.getElementById("contactformulier")?.scrollIntoView({ block: "start", behavior: "instant" });
         jump();
         setTimeout(jump, 250); // after layout / scroll restoration settle
@@ -178,6 +185,7 @@ export default function Contact() {
     if (turnstileContainerRef.current.childElementCount > 0) return;
     turnstileWidgetId.current = window.turnstile.render(turnstileContainerRef.current, {
       sitekey: TURNSTILE_SITE_KEY,
+      action: "contact",
       theme: "light",
       callback: (token) => {
         setTurnstileToken(token);
@@ -195,6 +203,7 @@ export default function Contact() {
   function validate(data: Record<string, string>) {
     const errors: Record<string, string> = {};
     if (!data.reason) errors.reason = "Selecteer een reden van contact.";
+    if (data.reason === "sollicitatie" && !data.vacature) errors.vacature = "Kies waarop u reageert.";
     if (!data.voornaam?.trim()) errors.voornaam = "Voornaam is verplicht.";
     if (!data.achternaam?.trim()) errors.achternaam = "Achternaam is verplicht.";
     if (!data.email?.trim()) {
@@ -217,6 +226,8 @@ export default function Contact() {
       data[key] = value.toString();
     });
     data.reason = reason;
+    if (reason === "sollicitatie") data.vacature = application;
+    else delete data.vacature;
     data.turnstileToken = turnstileToken;
     delete data.cv;
     delete data["cf-turnstile-response"]; // hidden input from the Turnstile widget; the token goes along as turnstileToken
@@ -336,7 +347,7 @@ export default function Contact() {
                 <h3 className="text-xl font-bold text-teal-dark mb-2">Bericht verzonden!</h3>
                 <p className="text-gray-500 text-sm mb-6">Bedankt voor uw bericht. Wij nemen zo snel mogelijk contact met u op.</p>
                 <button
-                  onClick={() => { setStatus("idle"); setReason(""); setTurnstileToken(""); clearCvFile(); }}
+                  onClick={() => { setStatus("idle"); setReason(""); setApplication(""); setTurnstileToken(""); clearCvFile(); }}
                   className="px-6 py-2.5 bg-teal-dark text-white font-semibold text-sm rounded-xl hover:bg-teal-dark transition-colors"
                 >
                   Nieuw bericht versturen
@@ -396,11 +407,29 @@ export default function Contact() {
                 <div className="space-y-5 p-6 bg-teal-surface rounded-xl border border-gray-100">
                   <h3 className="font-semibold text-teal-dark text-sm">Sollicitatiegegevens</h3>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Soort aanvraag</label>
-                    <select className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20 outline-none transition-all text-sm bg-white">
-                      <option value="sollicitatie">Sollicitatie</option>
-                      <option value="stage">Stage</option>
+                    <label htmlFor="vacature" className="block text-sm font-medium text-gray-700 mb-1.5">
+                      Waarop reageert u? <span className="text-red-400">*</span>
+                    </label>
+                    <select
+                      id="vacature"
+                      name="vacature"
+                      value={application}
+                      onChange={(e) => { setApplication(e.target.value); setFieldErrors(prev => ({ ...prev, vacature: "" })); }}
+                      className={`w-full px-4 py-3 rounded-xl border outline-none transition-all text-sm bg-white ${fieldErrors.vacature ? "border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-400/20" : "border-gray-200 focus:border-teal-dark focus:ring-2 focus:ring-teal-dark/20"}`}
+                    >
+                      <option value="">Maak een keuze...</option>
+                      <optgroup label="Actieve vacatures">
+                        {applicationChoices.filter((c) => c.group === "vacature").map((c) => (
+                          <option key={c.value} value={c.value}>{c.label}</option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="Overig">
+                        {applicationChoices.filter((c) => c.group === "overig").map((c) => (
+                          <option key={c.value} value={c.value}>{c.label}</option>
+                        ))}
+                      </optgroup>
                     </select>
+                    {fieldErrors.vacature && <p data-field-error className="text-red-500 text-xs mt-1">{fieldErrors.vacature}</p>}
                   </div>
                   <TextAreaField label="Motivatie / toelichting" id="motivatie" placeholder="Vertel ons waarom u wilt werken bij PJ Professionals..." />
 

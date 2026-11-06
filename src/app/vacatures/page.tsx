@@ -1,12 +1,46 @@
 import PageHero from "@/components/PageHero";
 import SectionBlock from "@/components/SectionBlock";
-import Link from "next/link";
+import {
+  APPLY_EMAIL,
+  VACANCY_LOCATION,
+  applyHref,
+  telHref,
+  vacatures,
+  type VacancyBlock,
+} from "@/lib/vacatures";
 
 export const metadata = {
   title: "Vacatures en stages - PJ Professionals",
   description:
     "Werken bij PJ Professionals. Bekijk onze vacatures en stageplaatsen.",
 };
+
+/** Turns the application e-mail address inside a text into a mailto link. */
+function withEmailLink(text: string) {
+  const parts = text.split(APPLY_EMAIL);
+  if (parts.length === 1) return text;
+  return parts.flatMap((part, i) =>
+    i === 0
+      ? [part]
+      : [
+          <a key={i} href={`mailto:${APPLY_EMAIL}`} className="text-teal-medium hover:underline">
+            {APPLY_EMAIL}
+          </a>,
+          part,
+        ],
+  );
+}
+
+function Block({ block }: { block: VacancyBlock }) {
+  if (typeof block === "string") return <p>{withEmailLink(block)}</p>;
+  return (
+    <ul className="list-disc pl-5 space-y-1 marker:text-teal-medium">
+      {block.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
 
 export default function Vacatures() {
   return (
@@ -131,29 +165,95 @@ export default function Vacatures() {
           .
         </p>
         <div className="not-prose space-y-4 mt-6">
-          {[
-            "Ambulant begeleider",
-            "Regiebehandelaar GZ-psycholoog / Verpleegkundig specialist GGZ / Psychotherapeut",
-          ].map((title) => (
+          {vacatures.map((vacancy) => (
             <div
-              key={title}
-              className="bg-teal-surface rounded-xl p-6 border border-gray-100 flex items-center justify-between"
+              key={vacancy.slug}
+              id={vacancy.slug}
+              className="bg-teal-surface rounded-xl p-6 border border-gray-100 scroll-mt-28"
             >
-              <div>
-                <h3 className="font-semibold text-teal-dark">{title}</h3>
-                <p className="text-gray-500 text-sm mt-1">
-                  PJ Professionals — Regio &apos;s-Hertogenbosch / Oss
-                </p>
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h3 className="font-semibold text-teal-dark">{vacancy.title}</h3>
+                  {vacancy.subtitle && (
+                    <p className="text-teal-dark text-sm mt-1">{vacancy.subtitle}</p>
+                  )}
+                  <p className="text-gray-500 text-sm mt-1">{VACANCY_LOCATION}</p>
+                </div>
+                <a
+                  href={applyHref(vacancy.slug)}
+                  className="self-start sm:self-auto px-4 py-2 bg-teal-dark text-white text-sm font-medium rounded-lg hover:bg-teal-medium transition-colors shrink-0"
+                >
+                  Solliciteer
+                </a>
               </div>
-              <Link
-                href="/contact"
-                className="px-4 py-2 bg-teal-dark text-white text-sm font-medium rounded-lg hover:bg-teal-dark transition-colors shrink-0"
-              >
-                Solliciteer
-              </Link>
+
+              <details className="group mt-4 border-t border-teal-dark/10 pt-4">
+                <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-medium text-teal-dark hover:text-teal-medium transition-colors [&::-webkit-details-marker]:hidden">
+                  <svg
+                    className="w-4 h-4 shrink-0 transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                  <span className="group-open:hidden">Lees de volledige vacature</span>
+                  <span className="hidden group-open:inline">Verberg de vacature</span>
+                </summary>
+
+                <div className="mt-4 space-y-3 text-gray-700 text-[0.95rem] leading-relaxed">
+                  {vacancy.intro.map((text) => (
+                    <p key={text}>{withEmailLink(text)}</p>
+                  ))}
+
+                  {vacancy.sections.map((section, i) => (
+                    <div key={section.heading ?? i} className="space-y-3">
+                      {section.heading && (
+                        <h4 className="pt-3 font-semibold text-teal-dark">{section.heading}</h4>
+                      )}
+                      {section.blocks.map((block, j) => (
+                        <Block key={j} block={block} />
+                      ))}
+                    </div>
+                  ))}
+
+                  {vacancy.contact && (
+                    <div className="pt-3">
+                      <p>{vacancy.contact.intro}</p>
+                      <ul className="mt-1 space-y-0.5">
+                        {vacancy.contact.people.map((person) => (
+                          <li key={person.name}>
+                            {person.name}:{" "}
+                            <a href={telHref(person.phone)} className="text-teal-medium hover:underline">
+                              {person.phone}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="pt-4">
+                    <a
+                      href={applyHref(vacancy.slug)}
+                      className="inline-block px-4 py-2 bg-teal-dark text-white text-sm font-medium rounded-lg hover:bg-teal-medium transition-colors"
+                    >
+                      Solliciteer op deze vacature
+                    </a>
+                  </div>
+                </div>
+              </details>
             </div>
           ))}
         </div>
+        <p className="mt-6">
+          Staat uw functie er niet tussen? Stuur ons dan een{" "}
+          <a href={applyHref("open")} className="text-teal-medium hover:underline">
+            open sollicitatie
+          </a>
+          .
+        </p>
       </SectionBlock>
     </>
   );

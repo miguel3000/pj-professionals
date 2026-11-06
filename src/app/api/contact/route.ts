@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { findChoice } from "@/lib/vacatures";
 
 const MAX_CV_SIZE = 1.5 * 1024 * 1024; // 1.5MB
 const ALLOWED_CV_EXTENSIONS = [".pdf", ".docx"];
@@ -93,13 +94,15 @@ function createTransporter() {
   });
 }
 
+const TURNSTILE_ACTION = "contact";
+
 async function verifyTurnstileToken(token: string, remoteIp: string | null) {
   const secret = process.env.TURNSTILE_SECRET_KEY;
   if (!secret) {
     console.warn("TURNSTILE_SECRET_KEY is not set; skipping captcha verification.");
     return true;
   }
-  if (!token) return false;
+  if (!token || typeof token !== "string" || token.length > 2048) return false;
 
   const params = new URLSearchParams();
   params.append("secret", secret);
@@ -109,9 +112,17 @@ async function verifyTurnstileToken(token: string, remoteIp: string | null) {
   const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
     method: "POST",
     body: params,
+    signal: AbortSignal.timeout(10_000),
   });
   const outcome = await verifyRes.json();
-  return outcome.success === true;
+  if (outcome.success !== true) return false;
+
+  // In production, also pin the action and hostname so tokens from other widgets/sites are refused.
+  const hostnames = (process.env.TURNSTILE_HOSTNAMES ?? "").split(",").map((h) => h.trim()).filter(Boolean);
+  if (hostnames.length > 0) {
+    return outcome.action === TURNSTILE_ACTION && hostnames.includes(outcome.hostname);
+  }
+  return true;
 }
 
 export async function POST(request: NextRequest) {
@@ -128,6 +139,23 @@ export async function POST(request: NextRequest) {
         { error: "Vul alle verplichte velden in." },
         { status: 400 }
       );
+    }
+
+    // A sollicitatie says what it is about (a vacancy, "open" or "stage"). Only choices we know are accepted,
+    // and the mail shows our own title for it, never the client's string.
+    let applicationTitle: string | undefined;
+    if (reason === "sollicitatie" && extraFields.vacature) {
+      const choice = findChoice(extraFields.vacature);
+      if (!choice) {
+        return NextResponse.json(
+          { error: "Deze vacature is niet (meer) beschikbaar. Vernieuw de pagina en probeer het opnieuw." },
+          { status: 400 }
+        );
+      }
+      applicationTitle = choice.label;
+      extraFields.vacature = choice.label;
+    } else {
+      delete extraFields.vacature;
     }
 
     // Validate CV attachment, if present
@@ -211,7 +239,7 @@ export async function POST(request: NextRequest) {
       "client-leeftijd": "Leeftijd cliënt",
       "client-woonplaats": "Woonplaats cliënt",
       "toelichting-aanmelding": "Toelichting aanmelding",
-      "soort-aanvraag": "Soort aanvraag",
+      vacature: "Vacature / aanvraag",
       motivatie: "Motivatie / toelichting",
       begeleider: "Naam begeleider",
       organisatie: "Naam organisatie",
@@ -255,7 +283,7 @@ export async function POST(request: NextRequest) {
       from: "website@pjprofessionals.nl",
       to: toEmail,
       replyTo: oneLine(email),
-      subject: oneLine(`${flagged.length ? "[Let op: HTML] " : ""}Contactformulier: ${reasonLabels[reason] || reason} - ${voornaam} ${achternaam}`),
+      subject: oneLine(`${flagged.length ? "[Let op: HTML] " : ""}Contactformulier: ${reasonLabels[reason] || reason}${applicationTitle ? ` (${applicationTitle})` : ""} - ${voornaam} ${achternaam}`),
       html: htmlBody,
       attachments: cvBuffer && cvFilename ? [{ filename: cvFilename, content: cvBuffer }] : undefined,
     });
