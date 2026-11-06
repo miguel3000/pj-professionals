@@ -27,7 +27,6 @@ export type Vacancy = {
 };
 
 export const VACANCY_LOCATION = "PJ Professionals, regio 's-Hertogenbosch / Oss";
-export const APPLY_EMAIL = "info@pjprofessionals.nl";
 
 export const vacatures: Vacancy[] = [
   {
@@ -81,7 +80,7 @@ export const vacatures: Vacancy[] = [
       },
       {
         heading: "Word jij onze nieuwe collega?",
-        blocks: [`Stuur je CV en motivatie naar ${APPLY_EMAIL}.`],
+        blocks: [],
       },
     ],
     contact: {
@@ -147,7 +146,7 @@ export const vacatures: Vacancy[] = [
       {
         heading: "Interesse?",
         blocks: [
-          "Reageer met je cv en een korte motivatie waarin je beschrijft hoe je jouw ervaringskennis professioneel inzet en hoe je omgaat met grenzen, samenwerking en zelfstandig ambulant werken.",
+          "Solliciteer via de knop hieronder met je cv en een korte motivatie waarin je beschrijft hoe je jouw ervaringskennis professioneel inzet en hoe je omgaat met grenzen, samenwerking en zelfstandig ambulant werken.",
         ],
       },
     ],
@@ -217,7 +216,6 @@ export const vacatures: Vacancy[] = [
       {
         blocks: [
           "Ben jij enthousiast om samen met ons bij te dragen aan een zelfredzamer leven voor onze cliënten? Reageer dan snel en wie weet word jij onze nieuwe collega!",
-          `CV en motivatiebrief kunnen gestuurd worden naar: ${APPLY_EMAIL}`,
         ],
       },
     ],

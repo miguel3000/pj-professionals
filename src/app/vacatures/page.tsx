@@ -1,7 +1,6 @@
 import PageHero from "@/components/PageHero";
 import SectionBlock from "@/components/SectionBlock";
 import {
-  APPLY_EMAIL,
   VACANCY_LOCATION,
   applyHref,
   telHref,
@@ -15,24 +14,8 @@ export const metadata = {
     "Werken bij PJ Professionals. Bekijk onze vacatures en stageplaatsen.",
 };
 
-/** Turns the application e-mail address inside a text into a mailto link. */
-function withEmailLink(text: string) {
-  const parts = text.split(APPLY_EMAIL);
-  if (parts.length === 1) return text;
-  return parts.flatMap((part, i) =>
-    i === 0
-      ? [part]
-      : [
-          <a key={i} href={`mailto:${APPLY_EMAIL}`} className="text-teal-medium hover:underline">
-            {APPLY_EMAIL}
-          </a>,
-          part,
-        ],
-  );
-}
-
 function Block({ block }: { block: VacancyBlock }) {
-  if (typeof block === "string") return <p>{withEmailLink(block)}</p>;
+  if (typeof block === "string") return <p>{block}</p>;
   return (
     <ul className="list-disc pl-5 space-y-1 marker:text-teal-medium">
       {block.map((item) => (
@@ -154,15 +137,15 @@ export default function Vacatures() {
       <SectionBlock id="vacatures" title="Vacatureoverzicht">
         <p>
           Wij nodigen nieuwe collega&apos;s van harte uit om te ontdekken wat het
-          betekent om bij PJ Professionals te werken. Solliciteren kan via ons
-          contactformulier of door een bericht te sturen naar{" "}
+          betekent om bij PJ Professionals te werken. Solliciteren doet u via ons{" "}
           <a
-            href="mailto:info@pjprofessionals.nl"
+            href="/contact?reden=sollicitatie#contactformulier"
             className="text-teal-medium hover:underline"
           >
-            info@pjprofessionals.nl
+            contactformulier
           </a>
-          .
+          . Klik bij een vacature op Solliciteer, dan staat die vacature al
+          voor u ingevuld.
         </p>
         <div className="not-prose space-y-4 mt-6">
           {vacatures.map((vacancy) => (
@@ -204,7 +187,7 @@ export default function Vacatures() {
 
                 <div className="mt-4 space-y-3 text-gray-700 text-[0.95rem] leading-relaxed">
                   {vacancy.intro.map((text) => (
-                    <p key={text}>{withEmailLink(text)}</p>
+                    <p key={text}>{text}</p>
                   ))}
 
                   {vacancy.sections.map((section, i) => (
