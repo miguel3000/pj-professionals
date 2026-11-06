@@ -565,6 +565,8 @@ def find_cover_end(xml):
                     return body, prev
             return body, at
     m = re.search(r'<w:p[ >](?:(?!</w:p>).)*?<w:pStyle w:val="(?:Kop1|Heading1)"', xml[body:], re.S)
+    if not m:  # no chapter heading at all (e.g. a contract): the cover goes in front of the existing body
+        return body, body
     return body, body + m.start()
 
 
@@ -645,7 +647,7 @@ def chapters_on_new_page(pkg):
     sid, block = m.group(1), m.group(0)
     new = block.replace("<w:pageBreakBefore/>", "")
     if "<w:pPr>" in new:
-        at = re.search(r"<w:pPr>(?:<w:keepNext/>)?(?:<w:keepLines/>)?", new).end()
+        at = re.search(r"<w:pPr>(?:<w:keepNext(?: [^>]*)?/>)?(?:<w:keepLines(?: [^>]*)?/>)?", new).end()
         new = new[:at] + "<w:pageBreakBefore/>" + new[at:]
     else:
         new = new.replace("<w:rPr>", "<w:pPr><w:pageBreakBefore/></w:pPr><w:rPr>", 1) if "<w:rPr>" in new else new.replace("</w:style>", "<w:pPr><w:pageBreakBefore/></w:pPr></w:style>")

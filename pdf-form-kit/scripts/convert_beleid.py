@@ -2,7 +2,7 @@
 """convert_beleid.py <src.docx> <out.docx> '<profile json>'
 
 Policy / report document (legacy export) -> new stationery: Template cover + Formulier backdrop + bound footer.
-profile: {title, subtitle, version, date, owner, [title_size], [keep_cover_table], [recolor: {old: new}]}
+profile: {title, subtitle, version, date, owner, [title_size], [keep_cover_table], [cover_first], [recolor: {old: new}]}
 Follow with: restyle_docx.chapters_on_new_page, refresh_toc.py (docs with a TOC), make_writeable_pdf.py. See docs/decisions.md."""
 import json, os, re, shutil, subprocess, sys, tempfile, zipfile
 from pathlib import Path
@@ -31,6 +31,8 @@ def convert(src, out, prof):
 
     xml = pkg.doc
     bs, ce = rd.find_cover_end(xml)
+    if prof.get("cover_first"):  # contracts: everything in the body is real content, the cover goes in front of it
+        ce = bs
     cover = rd.cover_blocks(binder, prof["title"], prof["subtitle"], prof["version"], prof["date"], prof["owner"], prof.get("title_size"))
     keep = ""
     if prof.get("keep_cover_table"):
